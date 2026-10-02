@@ -69,15 +69,59 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Custom Toast for Added to Cart */
+    #cart-toast {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
   </style>
 </head>
 <body class="bg-black text-white font-oneill antialiased selection:bg-white selection:text-black min-h-screen flex flex-col justify-between overflow-x-hidden m-0 p-0">
 
-  <!-- Header / Navigation Bar (Fixed 6rem / 96px height) -->
+  <!-- ========================================== -->
+  <!-- SLIDE-OVER SHOPPING CART DRAWER            -->
+  <!-- ========================================== -->
+  <div id="cart-drawer-backdrop" onclick="toggleCart()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300"></div>
+  
+  <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-black border-l border-white/15 z-[100] translate-x-full transition-transform duration-300 ease-out flex flex-col justify-between p-6">
+    <div>
+      <div class="flex items-center justify-between border-b border-white/15 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="text-sm uppercase tracking-[0.25em] font-bold text-white">Your Cart</span>
+          <span id="cart-badge-drawer" class="text-xs bg-white text-black font-bold px-2 py-0.5 rounded-full">0</span>
+        </div>
+        <button onclick="toggleCart()" class="text-white/60 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+
+      <!-- Cart Items List Container -->
+      <div id="cart-items" class="mt-6 space-y-4 max-h-[60vh] overflow-y-auto pr-1">
+        <p id="empty-cart-msg" class="text-xs tracking-wider text-white/40 uppercase py-10 text-center font-light">Your cart is currently empty.</p>
+      </div>
+    </div>
+
+    <!-- Cart Footer & Checkout -->
+    <div class="border-t border-white/15 pt-5 space-y-4">
+      <div class="flex items-center justify-between text-sm uppercase tracking-wider font-semibold">
+        <span>Subtotal</span>
+        <span id="cart-subtotal" class="text-base text-white font-bold">$0.00</span>
+      </div>
+      <p class="text-[11px] text-white/50 font-light">Taxes and flat shipping calculated at checkout.</p>
+      <button onclick="handleCheckout()" class="w-full py-3.5 border-2 border-white bg-white text-black hover:bg-black hover:text-white text-xs tracking-[0.25em] uppercase font-bold transition-all">
+        Proceed to Checkout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Quick Add Toast Notification -->
+  <div id="cart-toast" class="fixed bottom-6 right-6 z-[100] bg-white text-black px-5 py-3 shadow-2xl flex items-center gap-3 pointer-events-none opacity-0 translate-y-3">
+    <span class="text-xs font-bold uppercase tracking-wider">Item Added To Cart</span>
+  </div>
+
+  <!-- Header / Navigation Bar -->
   <header id="main-header" class="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/15 h-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
       
-      <!-- Top Left Logo (Permanent, Clear, Cropped) -->
+      <!-- Top Left Logo -->
       <button onclick="navigateTo('home')" class="flex items-center group cursor-pointer border-none bg-transparent p-0">
         <div class="h-16 w-16 sm:h-20 sm:w-20 flex items-center justify-center overflow-hidden">
           <img 
@@ -98,11 +142,15 @@
         <button onclick="navigateTo('about')" class="nav-btn text-white/60 hover:text-white transition-colors" data-page="about">About</button>
       </nav>
 
-      <!-- Shop Apparel CTA -->
-      <div class="flex items-center space-x-4">
-        <a href="https://site-shades.org" target="_blank" class="px-6 py-2.5 text-xs tracking-[0.25em] uppercase font-bold border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-150">
-          Shop Apparel
-        </a>
+      <!-- Header Cart Trigger -->
+      <div class="flex items-center">
+        <button onclick="toggleCart()" class="flex items-center space-x-2.5 px-5 py-2.5 text-xs tracking-[0.25em] uppercase font-bold border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-150">
+          <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span>Cart</span>
+          <span id="cart-counter" class="ml-1 text-[11px] font-bold bg-white text-black px-1.5 py-0.2 rounded-full">0</span>
+        </button>
       </div>
     </div>
   </header>
@@ -112,10 +160,9 @@
   <!-- ========================================== -->
   <main id="page-home" class="site-page active-page w-full p-0 m-0">
     
-    <!-- True Full Viewport Hero (Covers 100% of the screen below the header) -->
+    <!-- True Full Viewport Hero -->
     <section class="relative w-full h-[calc(100vh-6rem)] min-h-[560px] flex flex-col items-center justify-between border-b border-white/15 overflow-hidden bg-black py-10 sm:py-14" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.88)), url('Site Shades Background.png'); background-size: 420px auto; background-position: center;">
       
-      <!-- Top Spacer for True Vertical Centering -->
       <div class="w-full"></div>
 
       <!-- Center Typography -->
@@ -147,11 +194,10 @@
         </button>
       </div>
 
-      <!-- Bottom Gradient Blend -->
       <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
     </section>
 
-    <!-- Narrative Section (Smooth target of Explore button) -->
+    <!-- Narrative Section -->
     <section id="brand-story" class="py-24 sm:py-32 max-w-3xl mx-auto px-6 text-center">
       <p class="text-white/85 text-base sm:text-lg leading-relaxed tracking-wide font-light">
         Engineered to conquer relentless sun and blistering heat. With high-density UV mesh, reinforced perimeter webbing, and quick-rig tension mounts, Site Shades delivers rapid, durable relief across tournament athletic dugouts, backcountry off-road camps, marine boat decks, and industrial worksites.
@@ -175,12 +221,12 @@
             <span class="text-xs uppercase tracking-[0.25em] text-white/40 block mb-3 font-semibold">Athletics</span>
             <h3 class="text-2xl font-normal tracking-wide text-white uppercase mb-3">Sports</h3>
             <p class="text-xs sm:text-sm text-white/70 leading-relaxed font-light mb-6">
-              Durable dugout and spectator covers engineered for all-day field exposure. Simple 5-minute setup on chain-link fences.
+              Shade for every play. Built for baseball dugouts, soccer fields, and bleachers to keep players cool and performing at championship level.
             </p>
             <ul class="text-xs sm:text-sm space-y-2.5 text-white/75 font-light mb-8">
-              <li>• Dugout Shade Systems</li>
-              <li>• Bleacher & Grandstand Kits</li>
-              <li>• High-Tension Fence Clamps</li>
+              <li>• UPF 50+ Sun Protection (Blocks 98% Rays)</li>
+              <li>• Dugout & Bleacher Complete Kits</li>
+              <li>• Fullerton, CA Manufactured Quality</li>
             </ul>
           </div>
           <button onclick="navigateTo('sports')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all">
@@ -233,86 +279,367 @@
   <!-- ========================================== -->
   <!-- 2. SPORTS PAGE VIEW                        -->
   <!-- ========================================== -->
-  <main id="page-sports" class="site-page py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-    <div class="text-center max-w-4xl mx-auto">
-      <span class="text-xs uppercase tracking-[0.3em] text-white/50 block mb-2 font-bold">Division</span>
-      <h1 class="text-3xl sm:text-5xl font-normal uppercase tracking-wide text-white">What Is Site Shades Sports?</h1>
-      <p class="mt-4 text-white/75 text-sm sm:text-base leading-relaxed font-light">
-        Site Shades Sports was engineered specifically for youth and adult tournament athletics—including baseball, softball, and outdoor field events. Built to mount onto standard chain-link dugouts and spectator bleachers in minutes, our breathable UV-mesh reduces direct heat while maintaining continuous airflow so athletes and spectators stay protected from all-day sun.
+  <main id="page-sports" class="site-page py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+    
+    <!-- Sports Header Banner -->
+    <div class="text-center max-w-4xl mx-auto border-b border-white/10 pb-12">
+      <span class="text-xs uppercase tracking-[0.35em] text-white/50 block mb-3 font-bold">Official Division</span>
+      <h1 class="text-4xl sm:text-6xl font-normal uppercase tracking-wide text-white">SITE SHADES SPORTS</h1>
+      <p class="mt-3 text-lg sm:text-xl text-white font-bold tracking-[0.18em] uppercase">
+        SHADE FOR EVERY PLAY.
       </p>
+      <p class="mt-4 text-white/80 text-sm sm:text-base leading-relaxed font-light max-w-2xl mx-auto">
+        Site Shades Sports is taking comfort to new levels. We understand the importance of providing comfort for our athletes while on the field. We bring shade to make the play! We are easy, compact and useable at every park!
+      </p>
+
+      <div class="mt-6 inline-flex items-center gap-2.5 px-4 py-2 bg-white/5 border border-white/15 rounded-sm text-xs uppercase tracking-widest text-white/80">
+        <span>📍</span>
+        <span>Family-Owned & Operated in <strong>Fullerton, CA</strong> • Built in California</span>
+      </div>
     </div>
 
-    <!-- Dugout Shade -->
+    <!-- 4 Performance Pillars -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <div class="p-6 border border-white/15 bg-black/60 flex flex-col justify-between">
+        <div>
+          <span class="text-2xl block mb-3">☀️</span>
+          <h3 class="text-base font-bold uppercase tracking-wider text-white mb-2">UPF 50+ Protection</h3>
+          <p class="text-xs text-white/70 font-light leading-relaxed">
+            Blocks 98% of harmful UVA and UVB rays to keep athletes cool, hydrated, and protected from all-day sun exposure.
+          </p>
+        </div>
+        <span class="text-[10px] uppercase tracking-widest text-white/40 mt-4 block">Proven Sun Defense</span>
+      </div>
+
+      <div class="p-6 border border-white/15 bg-black/60 flex flex-col justify-between">
+        <div>
+          <span class="text-2xl block mb-3">🌪️</span>
+          <h3 class="text-base font-bold uppercase tracking-wider text-white mb-2">Durable & Weather-Resistant</h3>
+          <p class="text-xs text-white/70 font-light leading-relaxed">
+            Built to withstand punishing sun, high winds, and unexpected tournament rain without tearing or loosening.
+          </p>
+        </div>
+        <span class="text-[10px] uppercase tracking-widest text-white/40 mt-4 block">Engineered Toughness</span>
+      </div>
+
+      <div class="p-6 border border-white/15 bg-black/60 flex flex-col justify-between">
+        <div>
+          <span class="text-2xl block mb-3">🎨</span>
+          <h3 class="text-base font-bold uppercase tracking-wider text-white mb-2">Custom Sizes & Colors</h3>
+          <p class="text-xs text-white/70 font-light leading-relaxed">
+            Designed to match your home field, dugout layout, and team organization's custom brand colors and style.
+          </p>
+        </div>
+        <span class="text-[10px] uppercase tracking-widest text-white/40 mt-4 block">Team Customization</span>
+      </div>
+
+      <div class="p-6 border border-white/15 bg-black/60 flex flex-col justify-between">
+        <div>
+          <span class="text-2xl block mb-3">🏆</span>
+          <h3 class="text-base font-bold uppercase tracking-wider text-white mb-2">Strong & Reliable</h3>
+          <p class="text-xs text-white/70 font-light leading-relaxed">
+            Engineered for long-lasting, heavy-duty performance season after season. Keep players cool, keep the game strong.
+          </p>
+        </div>
+        <span class="text-[10px] uppercase tracking-widest text-white/40 mt-4 block">Built For Champions</span>
+      </div>
+
+    </div>
+
+    <!-- Sports Multi-Sport Fields Strip -->
+    <div class="bg-white/5 border border-white/15 p-6 sm:p-8 flex flex-wrap items-center justify-around gap-6 text-center">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">⚾</span>
+        <div class="text-left">
+          <span class="text-xs uppercase tracking-wider text-white font-bold block">Baseball & Softball</span>
+          <span class="text-[11px] text-white/50 font-light">Complete Dugout Covers</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">⚽</span>
+        <div class="text-left">
+          <span class="text-xs uppercase tracking-wider text-white font-bold block">Soccer Fields</span>
+          <span class="text-[11px] text-white/50 font-light">Sideline Team Benches</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">🏟️</span>
+        <div class="text-left">
+          <span class="text-xs uppercase tracking-wider text-white font-bold block">Bleachers & Spectators</span>
+          <span class="text-[11px] text-white/50 font-light">Grandstand Sun Defense</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sports Overview 1: Dugout Shade Kit -->
     <div class="bg-black/60 border border-white/15 p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
       <div>
-        <h2 class="text-2xl sm:text-3xl font-normal uppercase tracking-wide text-white">Dugout Shade System</h2>
-        <p class="text-white/75 text-xs sm:text-sm mt-3 leading-relaxed font-light">The ultimate tournament dugout defense. Easily attaches along dugout fence rails to cut down blinding glare and extreme heat buildup, keeping players hydrated, focused, and cool between innings.</p>
+        <span class="text-xs uppercase tracking-[0.25em] text-white/50 block mb-2 font-bold">Championship Hardware</span>
+        <h2 class="text-2xl sm:text-4xl font-normal uppercase tracking-wide text-white">Dugout Shade Kit</h2>
+        <p class="text-white/75 text-xs sm:text-sm mt-3 leading-relaxed font-light">
+          Engineered specifically for youth and tournament baseball and softball dugouts. Fastens directly onto standard chain-link fence rails in under 5 minutes to eliminate blazing overhead heat and keep your team fresh from first pitch to final out.
+        </p>
         <div class="mt-6 bg-white/5 p-6 border border-white/10">
-          <h4 class="text-xs tracking-[0.2em] text-white uppercase font-bold mb-3">What's Included:</h4>
+          <h4 class="text-xs tracking-[0.2em] text-white uppercase font-bold mb-3">Kit Includes:</h4>
           <ul class="text-xs sm:text-sm space-y-2 text-white/80 font-light">
-            <li>• Heavy-Duty UV Airflow Shade Mesh</li>
+            <li>• UPF 50+ Breathable Rip-Stop Sun Mesh</li>
             <li>• Reinforced Perimeter Webbing & Brass Rust-Proof Grommets</li>
-            <li>• High-Tension Quick-Attachment Bungee Ties</li>
-            <li>• Compact Weatherproof Duffel Bag</li>
+            <li>• High-Tension Quick-Attachment Bungee Ties & Snap Clips</li>
+            <li>• Weatherproof Carry Duffel Bag</li>
           </ul>
         </div>
         <div class="mt-8">
-          <a href="https://site-shades.org/store/product/dugout" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Dugout Shade &rarr;</a>
+          <button onclick="smoothGlideTo('sports-products-grid')" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            Browse Dugout Systems Below &darr;
+          </button>
         </div>
       </div>
-      <div class="bg-white/5 border border-white/10 aspect-video flex items-center justify-center p-8 text-center text-white/40">
-        <span class="text-xs tracking-[0.25em] uppercase">Dugout Setup Photo</span>
+      <div class="bg-white/5 border border-white/10 aspect-video flex flex-col items-center justify-center p-8 text-center text-white/40">
+        <span class="text-3xl mb-2">⚾</span>
+        <span class="text-xs tracking-[0.25em] uppercase font-semibold">Dugout Shade Setup</span>
       </div>
     </div>
 
-    <!-- Bleacher Shade -->
+    <!-- Sports Overview 2: Bleacher Shade Kit -->
     <div class="bg-black/60 border border-white/15 p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-      <div class="bg-white/5 border border-white/10 aspect-video flex items-center justify-center p-8 text-center text-white/40 order-2 lg:order-1">
-        <span class="text-xs tracking-[0.25em] uppercase">Bleacher Setup Photo</span>
+      <div class="bg-white/5 border border-white/10 aspect-video flex flex-col items-center justify-center p-8 text-center text-white/40 order-2 lg:order-1">
+        <span class="text-3xl mb-2">🏟️</span>
+        <span class="text-xs tracking-[0.25em] uppercase font-semibold">Bleacher Shade Setup</span>
       </div>
       <div class="order-1 lg:order-2">
-        <h2 class="text-2xl sm:text-3xl font-normal uppercase tracking-wide text-white">Bleacher Shade System</h2>
-        <p class="text-white/75 text-xs sm:text-sm mt-3 leading-relaxed font-light">Provides full overhead sun defense for bleachers and stands. Designed with secure clamp attachments that hold tight without tearing or parachute-pulling during gusty weekend conditions.</p>
+        <span class="text-xs uppercase tracking-[0.25em] text-white/50 block mb-2 font-bold">Spectator Comfort</span>
+        <h2 class="text-2xl sm:text-4xl font-normal uppercase tracking-wide text-white">Bleacher Shade Kit</h2>
+        <p class="text-white/75 text-xs sm:text-sm mt-3 leading-relaxed font-light">
+          Protects family members, coaches, and fans during all-day tournament doubleheaders. Secure clamping mounts hold firmly to standard bleacher benches without bowing or parachuting in windy conditions.
+        </p>
         <div class="mt-6 bg-white/5 p-6 border border-white/10">
-          <h4 class="text-xs tracking-[0.2em] text-white uppercase font-bold mb-3">What's Included:</h4>
+          <h4 class="text-xs tracking-[0.2em] text-white uppercase font-bold mb-3">Kit Includes:</h4>
           <ul class="text-xs sm:text-sm space-y-2 text-white/80 font-light">
-            <li>• Premium Sun-Screening Bleacher Canopy</li>
-            <li>• Aluminum Rail & Bench Clamping Brackets</li>
-            <li>• Shock-Tension Support Rigs</li>
-            <li>• Heavy-Duty Carry Case</li>
+            <li>• Premium UPF 50+ Spectator Canopy Mesh</li>
+            <li>• Universal Grandstand & Bench Fastening Brackets</li>
+            <li>• Wind-Relief Shock Rigs</li>
+            <li>• Compact Transport Carry Case</li>
           </ul>
         </div>
         <div class="mt-8">
-          <a href="https://site-shades.org/store/product/bleacher" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Bleacher Shade &rarr;</a>
+          <button onclick="smoothGlideTo('sports-products-grid')" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            Browse Bleacher Systems Below &darr;
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- Sports Accessories -->
-    <div class="bg-black/60 border border-white/15 p-8 sm:p-10">
-      <h3 class="text-xl uppercase tracking-[0.2em] text-white text-center font-normal mb-8">Sports Accessories</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
+    <!-- ========================================== -->
+    <!-- DIRECT SPORTS PRODUCTS & ACCESSORIES STORE -->
+    <!-- ========================================== -->
+    <div id="sports-products-grid" class="pt-8 border-t border-white/15 scroll-mt-28">
+      
+      <div class="text-center mb-12">
+        <span class="text-xs uppercase tracking-[0.3em] text-white/50 block mb-2 font-bold">Official Store</span>
+        <h2 class="text-3xl sm:text-4xl uppercase tracking-wider text-white font-normal">
+          Sports Shade Systems & Hardware
+        </h2>
+        <p class="text-xs sm:text-sm text-white/60 font-light mt-2 max-w-xl mx-auto">
+          Tournament dugout covers, grandstand shading systems, and field attachment accessories. Built in California.
+        </p>
+      </div>
+
+      <!-- 8-Product Sports Division Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Product 1: Standard Dugout Shade -->
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all group">
           <div>
-            <h4 class="text-sm font-semibold text-white uppercase mb-1">Fence Clips (Pack)</h4>
-            <p class="text-xs text-white/60 font-light mb-4">Quick snap clips designed to fit standard chain-link fence gauges.</p>
+            <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4">
+              <span class="text-4xl mb-2">⚾</span>
+              <span class="text-[10px] uppercase tracking-widest text-white/40 font-semibold">8' x 20' Dugout Kit</span>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-white/50 block mb-1">Dugout Systems</span>
+            <h3 class="text-base font-bold uppercase tracking-wider text-white mb-2">Standard Dugout Shade</h3>
+            <p class="text-xs text-white/60 font-light leading-relaxed mb-4">
+              UPF 50+ tournament cover tailored for standard single-row baseball & softball dugouts. Includes quick bungee links.
+            </p>
           </div>
-          <a href="https://site-shades.org/store/product/clips" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
+          <div class="border-t border-white/10 pt-4">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs text-white/50 uppercase tracking-widest">Price</span>
+              <span class="text-lg font-bold text-white">$249.00</span>
+            </div>
+            <button onclick="addToCart('Standard Dugout Shade (8x20)', 249.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+              Add To Cart
+            </button>
+          </div>
         </div>
-        <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
+
+        <!-- Product 2: Extended Dugout Shade -->
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all group">
           <div>
-            <h4 class="text-sm font-semibold text-white uppercase mb-1">Heavy-Duty Bungees</h4>
-            <p class="text-xs text-white/60 font-light mb-4">High-elasticity UV-resistant cords for constant tension.</p>
+            <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4">
+              <span class="text-4xl mb-2">🏆</span>
+              <span class="text-[10px] uppercase tracking-widest text-white/40 font-semibold">10' x 30' Dugout Kit</span>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-white/50 block mb-1">Dugout Systems</span>
+            <h3 class="text-base font-bold uppercase tracking-wider text-white mb-2">Extended Dugout Shade</h3>
+            <p class="text-xs text-white/60 font-light leading-relaxed mb-4">
+              Extended coverage for major tournament double dugouts and deep benches with high-wind reinforcement borders.
+            </p>
           </div>
-          <a href="https://site-shades.org/store/product/cords" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
+          <div class="border-t border-white/10 pt-4">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs text-white/50 uppercase tracking-widest">Price</span>
+              <span class="text-lg font-bold text-white">$329.00</span>
+            </div>
+            <button onclick="addToCart('Extended Dugout Shade (10x30)', 329.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+              Add To Cart
+            </button>
+          </div>
         </div>
-        <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
+
+        <!-- Product 3: Bleacher Shade System -->
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all group">
           <div>
-            <h4 class="text-sm font-semibold text-white uppercase mb-1">Bleacher Mounts</h4>
-            <p class="text-xs text-white/60 font-light mb-4">Aluminum clamps for universal grandstand fastening.</p>
+            <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4">
+              <span class="text-4xl mb-2">🏟️</span>
+              <span class="text-[10px] uppercase tracking-widest text-white/40 font-semibold">Bleacher Kit</span>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-white/50 block mb-1">Spectator Sun Defense</span>
+            <h3 class="text-base font-bold uppercase tracking-wider text-white mb-2">Bleacher Shade System</h3>
+            <p class="text-xs text-white/60 font-light leading-relaxed mb-4">
+              Full overhead spectator cover with adjustable bench clamping brackets. Fast 5-minute setup on all field stands.
+            </p>
           </div>
-          <a href="https://site-shades.org/store/product/bleacher-clamps" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
+          <div class="border-t border-white/10 pt-4">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs text-white/50 uppercase tracking-widest">Price</span>
+              <span class="text-lg font-bold text-white">$279.00</span>
+            </div>
+            <button onclick="addToCart('Bleacher Shade System', 279.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+              Add To Cart
+            </button>
+          </div>
         </div>
+
+        <!-- Product 4: Custom Color Team Dugout Shade -->
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all group">
+          <div>
+            <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4">
+              <span class="text-4xl mb-2">🎨</span>
+              <span class="text-[10px] uppercase tracking-widest text-white/40 font-semibold">Custom Team Spec</span>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-white/50 block mb-1">Customization</span>
+            <h3 class="text-base font-bold uppercase tracking-wider text-white mb-2">Custom Team Dugout Shade</h3>
+            <p class="text-xs text-white/60 font-light leading-relaxed mb-4">
+              Built to order with your club's team colors and custom field dimensions. California manufactured.
+            </p>
+          </div>
+          <div class="border-t border-white/10 pt-4">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs text-white/50 uppercase tracking-widest">Starting at</span>
+              <span class="text-lg font-bold text-white">$289.00</span>
+            </div>
+            <button onclick="addToCart('Custom Team Dugout Shade', 289.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+              Add To Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 5: Heavy-Duty Fence Clamps (Pack of 10) -->
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all group">
+          <div>
+            <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4">
+              <span class="text-4xl mb-2">🔩</span>
+              <span class="text-[10px] uppercase tracking-widest text-white/40 font-semibold">10-Pack</span>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-white/50 block mb-1">Shade Hardware</span>
+            <h3 class="text-base font-bold uppercase tracking-wider text-white mb-2">Fence-Lock Clamps (10-Pk)</h3>
+            <p class="text-xs text-white/60 font-light leading-relaxed mb-4">
+              Snaps firmly onto standard chain-link fence top rails. Eliminates shade sag during windy tournament conditions.
+            </p>
+          </div>
+          <div class="border-t border-white/10 pt-4">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs text-white/50 uppercase tracking-widest">Price</span>
+              <span class="text-lg font-bold text-white">$34.95</span>
+            </div>
+            <button onclick="addToCart('Fence-Lock Clamps (10-Pack)', 34.95)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+              Add To Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 6: High-Tension Heavy Shock Bungees (12-Pack) -->
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all group">
+          <div>
+            <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4">
+              <span class="text-4xl mb-2">⚡</span>
+              <span class="text-[10px] uppercase tracking-widest text-white/40 font-semibold">12-Pack</span>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-white/50 block mb-1">Shade Hardware</span>
+            <h3 class="text-base font-bold uppercase tracking-wider text-white mb-2">UV Shock Cords (12-Pk)</h3>
+            <p class="text-xs text-white/60 font-light leading-relaxed mb-4">
+              Weather-shielded core with non-scratch polymer hooks to anchor mesh securely through brass grommets.
+            </p>
+          </div>
+          <div class="border-t border-white/10 pt-4">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs text-white/50 uppercase tracking-widest">Price</span>
+              <span class="text-lg font-bold text-white">$28.50</span>
+            </div>
+            <button onclick="addToCart('UV Shock Cords (12-Pack)', 28.50)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+              Add To Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 7: Universal Bleacher Bench Mounts (Set of 4) -->
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all group">
+          <div>
+            <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4">
+              <span class="text-4xl mb-2">🛠️</span>
+              <span class="text-[10px] uppercase tracking-widest text-white/40 font-semibold">Set of 4</span>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-white/50 block mb-1">Shade Hardware</span>
+            <h3 class="text-base font-bold uppercase tracking-wider text-white mb-2">Bleacher Bench Clamps (4)</h3>
+            <p class="text-xs text-white/60 font-light leading-relaxed mb-4">
+              Heavy-gauge aluminum locking clamps engineered to mount securely to aluminum grandstand plank seats.
+            </p>
+          </div>
+          <div class="border-t border-white/10 pt-4">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs text-white/50 uppercase tracking-widest">Price</span>
+              <span class="text-lg font-bold text-white">$44.00</span>
+            </div>
+            <button onclick="addToCart('Bleacher Bench Clamps (Set of 4)', 44.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+              Add To Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 8: Ball-Bungee Fastener Kit (Pack of 25) -->
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all group">
+          <div>
+            <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4">
+              <span class="text-4xl mb-2">🎯</span>
+              <span class="text-[10px] uppercase tracking-widest text-white/40 font-semibold">25-Pack</span>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-white/50 block mb-1">Shade Hardware</span>
+            <h3 class="text-base font-bold uppercase tracking-wider text-white mb-2">Ball Bungees (25-Pack)</h3>
+            <p class="text-xs text-white/60 font-light leading-relaxed mb-4">
+              Quick-loop tension bungees for securing shade corners, soccer team benches, and emergency field tarps.
+            </p>
+          </div>
+          <div class="border-t border-white/10 pt-4">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs text-white/50 uppercase tracking-widest">Price</span>
+              <span class="text-lg font-bold text-white">$19.95</span>
+            </div>
+            <button onclick="addToCart('Ball Bungees (25-Pack)', 19.95)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+              Add To Cart
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
@@ -344,7 +671,9 @@
           </ul>
         </div>
         <div class="mt-8">
-          <a href="https://site-shades.org/store/product/off-road" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Off-Road Shade &rarr;</a>
+          <button onclick="addToCart('Off-Road UTV Canopy Shade', 289.00)" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            Add Off-Road Shade To Cart &rarr;
+          </button>
         </div>
       </div>
       <div class="bg-white/5 border border-white/10 aspect-video flex items-center justify-center p-8 text-center text-white/40">
@@ -370,7 +699,9 @@
           </ul>
         </div>
         <div class="mt-8">
-          <a href="https://site-shades.org/store/product/boat" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Boat Shade &rarr;</a>
+          <button onclick="addToCart('Marine Boat Bow Shade System', 319.00)" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            Add Marine Shade To Cart &rarr;
+          </button>
         </div>
       </div>
     </div>
@@ -390,46 +721,13 @@
           </ul>
         </div>
         <div class="mt-8">
-          <a href="https://site-shades.org/store/product/rv" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase RV Shade &rarr;</a>
+          <button onclick="addToCart('RV Awning Extension Screen', 239.00)" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            Add RV Shade To Cart &rarr;
+          </button>
         </div>
       </div>
       <div class="bg-white/5 border border-white/10 aspect-video flex items-center justify-center p-8 text-center text-white/40">
         <span class="text-xs tracking-[0.25em] uppercase">RV Setup Photo</span>
-      </div>
-    </div>
-
-    <!-- Hardware & Accessories -->
-    <div class="bg-black/60 border border-white/15 p-8 sm:p-10">
-      <h3 class="text-xl uppercase tracking-[0.2em] text-white text-center font-normal mb-8">Hardware & Accessories</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-4 gap-6">
-        <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
-          <div>
-            <h4 class="text-sm font-semibold text-white uppercase mb-1">Telescoping Poles</h4>
-            <p class="text-xs text-white/60 font-light mb-4">Adjustable height aluminum upright poles.</p>
-          </div>
-          <a href="https://site-shades.org/store/product/pole" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
-        </div>
-        <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
-          <div>
-            <h4 class="text-sm font-semibold text-white uppercase mb-1">Tension Clips</h4>
-            <p class="text-xs text-white/60 font-light mb-4">Locking clips for custom tarp and shade placement.</p>
-          </div>
-          <a href="https://site-shades.org/store/product/clips" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
-        </div>
-        <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
-          <div>
-            <h4 class="text-sm font-semibold text-white uppercase mb-1">Heavy Shock Cord</h4>
-            <p class="text-xs text-white/60 font-light mb-4">Industrial elasticity shock cord with coated hooks.</p>
-          </div>
-          <a href="https://site-shades.org/store/product/cord" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
-        </div>
-        <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
-          <div>
-            <h4 class="text-sm font-semibold text-white uppercase mb-1">Magnet Mount Base</h4>
-            <p class="text-xs text-white/60 font-light mb-4">Heavy-pull neodymium magnets for vehicle mounting.</p>
-          </div>
-          <a href="https://site-shades.org/store/product/magnet-mount" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
-        </div>
       </div>
     </div>
   </main>
@@ -461,7 +759,9 @@
           </ul>
         </div>
         <div class="mt-8">
-          <a href="https://site-shades.org/store/product/industrial" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Worksite Shade &rarr;</a>
+          <button onclick="addToCart('Industrial Worksite Canopy Kit', 349.00)" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            Add Worksite Shade To Cart &rarr;
+          </button>
         </div>
       </div>
       <div class="bg-white/5 border border-white/10 aspect-video flex items-center justify-center p-8 text-center text-white/40">
@@ -481,15 +781,15 @@
     </p>
     <div class="mt-12 p-8 border border-white/15 bg-white/5">
       <h3 class="text-base font-semibold uppercase tracking-wider text-white mb-2">Become a Dealer</h3>
-      <p class="text-xs sm:text-sm text-white/70 font-light">For retail stocking inquiries and wholesale catalog access, contact our sales department at info@site-shades.org.</p>
+      <p class="text-xs sm:text-sm text-white/70 font-light">For retail stocking inquiries and wholesale catalog access, contact our sales department at info@site-shades.org or call 714-306-4989.</p>
     </div>
   </main>
 
   <main id="page-about" class="site-page py-16 max-w-4xl mx-auto px-4 text-center">
     <span class="text-xs uppercase tracking-[0.3em] text-white/50 block mb-2 font-bold">Our Story</span>
     <h1 class="text-3xl sm:text-5xl font-normal uppercase tracking-wide text-white">About Site Shades</h1>
-    <p class="mt-4 text-white/75 text-sm sm:text-base leading-relaxed font-light">
-      Born from tournament fields, trail runs, and harsh job sites, Site Shades manufactures portable shade solutions built to withstand heavy winds and blistering heat. Every shade is proudly made in America with durable commercial-grade materials.
+    <p class="mt-4 text-white/75 text-sm sm:text-base leading-relaxed font-light max-w-2xl mx-auto">
+      Site Shades is family-owned and operated in Fullerton, CA. All of our products are manufactured and built in California. Born from tournament fields, trail runs, and harsh job sites, we engineer portable shade solutions built to withstand heavy winds and blistering heat.
     </p>
   </main>
 
@@ -499,7 +799,7 @@
   <footer class="bg-black border-t border-white/15 pt-16 pb-12 text-white/70 text-xs mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Top Tier: Brand, Follow Us (Replaced Quick Links), Contact, Made in USA -->
+      <!-- Top Tier: Brand, Follow Us, Contact, Made in USA -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-14 border-b border-white/10">
         
         <!-- Col 1: Brand & Logo -->
@@ -511,15 +811,15 @@
             <span class="text-lg tracking-[0.22em] text-white uppercase font-bold">SITE SHADES</span>
           </div>
           <p class="text-xs text-white/60 leading-relaxed font-light">
-            Engineered, heavy-duty portable shade systems purpose-built for action sports, team athletics, and industrial worksites.
+            Engineered, heavy-duty portable shade systems purpose-built for action sports, team athletics, and industrial worksites. Proudly based in Fullerton, CA.
           </p>
         </div>
 
-        <!-- Col 2: Follow Us (Replaces Quick Links) -->
+        <!-- Col 2: Follow Us -->
         <div>
           <h4 class="text-xs uppercase tracking-[0.25em] text-white font-bold mb-4">Follow Us</h4>
           <p class="text-xs text-white/60 font-light mb-4">
-            Connect with Site Shades on our official channels for setups, trail drops, and product news.
+            Connect with Site Shades on our official channels for setups, tournament drops, and product news.
           </p>
           <div class="flex items-center space-x-5">
             <!-- Instagram -->
@@ -550,16 +850,20 @@
           <h4 class="text-xs uppercase tracking-[0.25em] text-white font-bold mb-4">Contact & Support</h4>
           <ul class="space-y-3 text-xs font-light text-white/70">
             <li class="flex items-center gap-2">
+              <span class="text-white/40">Phone:</span>
+              <a href="tel:7143064989" class="text-white hover:underline transition-all">714-306-4989</a>
+            </li>
+            <li class="flex items-center gap-2">
               <span class="text-white/40">Email:</span>
               <a href="mailto:info@site-shades.org" class="text-white hover:underline transition-all">info@site-shades.org</a>
             </li>
             <li class="flex items-center gap-2">
-              <span class="text-white/40">Apparel:</span>
-              <a href="https://site-shades.org" target="_blank" class="text-white hover:underline transition-all">site-shades.org</a>
+              <span class="text-white/40">Sports Store:</span>
+              <span class="text-white">siteshadessports.com</span>
             </li>
             <li class="flex items-center gap-2">
-              <span class="text-white/40">Dealer Inquiries:</span>
-              <span class="text-white">Commercial & Wholesale</span>
+              <span class="text-white/40">Location:</span>
+              <span class="text-white">Fullerton, CA</span>
             </li>
           </ul>
         </div>
@@ -568,7 +872,6 @@
         <div class="space-y-3">
           <h4 class="text-xs uppercase tracking-[0.25em] text-white font-bold mb-4">Craftsmanship</h4>
           <div class="flex items-center gap-3 bg-white/5 border border-white/10 p-4 rounded-sm">
-            <!-- American Flag SVG -->
             <svg class="w-9 h-6 shrink-0 rounded-[2px] shadow-sm border border-white/20" viewBox="0 0 7410 3900" xmlns="http://www.w3.org/2000/svg">
               <rect width="7410" height="3900" fill="#b22234"/>
               <path d="M0,450H7410M0,1050H7410M0,1650H7410M0,2250H7410M0,2850H7410M0,3450H7410" stroke="#fff" stroke-width="300"/>
@@ -596,17 +899,17 @@
             </svg>
             <div>
               <span class="text-xs font-bold uppercase tracking-wider text-white block">Made in the USA</span>
-              <span class="text-[11px] text-white/50 block font-light">Domestic Materials & Assembly</span>
+              <span class="text-[11px] text-white/50 block font-light">Built in Fullerton, California</span>
             </div>
           </div>
         </div>
 
       </div>
 
-      <!-- Bottom Tier: Simple Copyright -->
+      <!-- Bottom Tier: Copyright -->
       <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <span class="text-[11px] text-white/40 tracking-wider">
-          &copy; Site Shades. All Rights Reserved.
+          &copy; Site Shades. All Rights Reserved. Built in California.
         </span>
         <div class="flex space-x-6 text-[11px] text-white/40 tracking-wider uppercase">
           <button onclick="navigateTo('home')" class="hover:text-white transition-colors">Home</button>
@@ -621,8 +924,85 @@
     </div>
   </footer>
 
-  <!-- View Controller & Clean Downward Glide Engine -->
+  <!-- View Controller & Cart Management Engine -->
   <script>
+    // Shopping Cart State
+    let cart = [];
+
+    function toggleCart() {
+      const drawer = document.getElementById('cart-drawer');
+      const backdrop = document.getElementById('cart-drawer-backdrop');
+      
+      const isOpen = !drawer.classList.contains('translate-x-full');
+      if (isOpen) {
+        drawer.classList.add('translate-x-full');
+        backdrop.classList.add('opacity-0');
+        setTimeout(() => backdrop.classList.add('hidden'), 300);
+      } else {
+        backdrop.classList.remove('hidden');
+        setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+        drawer.classList.remove('translate-x-full');
+      }
+    }
+
+    function addToCart(title, price) {
+      const existing = cart.find(item => item.title === title);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ title, price, qty: 1 });
+      }
+      updateCartUI();
+      showToast();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      document.getElementById('cart-counter').textContent = totalCount;
+      document.getElementById('cart-badge-drawer').textContent = totalCount;
+      document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+
+      const itemsContainer = document.getElementById('cart-items');
+      if (cart.length === 0) {
+        itemsContainer.innerHTML = '<p id="empty-cart-msg" class="text-xs tracking-wider text-white/40 uppercase py-10 text-center font-light">Your cart is currently empty.</p>';
+      } else {
+        itemsContainer.innerHTML = cart.map((item, idx) => `
+          <div class="border border-white/10 bg-white/5 p-4 flex items-center justify-between">
+            <div class="pr-2">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-white">${item.title}</h4>
+              <span class="text-[11px] text-white/60 tracking-wider">$${item.price.toFixed(2)} &times; ${item.qty}</span>
+            </div>
+            <button onclick="removeFromCart(${idx})" class="text-white/40 hover:text-white text-xs uppercase tracking-widest pl-2">
+              Remove
+            </button>
+          </div>
+        `).join('');
+      }
+    }
+
+    function showToast() {
+      const toast = document.getElementById('cart-toast');
+      toast.classList.remove('opacity-0', 'translate-y-3');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-3');
+      }, 2000);
+    }
+
+    function handleCheckout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty. Add a sports shade or accessory to begin checkout.');
+        return;
+      }
+      alert('Checkout initialized for ' + cart.length + ' item type(s). Direct gateway integration connecting.');
+    }
+
     function smoothGlideTo(targetId) {
       const target = document.getElementById(targetId);
       if (!target) return;
