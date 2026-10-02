@@ -37,11 +37,24 @@
       clip-path: circle(44.2% at 50% 50%);
     }
 
+    /* Full-Site Unified Persistent Background */
     body {
       font-family: "Century Gothic", CenturyGothic, "Questrial", Futura, sans-serif;
-      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.97)), url('Site Shades Background.png');
-      background-attachment: fixed;
-      background-size: 500px auto;
+      background-color: #000000;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.90), rgba(0, 0, 0, 0.96)), url('Site Shades Background.png');
+      background-repeat: repeat;
+      background-position: center top;
+      background-size: 460px auto;
+      pointer-events: none;
     }
 
     /* Clean Bouncing Animation for Scroll Indicator */
@@ -50,19 +63,19 @@
         transform: translateY(0);
       }
       50% {
-        transform: translateY(7px);
+        transform: translateY(8px);
       }
     }
     .jumpy-arrow {
-      animation: jumpy 1.8s ease-in-out infinite;
+      animation: jumpy 2.4s ease-in-out infinite;
     }
 
-    /* Sleek & Slow Cinematic Page Transitions */
+    /* Slower, High-End Editorial Page Cross-Fade */
     .site-page {
       display: none;
       opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(18px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: opacity, transform;
     }
     .site-page.active-page {
@@ -72,42 +85,41 @@
     }
     .site-page.page-fade-out {
       opacity: 0;
-      transform: translateY(-8px);
+      transform: translateY(-10px);
     }
 
-    /* Heading Staggered Reveals */
+    /* Slow Cinematic Heading Reveals */
     @keyframes slowTitleReveal {
-      from {
+      0% {
         opacity: 0;
-        transform: translateY(16px);
-        letter-spacing: 0.18em;
+        transform: translateY(22px);
       }
-      to {
+      100% {
         opacity: 1;
         transform: translateY(0);
-        letter-spacing: inherit;
       }
     }
     @keyframes slowSubtitleReveal {
-      from {
+      0% {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(14px);
       }
-      to {
+      100% {
         opacity: 0.85;
         transform: translateY(0);
       }
     }
     .active-page .anim-heading {
-      animation: slowTitleReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: slowTitleReveal 1.0s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
     .active-page .anim-subtitle {
-      animation: slowSubtitleReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
+      animation: slowSubtitleReveal 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.18s forwards;
     }
 
-    /* Custom Navigation Underline Glow */
+    /* Navigation Link Underline Transition */
     .nav-btn {
       position: relative;
+      transition: color 0.4s ease;
     }
     .nav-btn::after {
       content: '';
@@ -119,16 +131,21 @@
       background-color: #ffffff;
       transform: scaleX(0);
       transform-origin: center;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .nav-btn.nav-active::after,
     .nav-btn:hover::after {
       transform: scaleX(1);
     }
 
-    /* Custom Toast for Added to Cart */
+    /* Mobile Menu Drawer Transition */
+    #mobile-menu {
+      transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Custom Toast Notification */
     #cart-toast {
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
   </style>
 </head>
@@ -137,16 +154,16 @@
   <!-- ========================================== -->
   <!-- SLIDE-OVER SHOPPING CART DRAWER            -->
   <!-- ========================================== -->
-  <div id="cart-drawer-backdrop" onclick="toggleCart()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300"></div>
+  <div id="cart-drawer-backdrop" onclick="toggleCart()" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[90] hidden opacity-0 transition-opacity duration-500"></div>
   
-  <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-black border-l border-white/15 z-[100] translate-x-full transition-transform duration-300 ease-out flex flex-col justify-between p-6">
+  <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-black/95 backdrop-blur-xl border-l border-white/15 z-[100] translate-x-full transition-transform duration-500 cubic-bezier(0.22, 1, 0.36, 1) flex flex-col justify-between p-6">
     <div>
       <div class="flex items-center justify-between border-b border-white/15 pb-4">
         <div class="flex items-center gap-3">
           <span class="text-sm uppercase tracking-[0.25em] font-bold text-white">Your Cart</span>
           <span id="cart-badge-drawer" class="text-xs bg-white text-black font-bold px-2 py-0.5 rounded-full">0</span>
         </div>
-        <button onclick="toggleCart()" class="text-white/60 hover:text-white text-2xl leading-none">&times;</button>
+        <button onclick="toggleCart()" class="text-white/60 hover:text-white text-2xl leading-none transition-colors duration-300">&times;</button>
       </div>
 
       <!-- Cart Items List Container -->
@@ -162,7 +179,7 @@
         <span id="cart-subtotal" class="text-base text-white font-bold">$0.00</span>
       </div>
       <p class="text-[11px] text-white/50 font-light">Taxes and shipping calculated at checkout.</p>
-      <button onclick="handleCheckout()" class="w-full py-3.5 border-2 border-white bg-white text-black hover:bg-black hover:text-white text-xs tracking-[0.25em] uppercase font-bold transition-all duration-300">
+      <button onclick="handleCheckout()" class="w-full py-3.5 border-2 border-white bg-white text-black hover:bg-black hover:text-white text-xs tracking-[0.25em] uppercase font-bold transition-all duration-400">
         Proceed to Checkout
       </button>
     </div>
@@ -173,41 +190,75 @@
     <span class="text-xs font-bold uppercase tracking-wider">Item Added To Cart</span>
   </div>
 
-  <!-- Header / Navigation Bar -->
-  <header id="main-header" class="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/15 h-24">
+  <!-- ========================================== -->
+  <!-- RESPONSIVE HEADER & MOBILE NAVIGATION      -->
+  <!-- ========================================== -->
+  <header id="main-header" class="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/15 h-20 sm:h-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
       
       <!-- Top Left Logo -->
       <button onclick="navigateTo('home')" class="flex items-center group cursor-pointer border-none bg-transparent p-0">
-        <div class="h-16 w-16 sm:h-20 sm:w-20 flex items-center justify-center overflow-hidden">
+        <div class="h-14 w-14 sm:h-20 sm:w-20 flex items-center justify-center overflow-hidden">
           <img 
             src="Site shades LOGO.png" 
             alt="Site Shades" 
-            class="h-full w-full object-contain clean-logo-crop group-hover:scale-105 transition-transform duration-300"
+            class="h-full w-full object-contain clean-logo-crop group-hover:scale-105 transition-transform duration-500"
           />
         </div>
       </button>
 
-      <!-- Prominent Navigation Links with Smooth Underline Micro-Animations -->
+      <!-- Desktop Navigation Links -->
       <nav class="hidden lg:flex items-center space-x-10 text-sm tracking-[0.22em] uppercase font-bold">
-        <button onclick="navigateTo('home')" class="nav-btn nav-active text-white transition-colors duration-300" data-page="home">Home</button>
-        <button onclick="navigateTo('sports')" class="nav-btn text-white/60 hover:text-white transition-colors duration-300" data-page="sports">Sports</button>
-        <button onclick="navigateTo('action-sports')" class="nav-btn text-white/60 hover:text-white transition-colors duration-300" data-page="action-sports">Action Sports</button>
-        <button onclick="navigateTo('industrial')" class="nav-btn text-white/60 hover:text-white transition-colors duration-300" data-page="industrial">Industrial</button>
-        <button onclick="navigateTo('retailers')" class="nav-btn text-white/60 hover:text-white transition-colors duration-300" data-page="retailers">Retailers</button>
-        <button onclick="navigateTo('about')" class="nav-btn text-white/60 hover:text-white transition-colors duration-300" data-page="about">About</button>
+        <button onclick="navigateTo('home')" class="nav-btn nav-active text-white" data-page="home">Home</button>
+        <button onclick="navigateTo('sports')" class="nav-btn text-white/60 hover:text-white" data-page="sports">Sports</button>
+        <button onclick="navigateTo('action-sports')" class="nav-btn text-white/60 hover:text-white" data-page="action-sports">Action Sports</button>
+        <button onclick="navigateTo('industrial')" class="nav-btn text-white/60 hover:text-white" data-page="industrial">Industrial</button>
+        <button onclick="navigateTo('retailers')" class="nav-btn text-white/60 hover:text-white" data-page="retailers">Retailers</button>
+        <button onclick="navigateTo('about')" class="nav-btn text-white/60 hover:text-white" data-page="about">About</button>
       </nav>
 
-      <!-- Header Cart Trigger -->
-      <div class="flex items-center">
-        <button onclick="toggleCart()" class="flex items-center space-x-2.5 px-5 py-2.5 text-xs tracking-[0.25em] uppercase font-bold border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300">
+      <!-- Right Controls: Cart & Mobile Menu Toggle -->
+      <div class="flex items-center space-x-3 sm:space-x-4">
+        <button onclick="toggleCart()" class="flex items-center space-x-2 px-3.5 py-2 sm:px-5 sm:py-2.5 text-xs tracking-[0.22em] uppercase font-bold border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300">
           <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
-          <span>Cart</span>
-          <span id="cart-counter" class="ml-1 text-[11px] font-bold bg-white text-black px-1.5 py-0.2 rounded-full">0</span>
+          <span class="hidden xs:inline">Cart</span>
+          <span id="cart-counter" class="ml-0.5 text-[10px] sm:text-[11px] font-bold bg-white text-black px-1.5 py-0.2 rounded-full">0</span>
+        </button>
+
+        <!-- Mobile Hamburger Toggle Button -->
+        <button 
+          id="mobile-menu-btn" 
+          onclick="toggleMobileMenu()" 
+          aria-label="Toggle navigation menu"
+          class="lg:hidden p-2 text-white border border-white/20 hover:border-white focus:outline-none transition-colors duration-300"
+        >
+          <svg id="hamburger-icon" class="w-6 h-6 stroke-current stroke-2" viewBox="0 0 24 24" fill="none">
+            <line x1="3" y1="6" x2="21" y2="6" stroke-linecap="round" />
+            <line x1="3" y1="12" x2="21" y2="12" stroke-linecap="round" />
+            <line x1="3" y1="18" x2="21" y2="18" stroke-linecap="round" />
+          </svg>
+          <svg id="close-icon" class="w-6 h-6 stroke-current stroke-2 hidden" viewBox="0 0 24 24" fill="none">
+            <line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round" />
+            <line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round" />
+          </svg>
         </button>
       </div>
+
+    </div>
+
+    <!-- Mobile Slide-Down Menu Overlay -->
+    <div 
+      id="mobile-menu" 
+      class="lg:hidden fixed top-[80px] sm:top-[96px] inset-x-0 bg-black/98 backdrop-blur-2xl border-b border-white/20 px-6 py-8 space-y-5 hidden opacity-0 -translate-y-3 z-40 transition-all duration-400"
+    >
+      <button onclick="mobileNav('home')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-2 border-b border-white/10">Home</button>
+      <button onclick="mobileNav('sports')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-2 border-b border-white/10">Sports</button>
+      <button onclick="mobileNav('action-sports')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-2 border-b border-white/10">Action Sports</button>
+      <button onclick="mobileNav('industrial')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-2 border-b border-white/10">Industrial</button>
+      <button onclick="mobileNav('retailers')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-2 border-b border-white/10">Retailers</button>
+      <button onclick="mobileNav('about')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-2">About Us</button>
     </div>
   </header>
 
@@ -217,17 +268,17 @@
   <main id="page-home" class="site-page active-page w-full p-0 m-0">
     
     <!-- True Full Viewport Hero -->
-    <section class="relative w-full h-[calc(100vh-6rem)] min-h-[560px] flex flex-col items-center justify-between border-b border-white/15 overflow-hidden bg-black py-10 sm:py-14" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.88)), url('Site Shades Background.png'); background-size: 420px auto; background-position: center;">
+    <section class="relative w-full h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] min-h-[520px] flex flex-col items-center justify-between border-b border-white/15 overflow-hidden py-10 sm:py-14">
       
       <div class="w-full"></div>
 
       <!-- Center Typography -->
       <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
-        <h1 class="anim-heading text-4xl sm:text-6xl lg:text-7xl font-bold tracking-[0.14em] uppercase text-white leading-tight drop-shadow-[0_10px_25px_rgba(0,0,0,0.9)]">
+        <h1 class="anim-heading text-3xl sm:text-6xl lg:text-7xl font-bold tracking-[0.14em] uppercase text-white leading-tight drop-shadow-[0_10px_25px_rgba(0,0,0,0.9)]">
           YOUR SITE.<br />
           YOUR SHADE.
         </h1>
-        <p class="anim-subtitle mt-5 text-white/80 text-sm sm:text-base tracking-[0.2em] uppercase font-medium max-w-xl mx-auto drop-shadow-md">
+        <p class="anim-subtitle mt-5 text-white/80 text-xs sm:text-base tracking-[0.22em] uppercase font-medium max-w-xl mx-auto drop-shadow-md">
           Engineered Portable Shade Systems
         </p>
       </div>
@@ -237,13 +288,13 @@
         <button 
           onclick="smoothGlideTo('brand-story')" 
           aria-label="Scroll to details"
-          class="group flex flex-col items-center cursor-pointer border-none bg-transparent p-2 focus:outline-none transition-transform hover:scale-105 duration-300"
+          class="group flex flex-col items-center cursor-pointer border-none bg-transparent p-2 focus:outline-none transition-transform hover:scale-105 duration-400"
         >
           <span class="text-xs tracking-[0.28em] uppercase text-white/70 group-hover:text-white transition-colors mb-2.5 font-bold">
             Explore
           </span>
           <div class="jumpy-arrow w-10 h-10 rounded-full border-2 border-white/50 group-hover:border-white bg-black/40 backdrop-blur-md flex items-center justify-center transition-all group-hover:bg-white/10 shadow-lg">
-            <svg class="w-5 h-5 text-white transition-transform group-hover:translate-y-0.5 duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+            <svg class="w-5 h-5 text-white transition-transform group-hover:translate-y-0.5 duration-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
             </svg>
           </div>
@@ -272,7 +323,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
         <!-- Category 1: Sports -->
-        <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1">
+        <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-all duration-500 hover:-translate-y-1">
           <div>
             <span class="text-xs uppercase tracking-[0.25em] text-white/40 block mb-3 font-semibold">Athletics</span>
             <h3 class="text-2xl font-normal tracking-wide text-white uppercase mb-3">Sports</h3>
@@ -285,13 +336,13 @@
               <li>• Heavy-Duty Hardware & Wind-Relief Mesh</li>
             </ul>
           </div>
-          <button onclick="navigateTo('sports')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all duration-300">
+          <button onclick="navigateTo('sports')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all duration-400">
             View Collection &rarr;
           </button>
         </div>
 
         <!-- Category 2: Action Sports -->
-        <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1">
+        <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-all duration-500 hover:-translate-y-1">
           <div>
             <span class="text-xs uppercase tracking-[0.25em] text-white/40 block mb-3 font-semibold">Trail & Marine</span>
             <h3 class="text-2xl font-normal tracking-wide text-white uppercase mb-3">Action Sports</h3>
@@ -304,13 +355,13 @@
               <li>• RV Awnings & Rage Shade Series</li>
             </ul>
           </div>
-          <button onclick="navigateTo('action-sports')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all duration-300">
+          <button onclick="navigateTo('action-sports')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all duration-400">
             View Collection &rarr;
           </button>
         </div>
 
         <!-- Category 3: Industrial -->
-        <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1">
+        <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-all duration-500 hover:-translate-y-1">
           <div>
             <span class="text-xs uppercase tracking-[0.25em] text-white/40 block mb-3 font-semibold">Commercial</span>
             <h3 class="text-2xl font-normal tracking-wide text-white uppercase mb-3">Industrial</h3>
@@ -323,7 +374,7 @@
               <li>• Soft-Coated Magnetic Mounting Clips</li>
             </ul>
           </div>
-          <button onclick="navigateTo('industrial')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all duration-300">
+          <button onclick="navigateTo('industrial')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all duration-400">
             View Collection &rarr;
           </button>
         </div>
@@ -340,8 +391,8 @@
     <!-- Sports Header Banner -->
     <div class="text-center max-w-4xl mx-auto border-b border-white/10 pb-12">
       <span class="text-xs uppercase tracking-[0.35em] text-white/50 block mb-3 font-bold">Athletic Division</span>
-      <h1 class="anim-heading text-4xl sm:text-6xl font-normal uppercase tracking-wide text-white">SITE SHADES SPORTS</h1>
-      <p class="anim-subtitle mt-3 text-lg sm:text-xl text-white font-bold tracking-[0.18em] uppercase">
+      <h1 class="anim-heading text-3xl sm:text-6xl font-normal uppercase tracking-wide text-white">SITE SHADES SPORTS</h1>
+      <p class="anim-subtitle mt-3 text-base sm:text-xl text-white font-bold tracking-[0.18em] uppercase">
         SHADE FOR EVERY PLAY.
       </p>
       <p class="mt-4 text-white/80 text-sm sm:text-base leading-relaxed font-light max-w-2xl mx-auto">
@@ -448,7 +499,7 @@
           </ul>
         </div>
         <div class="mt-8">
-          <button onclick="smoothGlideTo('sports-products-grid')" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
+          <button onclick="smoothGlideTo('sports-products-grid')" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-400">
             Browse Dugout Systems Below &darr;
           </button>
         </div>
@@ -499,7 +550,7 @@
           </ul>
         </div>
         <div class="mt-8">
-          <button onclick="smoothGlideTo('sports-products-grid')" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
+          <button onclick="smoothGlideTo('sports-products-grid')" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-400">
             Browse Bleacher Systems Below &darr;
           </button>
         </div>
@@ -520,7 +571,7 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Dugout 8x20 -->
-        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1 group">
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all duration-400 hover:-translate-y-1 group">
           <div>
             <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4 text-center">
               <span class="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">Standard Spec</span>
@@ -537,14 +588,14 @@
               <span class="text-xs text-white/50 uppercase tracking-widest">Price</span>
               <span class="text-lg font-bold text-white">$249.00</span>
             </div>
-            <button onclick="addToCart('Standard Dugout Shade (8x20)', 249.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
+            <button onclick="addToCart('Standard Dugout Shade (8x20)', 249.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-400">
               Add To Cart
             </button>
           </div>
         </div>
 
         <!-- Dugout 10x30 -->
-        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1 group">
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all duration-400 hover:-translate-y-1 group">
           <div>
             <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4 text-center">
               <span class="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">Extended Spec</span>
@@ -561,14 +612,14 @@
               <span class="text-xs text-white/50 uppercase tracking-widest">Price</span>
               <span class="text-lg font-bold text-white">$329.00</span>
             </div>
-            <button onclick="addToCart('Extended Dugout Shade (10x30)', 329.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
+            <button onclick="addToCart('Extended Dugout Shade (10x30)', 329.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-400">
               Add To Cart
             </button>
           </div>
         </div>
 
         <!-- Bleacher Shade -->
-        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1 group">
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all duration-400 hover:-translate-y-1 group">
           <div>
             <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4 text-center">
               <span class="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">Grandstand Spec</span>
@@ -585,14 +636,14 @@
               <span class="text-xs text-white/50 uppercase tracking-widest">Price</span>
               <span class="text-lg font-bold text-white">$279.00</span>
             </div>
-            <button onclick="addToCart('Bleacher Shade System', 279.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
+            <button onclick="addToCart('Bleacher Shade System', 279.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-400">
               Add To Cart
             </button>
           </div>
         </div>
 
         <!-- Custom Team Dugout -->
-        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1 group">
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all duration-400 hover:-translate-y-1 group">
           <div>
             <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4 text-center">
               <span class="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">Custom Order</span>
@@ -609,7 +660,7 @@
               <span class="text-xs text-white/50 uppercase tracking-widest">Starting at</span>
               <span class="text-lg font-bold text-white">$289.00</span>
             </div>
-            <button onclick="addToCart('Custom Team Dugout Shade', 289.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
+            <button onclick="addToCart('Custom Team Dugout Shade', 289.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-400">
               Add To Cart
             </button>
           </div>
@@ -626,26 +677,26 @@
     <!-- Action Sports Header Banner (TAKE US ANYWHERE!) -->
     <div class="text-center max-w-4xl mx-auto border-b border-white/10 pb-12">
       <span class="text-xs uppercase tracking-[0.35em] text-white/50 block mb-3 font-bold">Action Sports Division</span>
-      <h1 class="anim-heading text-4xl sm:text-6xl font-normal uppercase tracking-wide text-white">TAKE US ANYWHERE!</h1>
+      <h1 class="anim-heading text-3xl sm:text-6xl font-normal uppercase tracking-wide text-white">TAKE US ANYWHERE!</h1>
       <p class="anim-subtitle mt-4 text-white/80 text-sm sm:text-base leading-relaxed font-light max-w-2xl mx-auto">
         High-performance four-way stretch shade systems engineered for extreme outdoor adventure. Built with heavy-duty UPF protective spandex to withstand high trail speeds, open marine winds, and brutal desert heat.
       </p>
 
       <!-- 4 Division Navigation Pills -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10">
-        <button onclick="smoothGlideTo('prod-offroad')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all duration-300 hover:-translate-y-0.5 text-center group">
+        <button onclick="smoothGlideTo('prod-offroad')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all duration-400 hover:-translate-y-0.5 text-center group">
           <span class="text-xs uppercase tracking-widest font-bold text-white block group-hover:text-white/80">Off-Road</span>
           <span class="text-[10px] text-white/50 uppercase tracking-wider block mt-1">UTV & 4x4 Trail</span>
         </button>
-        <button onclick="smoothGlideTo('prod-marine')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all duration-300 hover:-translate-y-0.5 text-center group">
+        <button onclick="smoothGlideTo('prod-marine')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all duration-400 hover:-translate-y-0.5 text-center group">
           <span class="text-xs uppercase tracking-widest font-bold text-white block group-hover:text-white/80">Marine</span>
           <span class="text-[10px] text-white/50 uppercase tracking-wider block mt-1">Bow & Stern Boat</span>
         </button>
-        <button onclick="smoothGlideTo('prod-rv')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all duration-300 hover:-translate-y-0.5 text-center group">
+        <button onclick="smoothGlideTo('prod-rv')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all duration-400 hover:-translate-y-0.5 text-center group">
           <span class="text-xs uppercase tracking-widest font-bold text-white block group-hover:text-white/80">RV</span>
           <span class="text-[10px] text-white/50 uppercase tracking-wider block mt-1">Awning Extensions</span>
         </button>
-        <button onclick="smoothGlideTo('prod-rageshade')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all duration-300 hover:-translate-y-0.5 text-center group">
+        <button onclick="smoothGlideTo('prod-rageshade')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all duration-400 hover:-translate-y-0.5 text-center group">
           <span class="text-xs uppercase tracking-widest font-bold text-white block group-hover:text-white/80">Rage Shade Series</span>
           <span class="text-[10px] text-white/50 uppercase tracking-wider block mt-1">Whole Camp Base</span>
         </button>
@@ -704,7 +755,7 @@
           </div>
 
           <div class="mt-8">
-            <button onclick="addOffRoadToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
+            <button onclick="addOffRoadToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-400">
               Add To Cart
             </button>
           </div>
@@ -766,7 +817,7 @@
           </div>
 
           <div class="mt-8">
-            <button onclick="addMarineToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
+            <button onclick="addMarineToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-400">
               Add To Cart
             </button>
           </div>
@@ -830,7 +881,7 @@
           </div>
 
           <div class="mt-8">
-            <button onclick="addRVToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
+            <button onclick="addRVToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-400">
               Add To Cart
             </button>
           </div>
@@ -889,7 +940,7 @@
           </div>
 
           <div class="mt-8">
-            <button onclick="addRageShadeToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
+            <button onclick="addRageShadeToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-400">
               Add To Cart
             </button>
           </div>
@@ -907,8 +958,8 @@
     <!-- Industrial Header Banner -->
     <div class="text-center max-w-4xl mx-auto border-b border-white/10 pb-12">
       <span class="text-xs uppercase tracking-[0.35em] text-white/50 block mb-3 font-bold">Industrial Division</span>
-      <h1 class="anim-heading text-4xl sm:text-6xl font-normal uppercase tracking-wide text-white">CLOCKED IN WITH COMFORT</h1>
-      <p class="anim-subtitle mt-3 text-lg sm:text-xl text-white font-bold tracking-[0.18em] uppercase">
+      <h1 class="anim-heading text-3xl sm:text-6xl font-normal uppercase tracking-wide text-white">CLOCKED IN WITH COMFORT</h1>
+      <p class="anim-subtitle mt-3 text-base sm:text-xl text-white font-bold tracking-[0.18em] uppercase">
         INDUSTRIAL SHADE SOLUTIONS
       </p>
       <p class="mt-4 text-white/80 text-sm sm:text-base leading-relaxed font-light max-w-2xl mx-auto">
@@ -956,7 +1007,7 @@
       <!-- Visual Display / Photo Container -->
       <div class="lg:col-span-5 bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-6 text-center">
         <span class="text-xs uppercase tracking-[0.25em] font-semibold text-white/60 mb-2">Commercial Fleet Spec</span>
-        <span class="text-3xl font-bold uppercase tracking-wider text-white">Industrial Worksite Shade</span>
+        <span class="text-2xl sm:text-3xl font-bold uppercase tracking-wider text-white">Industrial Worksite Shade</span>
         <span class="text-xs text-white/40 mt-1 font-light">Heavy Machinery & Fleet Magnetic Mount</span>
         <div class="mt-4 pt-4 border-t border-white/10 text-[11px] text-white/60 font-light space-y-1">
           <p>• 10 Feet &times; 5 Feet Coverage</p>
@@ -973,7 +1024,7 @@
             <span class="text-[10px] uppercase tracking-widest text-white/40 border border-white/20 px-2 py-0.5">Commercial Grade</span>
           </div>
           <h2 class="text-2xl sm:text-4xl font-normal uppercase tracking-wide text-white">Industrial Worksite Shade</h2>
-          <div class="mt-2 text-3xl font-bold text-white">$164.99</div>
+          <div class="mt-2 text-2xl sm:text-3xl font-bold text-white">$164.99</div>
 
           <p class="text-white/75 text-xs sm:text-sm mt-4 leading-relaxed font-light">
             Industrial Worksite Shades are 10 feet &times; 5 feet and stretch 12 inches in each direction (four-way stretch). Worksite shades are made to assist the crew on hot days and for safety identification while at work. Built with UPF protectant, heavy duty spandex fabric.
@@ -1006,7 +1057,7 @@
         </div>
 
         <div class="mt-8 flex flex-wrap gap-4 items-center">
-          <button onclick="addIndustrialToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
+          <button onclick="addIndustrialToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-400">
             Add To Cart &rarr;
           </button>
           <span class="text-[11px] text-white/40 tracking-wider">Fast California Dispatch</span>
@@ -1046,7 +1097,7 @@
   <!-- ========================================== -->
   <!-- COMPLETE FOOTER: Follow Us, Contact & USA  -->
   <!-- ========================================== -->
-  <footer class="bg-black border-t border-white/15 pt-16 pb-12 text-white/70 text-xs mt-auto">
+  <footer class="bg-black/90 backdrop-blur-md border-t border-white/15 pt-16 pb-12 text-white/70 text-xs mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-14 border-b border-white/10">
@@ -1100,11 +1151,11 @@
           <ul class="space-y-3 text-xs font-light text-white/70">
             <li class="flex items-center gap-2">
               <span class="text-white/40">Phone:</span>
-              <a href="tel:7143064989" class="text-white hover:underline transition-all">714-306-4989</a>
+              <a href="tel:7143064989" class="text-white hover:underline transition-all duration-300">714-306-4989</a>
             </li>
             <li class="flex items-center gap-2">
               <span class="text-white/40">Email:</span>
-              <a href="mailto:info@site-shades.org" class="text-white hover:underline transition-all">info@site-shades.org</a>
+              <a href="mailto:info@site-shades.org" class="text-white hover:underline transition-all duration-300">info@site-shades.org</a>
             </li>
             <li class="flex items-center gap-2">
               <span class="text-white/40">Inquiries:</span>
@@ -1161,23 +1212,54 @@
           &copy; Site Shades. All Rights Reserved. Built in California.
         </span>
         <div class="flex space-x-6 text-[11px] text-white/40 tracking-wider uppercase">
-          <button onclick="navigateTo('home')" class="hover:text-white transition-colors">Home</button>
-          <button onclick="navigateTo('sports')" class="hover:text-white transition-colors">Sports</button>
-          <button onclick="navigateTo('action-sports')" class="hover:text-white transition-colors">Action</button>
-          <button onclick="navigateTo('industrial')" class="hover:text-white transition-colors">Industrial</button>
-          <button onclick="navigateTo('retailers')" class="hover:text-white transition-colors">Retailers</button>
-          <button onclick="navigateTo('about')" class="hover:text-white transition-colors">About</button>
+          <button onclick="navigateTo('home')" class="hover:text-white transition-colors duration-300">Home</button>
+          <button onclick="navigateTo('sports')" class="hover:text-white transition-colors duration-300">Sports</button>
+          <button onclick="navigateTo('action-sports')" class="hover:text-white transition-colors duration-300">Action</button>
+          <button onclick="navigateTo('industrial')" class="hover:text-white transition-colors duration-300">Industrial</button>
+          <button onclick="navigateTo('retailers')" class="hover:text-white transition-colors duration-300">Retailers</button>
+          <button onclick="navigateTo('about')" class="hover:text-white transition-colors duration-300">About</button>
         </div>
       </div>
 
     </div>
   </footer>
 
-  <!-- View Controller, Eased Page Transitions, & Cart Management Engine -->
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT CONTROLLERS                     -->
+  <!-- ========================================== -->
   <script>
     // Shopping Cart State
     let cart = [];
     let isTransitioning = false;
+
+    // Mobile Menu Controls
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const hamburger = document.getElementById('hamburger-icon');
+      const close = document.getElementById('close-icon');
+
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        setTimeout(() => {
+          menu.classList.remove('opacity-0', '-translate-y-3');
+        }, 10);
+        hamburger.classList.add('hidden');
+        close.classList.remove('hidden');
+      } else {
+        menu.classList.add('opacity-0', '-translate-y-3');
+        setTimeout(() => {
+          menu.classList.add('hidden');
+        }, 350);
+        hamburger.classList.remove('hidden');
+        close.classList.add('hidden');
+      }
+    }
+
+    function mobileNav(pageId) {
+      toggleMobileMenu();
+      navigateTo(pageId);
+    }
 
     // Industrial Product Cart Handler
     function addIndustrialToCart() {
@@ -1263,7 +1345,7 @@
       if (isOpen) {
         drawer.classList.add('translate-x-full');
         backdrop.classList.add('opacity-0');
-        setTimeout(() => backdrop.classList.add('hidden'), 300);
+        setTimeout(() => backdrop.classList.add('hidden'), 450);
       } else {
         backdrop.classList.remove('hidden');
         setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
@@ -1318,7 +1400,7 @@
       toast.classList.remove('opacity-0', 'translate-y-3');
       setTimeout(() => {
         toast.classList.add('opacity-0', 'translate-y-3');
-      }, 2000);
+      }, 2400);
     }
 
     function handleCheckout() {
@@ -1329,16 +1411,16 @@
       alert('Checkout initialized for ' + cart.length + ' item type(s). Direct gateway integration connecting.');
     }
 
-    // Sleek Glide Scroll Engine
+    // Sleek Slow Glide Scroll Engine
     function smoothGlideTo(targetId) {
       const target = document.getElementById(targetId);
       if (!target) return;
 
-      const headerHeight = document.getElementById('main-header').offsetHeight || 96;
+      const headerHeight = document.getElementById('main-header').offsetHeight || 80;
       const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
       const startPosition = window.pageYOffset;
       const distance = targetPosition - startPosition;
-      const duration = 900;
+      const duration = 1100;
       let startTime = null;
 
       function animation(currentTime) {
@@ -1346,10 +1428,8 @@
         const timeElapsed = currentTime - startTime;
         const progress = Math.min(timeElapsed / duration, 1);
 
-        // Ease In-Out Cubic
-        const ease = progress < 0.5 
-          ? 4 * progress * progress * progress 
-          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+        // Quintic Ease-Out for extra smooth, slow deceleration
+        const ease = 1 - Math.pow(1 - progress, 5);
 
         window.scrollTo(0, startPosition + distance * ease);
 
@@ -1401,12 +1481,11 @@
 
         // Reveal new target page with slowed float & fade
         targetPage.style.display = 'block';
-        // Force reflow for animation trigger
-        void targetPage.offsetWidth;
+        void targetPage.offsetWidth; // Force reflow
         targetPage.classList.add('active-page');
 
         isTransitioning = false;
-      }, 240);
+      }, 350);
     }
   </script>
 </body>
