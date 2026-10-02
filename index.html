@@ -138,9 +138,10 @@
       transform: scaleX(1);
     }
 
-    /* Mobile Menu Drawer Transition */
+    /* 100% Solid Opaque Mobile Menu */
     #mobile-menu {
-      transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      background-color: #000000 !important;
+      transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     /* Custom Toast Notification */
@@ -193,7 +194,7 @@
   <!-- ========================================== -->
   <!-- RESPONSIVE HEADER & MOBILE NAVIGATION      -->
   <!-- ========================================== -->
-  <header id="main-header" class="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/15 h-20 sm:h-24">
+  <header id="main-header" class="sticky top-0 z-50 bg-black border-b border-white/15 h-20 sm:h-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
       
       <!-- Top Left Logo -->
@@ -248,17 +249,23 @@
 
     </div>
 
-    <!-- Mobile Slide-Down Menu Overlay -->
+    <!-- 100% Solid Opaque Full-Screen Mobile Drawer -->
     <div 
       id="mobile-menu" 
-      class="lg:hidden fixed top-[80px] sm:top-[96px] inset-x-0 bg-black/98 backdrop-blur-2xl border-b border-white/20 px-6 py-8 space-y-5 hidden opacity-0 -translate-y-3 z-40 transition-all duration-400"
+      class="lg:hidden fixed top-20 sm:top-24 inset-x-0 h-[calc(100dvh-5rem)] sm:h-[calc(100dvh-6rem)] bg-black px-6 py-8 flex flex-col justify-start space-y-2 hidden opacity-0 -translate-y-3 z-[80] overflow-y-auto"
     >
-      <button onclick="mobileNav('home')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-2 border-b border-white/10">Home</button>
-      <button onclick="mobileNav('sports')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-2 border-b border-white/10">Sports</button>
-      <button onclick="mobileNav('action-sports')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-2 border-b border-white/10">Action Sports</button>
-      <button onclick="mobileNav('industrial')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-2 border-b border-white/10">Industrial</button>
-      <button onclick="mobileNav('retailers')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-2 border-b border-white/10">Retailers</button>
-      <button onclick="mobileNav('about')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-2">About Us</button>
+      <button onclick="mobileNav('home')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-4 border-b border-white/15">Home</button>
+      <button onclick="mobileNav('sports')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-4 border-b border-white/15">Sports</button>
+      <button onclick="mobileNav('action-sports')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-4 border-b border-white/15">Action Sports</button>
+      <button onclick="mobileNav('industrial')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-4 border-b border-white/15">Industrial</button>
+      <button onclick="mobileNav('retailers')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-4 border-b border-white/15">Retailers</button>
+      <button onclick="mobileNav('about')" class="block w-full text-left text-base tracking-[0.24em] uppercase font-bold text-white hover:text-white/70 py-4 border-b border-white/15">About Us</button>
+
+      <div class="pt-8">
+        <p class="text-xs uppercase tracking-widest text-white/40 mb-2">Direct Contact</p>
+        <a href="tel:7143064989" class="text-sm font-bold text-white block">714-306-4989</a>
+        <a href="mailto:info@site-shades.org" class="text-xs text-white/60 block mt-1">info@site-shades.org</a>
+      </div>
     </div>
   </header>
 
@@ -660,7 +667,7 @@
               <span class="text-xs text-white/50 uppercase tracking-widest">Starting at</span>
               <span class="text-lg font-bold text-white">$289.00</span>
             </div>
-            <button onclick="addToCart('Custom Team Dugout Shade', 289.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-400">
+            <button onclick="addToCart('Custom Team Dugout Shade', 289.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-400">
               Add To Cart
             </button>
           </div>
@@ -1024,7 +1031,7 @@
             <span class="text-[10px] uppercase tracking-widest text-white/40 border border-white/20 px-2 py-0.5">Commercial Grade</span>
           </div>
           <h2 class="text-2xl sm:text-4xl font-normal uppercase tracking-wide text-white">Industrial Worksite Shade</h2>
-          <div class="mt-2 text-2xl sm:text-3xl font-bold text-white">$164.99</div>
+          <div class="mt-2 text-3xl font-bold text-white">$164.99</div>
 
           <p class="text-white/75 text-xs sm:text-sm mt-4 leading-relaxed font-light">
             Industrial Worksite Shades are 10 feet &times; 5 feet and stretch 12 inches in each direction (four-way stretch). Worksite shades are made to assist the crew on hot days and for safety identification while at work. Built with UPF protectant, heavy duty spandex fabric.
@@ -1232,7 +1239,7 @@
     let cart = [];
     let isTransitioning = false;
 
-    // Mobile Menu Controls
+    // Mobile Menu Controls (Solid full-viewport drawer & scroll lock)
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
       const hamburger = document.getElementById('hamburger-icon');
@@ -1241,6 +1248,7 @@
       const isHidden = menu.classList.contains('hidden');
       if (isHidden) {
         menu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Lock background scroll
         setTimeout(() => {
           menu.classList.remove('opacity-0', '-translate-y-3');
         }, 10);
@@ -1248,9 +1256,10 @@
         close.classList.remove('hidden');
       } else {
         menu.classList.add('opacity-0', '-translate-y-3');
+        document.body.style.overflow = ''; // Unlock background scroll
         setTimeout(() => {
           menu.classList.add('hidden');
-        }, 350);
+        }, 450);
         hamburger.classList.remove('hidden');
         close.classList.add('hidden');
       }
