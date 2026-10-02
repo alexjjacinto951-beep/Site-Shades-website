@@ -37,6 +37,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Teko:wght@600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    /* Remove white border from the logo file */
     .clean-logo-crop {
       clip-path: circle(44.2% at 50% 50%);
     }
@@ -47,7 +48,16 @@
       background-size: 520px auto;
     }
 
-    /* Seamless View Switching Animation */
+    /* Carousel Cross-fade */
+    .hero-slide {
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+    .hero-slide.active-slide {
+      opacity: 1;
+    }
+
+    /* Single-File Page Transitions */
     .site-page {
       display: none;
       opacity: 0;
@@ -74,7 +84,7 @@
   <header class="sticky top-0 z-50 bg-brand-black/90 backdrop-blur-md border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Top Left Logo: Returns to Home -->
+      <!-- Top Left Logo -->
       <button onclick="navigateTo('home')" class="flex items-center group cursor-pointer border-none bg-transparent p-0">
         <div class="h-16 w-16 flex items-center justify-center overflow-hidden">
           <img 
@@ -109,20 +119,49 @@
   <!-- ========================================== -->
   <main id="page-home" class="site-page active-page">
     
-    <!-- O'Neill Landscape Card Stage -->
-    <section class="relative w-full border-b border-brand-border bg-brand-dark/60 py-12 lg:py-16 flex items-center justify-center">
-      <div class="max-w-5xl mx-auto px-4 w-full flex items-center justify-center">
-        <div class="relative w-full max-w-2xl bg-brand-card/80 border border-brand-border rounded-xl p-4 sm:p-8 backdrop-blur shadow-2xl flex items-center justify-center">
+    <!-- Edge-to-Edge Hero Banner with Live Photo Carousel -->
+    <section class="relative w-full h-[62vh] min-h-[460px] max-h-[680px] overflow-hidden flex items-center justify-center border-b border-brand-border bg-black">
+      
+      <!-- Slide 1: Red UTV Desert Shade (Exact Filename match) -->
+      <div class="hero-slide active-slide absolute inset-0 z-0">
+        <img 
+          src="landing page 2.png" 
+          alt="Site Shades Desert UTV" 
+          class="w-full h-full object-cover object-center filter brightness-[0.78]"
+        />
+      </div>
+
+      <!-- Slide 2: Marine / Boat Shade (Exact Filename match) -->
+      <div class="hero-slide absolute inset-0 z-0">
+        <img 
+          src="landing page 1.PNG" 
+          alt="Site Shades Marine Boat" 
+          class="w-full h-full object-cover object-center filter brightness-[0.78]"
+        />
+      </div>
+
+      <!-- Subtle bottom gradient blend -->
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-black/30 z-10 pointer-events-none"></div>
+
+      <!-- Foreground Layer: Badge Emblem Overlay -->
+      <div class="relative z-20 max-w-7xl mx-auto px-4 w-full flex items-center justify-center">
+        <div class="w-48 sm:w-60 md:w-72 transition-transform duration-300 hover:scale-105">
           <img 
             src="Site shades Landing page.png" 
-            alt="Site Shades Showcase" 
-            class="max-h-[440px] w-auto object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)]"
+            alt="Site Shades Official Badge" 
+            class="w-full h-auto object-contain drop-shadow-[0_15px_35px_rgba(0,0,0,0.9)]"
           />
         </div>
       </div>
+
+      <!-- Carousel Indicators -->
+      <div class="absolute bottom-6 z-20 flex gap-2">
+        <button onclick="setSlide(0)" class="slide-indicator w-7 h-1.5 rounded-full bg-white transition-all"></button>
+        <button onclick="setSlide(1)" class="slide-indicator w-7 h-1.5 rounded-full bg-white/40 transition-all"></button>
+      </div>
     </section>
 
-    <!-- Sub-Hero Stacked Headline Block -->
+    <!-- Sub-Hero Stacked Slogan Block -->
     <section class="py-14 max-w-4xl mx-auto px-4 text-center">
       <h1 class="font-headline font-black uppercase tracking-tight text-white leading-[0.88] text-7xl sm:text-8xl lg:text-9xl">
         <span class="block">YOUR SITE.</span>
@@ -536,22 +575,20 @@
     </div>
   </footer>
 
-  <!-- Single-File Page Navigation Controller -->
+  <!-- View Controller & Carousel Engine -->
   <script>
+    // Smooth Page Navigation without 404s
     function navigateTo(pageId) {
-      // Hide all pages
       document.querySelectorAll('.site-page').forEach(page => {
         page.classList.remove('active-page');
       });
 
-      // Show requested page
       const target = document.getElementById('page-' + pageId);
       if (target) {
         target.classList.add('active-page');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
-      // Update Header active styles
       document.querySelectorAll('.nav-btn').forEach(btn => {
         if (btn.getAttribute('data-page') === pageId) {
           btn.classList.add('text-brand-greenAccent');
@@ -562,6 +599,27 @@
         }
       });
     }
+
+    // Hero Carousel Auto-Rotator
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const indicators = document.querySelectorAll('.slide-indicator');
+
+    function setSlide(index) {
+      slides.forEach((s, i) => {
+        s.classList.toggle('active-slide', i === index);
+      });
+      indicators.forEach((ind, i) => {
+        ind.classList.toggle('bg-white', i === index);
+        ind.classList.toggle('bg-white/40', i !== index);
+      });
+      currentSlide = index;
+    }
+
+    setInterval(() => {
+      let next = (currentSlide + 1) % slides.length;
+      setSlide(next);
+    }, 4500);
   </script>
 </body>
 </html>
