@@ -20,17 +20,17 @@
             }
           },
           fontFamily: {
-            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            oneill: ['"Century Gothic"', 'CenturyGothic', 'Questrial', 'Futura', 'sans-serif'],
           }
         }
       }
     }
   </script>
 
-  <!-- Google Fonts: Inter -->
+  <!-- Google Fonts: Questrial (exact web equivalent to Century Gothic) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
 
   <style>
     /* Cleanly crop the outer rim off the logo image */
@@ -39,6 +39,7 @@
     }
 
     body {
+      font-family: "Century Gothic", CenturyGothic, "Questrial", Futura, sans-serif;
       background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.97)), url('Site Shades Background.png');
       background-attachment: fixed;
       background-size: 500px auto;
@@ -67,13 +68,13 @@
     }
   </style>
 </head>
-<body class="bg-black text-white font-sans antialiased selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
+<body class="bg-black text-white font-oneill antialiased selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- Header / Navigation Bar (Big, Sharp, Prominent) -->
+  <!-- Header / Navigation Bar (Tall, readable, O'Neill typography) -->
   <header class="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/15">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-28 flex items-center justify-between">
       
-      <!-- Top Left Logo (Enlarged and Clear) -->
+      <!-- Top Left Logo -->
       <button onclick="navigateTo('home')" class="flex items-center group cursor-pointer border-none bg-transparent p-0">
         <div class="h-20 w-20 sm:h-24 sm:w-24 flex items-center justify-center overflow-hidden">
           <img 
@@ -84,8 +85,8 @@
         </div>
       </button>
 
-      <!-- Prominent, Readable Navigation Links -->
-      <nav class="hidden lg:flex items-center space-x-10 text-base sm:text-lg tracking-widest uppercase font-semibold">
+      <!-- Prominent, Readable Century Gothic Nav Links -->
+      <nav class="hidden lg:flex items-center space-x-10 text-sm tracking-[0.22em] uppercase font-bold">
         <button onclick="navigateTo('home')" class="nav-btn text-white transition-colors" data-page="home">Home</button>
         <button onclick="navigateTo('sports')" class="nav-btn text-white/60 hover:text-white transition-colors" data-page="sports">Sports</button>
         <button onclick="navigateTo('action-sports')" class="nav-btn text-white/60 hover:text-white transition-colors" data-page="action-sports">Action Sports</button>
@@ -96,7 +97,7 @@
 
       <!-- Shop Apparel CTA -->
       <div class="flex items-center space-x-4">
-        <a href="https://site-shades.org" target="_blank" class="px-6 py-2.5 text-sm tracking-wider uppercase font-semibold border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-150">
+        <a href="https://site-shades.org" target="_blank" class="px-6 py-2.5 text-xs tracking-[0.25em] uppercase font-bold border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-150">
           Shop Apparel
         </a>
       </div>
@@ -108,10 +109,10 @@
   <!-- ========================================== -->
   <main id="page-home" class="site-page active-page">
     
-    <!-- Hero Banner (Properly Proportioned, Product-Focused Framing) -->
+    <!-- Hero Banner (Calibrated product focal points) -->
     <section class="relative w-full h-[60vh] sm:h-[70vh] min-h-[440px] max-h-[760px] overflow-hidden bg-black">
       
-      <!-- Slide 1: Desert UTV (landing page 2.png) - Centered specifically on the red shade -->
+      <!-- Slide 1: Desert UTV (landing page 2.png) - Centered on the red shade -->
       <div class="hero-slide active-slide absolute inset-0 z-0">
         <img 
           src="landing page 2.png" 
@@ -120,7 +121,7 @@
         />
       </div>
 
-      <!-- Slide 2: Marine Boat (landing page 1.PNG) - Positioned on the shade canopy -->
+      <!-- Slide 2: Marine Boat (landing page 1.PNG) - Positioned on the canopy shade -->
       <div class="hero-slide absolute inset-0 z-0">
         <img 
           src="landing page 1.PNG" 
@@ -139,22 +140,22 @@
       </div>
     </section>
 
-    <!-- Headline & Description Directly Under Hero (No extra logo, bold and legible) -->
-    <section class="py-16 sm:py-24 max-w-5xl mx-auto px-6 text-center">
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white leading-tight">
-        YOUR SITE. YOUR SHADE.
+    <!-- O'Neill Typography Layout Under Hero (Exact font format) -->
+    <section class="py-16 sm:py-24 max-w-4xl mx-auto px-6 text-center">
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl tracking-[0.06em] text-white font-normal leading-tight">
+        Your Site. Your Shade.
       </h1>
 
-      <p class="mt-6 text-white/80 text-base sm:text-xl max-w-3xl mx-auto leading-relaxed font-normal">
-        Engineered, portable shade systems for outdoor action—from tournament dugouts and UTV desert camps to marine bows and industrial worksites.
+      <p class="mt-6 text-white/80 text-sm sm:text-base leading-relaxed tracking-wide font-light max-w-3xl mx-auto">
+        In 1952 a young man named Jack O’Neill took his unstoppable passion for surfing and used it to battle the elements[cite: 4]. At Site Shades, we bring that same relentless standard to portable shade systems engineered for tournament dugouts, desert UTV camps, marine bows, and industrial worksites—keeping you clocked in with comfort.
       </p>
     </section>
 
-    <!-- 3 Divisions Grid Hub (Bold & Clean Monochrome) -->
+    <!-- 3 Divisions Grid Hub -->
     <section class="pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/10 pt-16">
       <div class="text-center mb-16">
-        <span class="text-sm uppercase tracking-[0.25em] text-white/50 block mb-2 font-semibold">Collections</span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-white">
+        <span class="text-xs uppercase tracking-[0.3em] text-white/50 block mb-2 font-bold">Collections</span>
+        <h2 class="text-2xl sm:text-4xl tracking-wider uppercase text-white font-normal">
           Explore Our Divisions
         </h2>
       </div>
@@ -164,18 +165,18 @@
         <!-- Category 1: Sports -->
         <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-colors">
           <div>
-            <span class="text-xs uppercase tracking-[0.2em] text-white/40 block mb-3 font-semibold">Athletics</span>
-            <h3 class="text-3xl font-extrabold tracking-wide text-white uppercase mb-3">Sports</h3>
-            <p class="text-sm text-white/70 leading-relaxed font-normal mb-6">
+            <span class="text-xs uppercase tracking-[0.25em] text-white/40 block mb-3 font-semibold">Athletics</span>
+            <h3 class="text-2xl font-normal tracking-wide text-white uppercase mb-3">Sports</h3>
+            <p class="text-xs sm:text-sm text-white/70 leading-relaxed font-light mb-6">
               Durable dugout and spectator covers engineered for all-day field exposure. Simple 5-minute setup on chain-link fences.
             </p>
-            <ul class="text-sm space-y-2.5 text-white/75 font-normal mb-8">
+            <ul class="text-xs sm:text-sm space-y-2.5 text-white/75 font-light mb-8">
               <li>• Dugout Shade Systems</li>
               <li>• Bleacher & Grandstand Kits</li>
               <li>• High-Tension Fence Clamps</li>
             </ul>
           </div>
-          <button onclick="navigateTo('sports')" class="w-full py-3.5 border-2 border-white/30 hover:border-white hover:bg-white hover:text-black text-white text-center text-sm tracking-[0.2em] uppercase font-bold transition-all">
+          <button onclick="navigateTo('sports')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all">
             View Collection &rarr;
           </button>
         </div>
@@ -183,18 +184,18 @@
         <!-- Category 2: Action Sports -->
         <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-colors">
           <div>
-            <span class="text-xs uppercase tracking-[0.2em] text-white/40 block mb-3 font-semibold">Trail & Marine</span>
-            <h3 class="text-3xl font-extrabold tracking-wide text-white uppercase mb-3">Action Sports</h3>
-            <p class="text-sm text-white/70 leading-relaxed font-normal mb-6">
+            <span class="text-xs uppercase tracking-[0.25em] text-white/40 block mb-3 font-semibold">Trail & Marine</span>
+            <h3 class="text-2xl font-normal tracking-wide text-white uppercase mb-3">Action Sports</h3>
+            <p class="text-xs sm:text-sm text-white/70 leading-relaxed font-light mb-6">
               High-tension shades engineered for UTV roll cages, boat towers, and RV campsite awnings without flapping in open winds.
             </p>
-            <ul class="text-sm space-y-2.5 text-white/75 font-normal mb-8">
+            <ul class="text-xs sm:text-sm space-y-2.5 text-white/75 font-light mb-8">
               <li>• Off-Road UTV & 4x4 Shades</li>
               <li>• Marine Bow & Bimini Shades</li>
               <li>• Telescoping Poles & Magnetic Mounts</li>
             </ul>
           </div>
-          <button onclick="navigateTo('action-sports')" class="w-full py-3.5 border-2 border-white/30 hover:border-white hover:bg-white hover:text-black text-white text-center text-sm tracking-[0.2em] uppercase font-bold transition-all">
+          <button onclick="navigateTo('action-sports')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all">
             View Collection &rarr;
           </button>
         </div>
@@ -202,18 +203,18 @@
         <!-- Category 3: Industrial -->
         <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-colors">
           <div>
-            <span class="text-xs uppercase tracking-[0.2em] text-white/40 block mb-3 font-semibold">Commercial</span>
-            <h3 class="text-3xl font-extrabold tracking-wide text-white uppercase mb-3">Industrial</h3>
-            <p class="text-sm text-white/70 leading-relaxed font-normal mb-6">
+            <span class="text-xs uppercase tracking-[0.25em] text-white/40 block mb-3 font-semibold">Commercial</span>
+            <h3 class="text-2xl font-normal tracking-wide text-white uppercase mb-3">Industrial</h3>
+            <p class="text-xs sm:text-sm text-white/70 leading-relaxed font-light mb-6">
               OSHA-conscious heat mitigation for road crews, concrete teams, and field surveyors. Heavy-duty rip-stop canopy fabric.
             </p>
-            <ul class="text-sm space-y-2.5 text-white/75 font-normal mb-8">
+            <ul class="text-xs sm:text-sm space-y-2.5 text-white/75 font-light mb-8">
               <li>• Worksite Rapid Canopy Kit</li>
               <li>• Heavy-Duty Rip-Stop Mesh</li>
               <li>• Rubber-Coated Magnetic Fleet Mounts</li>
             </ul>
           </div>
-          <button onclick="navigateTo('industrial')" class="w-full py-3.5 border-2 border-white/30 hover:border-white hover:bg-white hover:text-black text-white text-center text-sm tracking-[0.2em] uppercase font-bold transition-all">
+          <button onclick="navigateTo('industrial')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all">
             View Collection &rarr;
           </button>
         </div>
@@ -227,9 +228,9 @@
   <!-- ========================================== -->
   <main id="page-sports" class="site-page py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
     <div class="text-center max-w-4xl mx-auto">
-      <span class="text-sm uppercase tracking-[0.25em] text-white/50 block mb-2 font-semibold">Division</span>
-      <h1 class="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white">What Is Site Shades Sports?</h1>
-      <p class="mt-4 text-white/75 text-base leading-relaxed font-normal">
+      <span class="text-xs uppercase tracking-[0.3em] text-white/50 block mb-2 font-bold">Division</span>
+      <h1 class="text-3xl sm:text-5xl font-normal uppercase tracking-wide text-white">What Is Site Shades Sports?</h1>
+      <p class="mt-4 text-white/75 text-sm sm:text-base leading-relaxed font-light">
         Site Shades Sports was engineered specifically for youth and adult tournament athletics—including baseball, softball, and outdoor field events. Built to mount onto standard chain-link dugouts and spectator bleachers in minutes, our breathable UV-mesh reduces direct heat while maintaining continuous airflow so athletes and spectators stay protected from all-day sun.
       </p>
     </div>
@@ -237,11 +238,11 @@
     <!-- Dugout Shade -->
     <div class="bg-black/60 border border-white/15 p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
       <div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white">Dugout Shade System</h2>
-        <p class="text-white/75 text-sm sm:text-base mt-3 leading-relaxed font-normal">The ultimate tournament dugout defense. Easily attaches along dugout fence rails to cut down blinding glare and extreme heat buildup, keeping players hydrated, focused, and cool between innings.</p>
+        <h2 class="text-2xl sm:text-3xl font-normal uppercase tracking-wide text-white">Dugout Shade System</h2>
+        <p class="text-white/75 text-xs sm:text-sm mt-3 leading-relaxed font-light">The ultimate tournament dugout defense. Easily attaches along dugout fence rails to cut down blinding glare and extreme heat buildup, keeping players hydrated, focused, and cool between innings.</p>
         <div class="mt-6 bg-white/5 p-6 border border-white/10">
-          <h4 class="text-sm tracking-wider text-white uppercase font-bold mb-3">What's Included:</h4>
-          <ul class="text-sm space-y-2 text-white/80 font-normal">
+          <h4 class="text-xs tracking-[0.2em] text-white uppercase font-bold mb-3">What's Included:</h4>
+          <ul class="text-xs sm:text-sm space-y-2 text-white/80 font-light">
             <li>• Heavy-Duty UV Airflow Shade Mesh</li>
             <li>• Reinforced Perimeter Webbing & Brass Rust-Proof Grommets</li>
             <li>• High-Tension Quick-Attachment Bungee Ties</li>
@@ -249,25 +250,25 @@
           </ul>
         </div>
         <div class="mt-8">
-          <a href="https://site-shades.org/store/product/dugout" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-sm tracking-widest uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Dugout Shade &rarr;</a>
+          <a href="https://site-shades.org/store/product/dugout" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Dugout Shade &rarr;</a>
         </div>
       </div>
       <div class="bg-white/5 border border-white/10 aspect-video flex items-center justify-center p-8 text-center text-white/40">
-        <span class="text-sm tracking-widest uppercase font-semibold">Dugout Setup Photo</span>
+        <span class="text-xs tracking-[0.25em] uppercase">Dugout Setup Photo</span>
       </div>
     </div>
 
     <!-- Bleacher Shade -->
     <div class="bg-black/60 border border-white/15 p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
       <div class="bg-white/5 border border-white/10 aspect-video flex items-center justify-center p-8 text-center text-white/40 order-2 lg:order-1">
-        <span class="text-sm tracking-widest uppercase font-semibold">Bleacher Setup Photo</span>
+        <span class="text-xs tracking-[0.25em] uppercase">Bleacher Setup Photo</span>
       </div>
       <div class="order-1 lg:order-2">
-        <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white">Bleacher Shade System</h2>
-        <p class="text-white/75 text-sm sm:text-base mt-3 leading-relaxed font-normal">Provides full overhead sun defense for bleachers and stands. Designed with secure clamp attachments that hold tight without tearing or parachute-pulling during gusty weekend conditions.</p>
+        <h2 class="text-2xl sm:text-3xl font-normal uppercase tracking-wide text-white">Bleacher Shade System</h2>
+        <p class="text-white/75 text-xs sm:text-sm mt-3 leading-relaxed font-light">Provides full overhead sun defense for bleachers and stands. Designed with secure clamp attachments that hold tight without tearing or parachute-pulling during gusty weekend conditions.</p>
         <div class="mt-6 bg-white/5 p-6 border border-white/10">
-          <h4 class="text-sm tracking-wider text-white uppercase font-bold mb-3">What's Included:</h4>
-          <ul class="text-sm space-y-2 text-white/80 font-normal">
+          <h4 class="text-xs tracking-[0.2em] text-white uppercase font-bold mb-3">What's Included:</h4>
+          <ul class="text-xs sm:text-sm space-y-2 text-white/80 font-light">
             <li>• Premium Sun-Screening Bleacher Canopy</li>
             <li>• Aluminum Rail & Bench Clamping Brackets</li>
             <li>• Shock-Tension Support Rigs</li>
@@ -275,35 +276,35 @@
           </ul>
         </div>
         <div class="mt-8">
-          <a href="https://site-shades.org/store/product/bleacher" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-sm tracking-widest uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Bleacher Shade &rarr;</a>
+          <a href="https://site-shades.org/store/product/bleacher" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Bleacher Shade &rarr;</a>
         </div>
       </div>
     </div>
 
     <!-- Sports Accessories -->
     <div class="bg-black/60 border border-white/15 p-8 sm:p-10">
-      <h3 class="text-2xl uppercase tracking-wider text-white text-center font-extrabold mb-8">Sports Accessories</h3>
+      <h3 class="text-xl uppercase tracking-[0.2em] text-white text-center font-normal mb-8">Sports Accessories</h3>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
         <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
           <div>
-            <h4 class="text-base font-bold text-white uppercase mb-1">Fence Clips (Pack)</h4>
-            <p class="text-xs text-white/60 font-normal mb-4">Quick snap clips designed to fit standard chain-link fence gauges.</p>
+            <h4 class="text-sm font-semibold text-white uppercase mb-1">Fence Clips (Pack)</h4>
+            <p class="text-xs text-white/60 font-light mb-4">Quick snap clips designed to fit standard chain-link fence gauges.</p>
           </div>
-          <a href="https://site-shades.org/store/product/clips" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-wider uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
+          <a href="https://site-shades.org/store/product/clips" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
         </div>
         <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
           <div>
-            <h4 class="text-base font-bold text-white uppercase mb-1">Heavy-Duty Bungees</h4>
-            <p class="text-xs text-white/60 font-normal mb-4">High-elasticity UV-resistant cords for constant tension.</p>
+            <h4 class="text-sm font-semibold text-white uppercase mb-1">Heavy-Duty Bungees</h4>
+            <p class="text-xs text-white/60 font-light mb-4">High-elasticity UV-resistant cords for constant tension.</p>
           </div>
-          <a href="https://site-shades.org/store/product/cords" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-wider uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
+          <a href="https://site-shades.org/store/product/cords" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
         </div>
         <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
           <div>
-            <h4 class="text-base font-bold text-white uppercase mb-1">Bleacher Mounts</h4>
-            <p class="text-xs text-white/60 font-normal mb-4">Aluminum clamps for universal grandstand fastening.</p>
+            <h4 class="text-sm font-semibold text-white uppercase mb-1">Bleacher Mounts</h4>
+            <p class="text-xs text-white/60 font-light mb-4">Aluminum clamps for universal grandstand fastening.</p>
           </div>
-          <a href="https://site-shades.org/store/product/bleacher-clamps" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-wider uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
+          <a href="https://site-shades.org/store/product/bleacher-clamps" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
         </div>
       </div>
     </div>
@@ -314,9 +315,9 @@
   <!-- ========================================== -->
   <main id="page-action-sports" class="site-page py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
     <div class="text-center max-w-4xl mx-auto">
-      <span class="text-sm uppercase tracking-[0.25em] text-white/50 block mb-2 font-semibold">Division</span>
-      <h1 class="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white">What Is Site Shades Action Sports?</h1>
-      <p class="mt-4 text-white/75 text-base leading-relaxed font-normal">
+      <span class="text-xs uppercase tracking-[0.3em] text-white/50 block mb-2 font-bold">Division</span>
+      <h1 class="text-3xl sm:text-5xl font-normal uppercase tracking-wide text-white">What Is Site Shades Action Sports?</h1>
+      <p class="mt-4 text-white/75 text-sm sm:text-base leading-relaxed font-light">
         Site Shades Action Sports is built for high speeds, open water, and rugged backcountry terrain. From desert UTV runs to sandbar tie-ups and remote overlanding, our shades clamp directly to roll cages, T-tops, and RV awnings without bowing under open winds.
       </p>
     </div>
@@ -324,11 +325,11 @@
     <!-- Off-Road -->
     <div class="bg-black/60 border border-white/15 p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
       <div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white">Off-Road Shades</h2>
-        <p class="text-white/75 text-sm sm:text-base mt-3 leading-relaxed font-normal">Engineered for side-by-sides, UTVs, and 4x4 trail rigs. Attaches in seconds between multiple vehicles or straight off your roll cage to establish instant base-camp shade in the dunes or desert trails.</p>
+        <h2 class="text-2xl sm:text-3xl font-normal uppercase tracking-wide text-white">Off-Road Shades</h2>
+        <p class="text-white/75 text-xs sm:text-sm mt-3 leading-relaxed font-light">Engineered for side-by-sides, UTVs, and 4x4 trail rigs. Attaches in seconds between multiple vehicles or straight off your roll cage to establish instant base-camp shade in the dunes or desert trails.</p>
         <div class="mt-6 bg-white/5 p-6 border border-white/10">
-          <h4 class="text-sm tracking-wider text-white uppercase font-bold mb-3">What's Included:</h4>
-          <ul class="text-sm space-y-2 text-white/80 font-normal">
+          <h4 class="text-xs tracking-[0.2em] text-white uppercase font-bold mb-3">What's Included:</h4>
+          <ul class="text-xs sm:text-sm space-y-2 text-white/80 font-light">
             <li>• Heavy-Duty Reinforced Rip-Stop Shade Mesh</li>
             <li>• Roll-Bar Quick-Mount Strap Hardware</li>
             <li>• Adjustable High-Tension Anchoring Cords</li>
@@ -336,25 +337,25 @@
           </ul>
         </div>
         <div class="mt-8">
-          <a href="https://site-shades.org/store/product/off-road" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-sm tracking-widest uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Off-Road Shade &rarr;</a>
+          <a href="https://site-shades.org/store/product/off-road" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Off-Road Shade &rarr;</a>
         </div>
       </div>
       <div class="bg-white/5 border border-white/10 aspect-video flex items-center justify-center p-8 text-center text-white/40">
-        <span class="text-sm tracking-widest uppercase font-semibold">Off-Road Setup Photo</span>
+        <span class="text-xs tracking-[0.25em] uppercase">Off-Road Setup Photo</span>
       </div>
     </div>
 
     <!-- Boat -->
     <div class="bg-black/60 border border-white/15 p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
       <div class="bg-white/5 border border-white/10 aspect-video flex items-center justify-center p-8 text-center text-white/40 order-2 lg:order-1">
-        <span class="text-sm tracking-widest uppercase font-semibold">Marine Setup Photo</span>
+        <span class="text-xs tracking-[0.25em] uppercase">Marine Setup Photo</span>
       </div>
       <div class="order-1 lg:order-2">
-        <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white">Boat & Marine Shades</h2>
-        <p class="text-white/75 text-sm sm:text-base mt-3 leading-relaxed font-normal">Extend shade over your bow or stern when anchored out on the lake or coastal sandbar. Marine-grade hardware stands up to saltwater, moisture, and high sun reflection.</p>
+        <h2 class="text-2xl sm:text-3xl font-normal uppercase tracking-wide text-white">Boat & Marine Shades</h2>
+        <p class="text-white/75 text-xs sm:text-sm mt-3 leading-relaxed font-light">Extend shade over your bow or stern when anchored out on the lake or coastal sandbar. Marine-grade hardware stands up to saltwater, moisture, and high sun reflection.</p>
         <div class="mt-6 bg-white/5 p-6 border border-white/10">
-          <h4 class="text-sm tracking-wider text-white uppercase font-bold mb-3">What's Included:</h4>
-          <ul class="text-sm space-y-2 text-white/80 font-normal">
+          <h4 class="text-xs tracking-[0.2em] text-white uppercase font-bold mb-3">What's Included:</h4>
+          <ul class="text-xs sm:text-sm space-y-2 text-white/80 font-light">
             <li>• Marine-Grade UV Sun-Deflection Shade</li>
             <li>• Corrosion-Resistant Stainless Hardware</li>
             <li>• T-Top / Tower Tensioning Straps</li>
@@ -362,7 +363,7 @@
           </ul>
         </div>
         <div class="mt-8">
-          <a href="https://site-shades.org/store/product/boat" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-sm tracking-widest uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Boat Shade &rarr;</a>
+          <a href="https://site-shades.org/store/product/boat" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Boat Shade &rarr;</a>
         </div>
       </div>
     </div>
@@ -370,11 +371,11 @@
     <!-- RV -->
     <div class="bg-black/60 border border-white/15 p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
       <div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white">RV & Camper Shades</h2>
-        <p class="text-white/75 text-sm sm:text-base mt-3 leading-relaxed font-normal">Easily slides into existing RV awning roller channels to drop temperatures along your campsite patio. Breathable mesh blocks the sun while preserving your scenic view.</p>
+        <h2 class="text-2xl sm:text-3xl font-normal uppercase tracking-wide text-white">RV & Camper Shades</h2>
+        <p class="text-white/75 text-xs sm:text-sm mt-3 leading-relaxed font-light">Easily slides into existing RV awning roller channels to drop temperatures along your campsite patio. Breathable mesh blocks the sun while preserving your scenic view.</p>
         <div class="mt-6 bg-white/5 p-6 border border-white/10">
-          <h4 class="text-sm tracking-wider text-white uppercase font-bold mb-3">What's Included:</h4>
-          <ul class="text-sm space-y-2 text-white/80 font-normal">
+          <h4 class="text-xs tracking-[0.2em] text-white uppercase font-bold mb-3">What's Included:</h4>
+          <ul class="text-xs sm:text-sm space-y-2 text-white/80 font-light">
             <li>• RV Awning Drop Extension Screen</li>
             <li>• Universal Awning Track Polycord Inserts</li>
             <li>• Ground Anchor Stakes & Tie-Downs</li>
@@ -382,45 +383,45 @@
           </ul>
         </div>
         <div class="mt-8">
-          <a href="https://site-shades.org/store/product/rv" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-sm tracking-widest uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase RV Shade &rarr;</a>
+          <a href="https://site-shades.org/store/product/rv" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase RV Shade &rarr;</a>
         </div>
       </div>
       <div class="bg-white/5 border border-white/10 aspect-video flex items-center justify-center p-8 text-center text-white/40">
-        <span class="text-sm tracking-widest uppercase font-semibold">RV Setup Photo</span>
+        <span class="text-xs tracking-[0.25em] uppercase">RV Setup Photo</span>
       </div>
     </div>
 
     <!-- Hardware & Accessories -->
     <div class="bg-black/60 border border-white/15 p-8 sm:p-10">
-      <h3 class="text-2xl uppercase tracking-wider text-white text-center font-extrabold mb-8">Hardware & Accessories</h3>
+      <h3 class="text-xl uppercase tracking-[0.2em] text-white text-center font-normal mb-8">Hardware & Accessories</h3>
       <div class="grid grid-cols-1 sm:grid-cols-4 gap-6">
         <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
           <div>
-            <h4 class="text-base font-bold text-white uppercase mb-1">Telescoping Poles</h4>
-            <p class="text-xs text-white/60 font-normal mb-4">Adjustable height aluminum upright poles.</p>
+            <h4 class="text-sm font-semibold text-white uppercase mb-1">Telescoping Poles</h4>
+            <p class="text-xs text-white/60 font-light mb-4">Adjustable height aluminum upright poles.</p>
           </div>
-          <a href="https://site-shades.org/store/product/pole" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-wider uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
+          <a href="https://site-shades.org/store/product/pole" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
         </div>
         <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
           <div>
-            <h4 class="text-base font-bold text-white uppercase mb-1">Tension Clips</h4>
-            <p class="text-xs text-white/60 font-normal mb-4">Locking clips for custom tarp and shade placement.</p>
+            <h4 class="text-sm font-semibold text-white uppercase mb-1">Tension Clips</h4>
+            <p class="text-xs text-white/60 font-light mb-4">Locking clips for custom tarp and shade placement.</p>
           </div>
-          <a href="https://site-shades.org/store/product/clips" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-wider uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
+          <a href="https://site-shades.org/store/product/clips" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
         </div>
         <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
           <div>
-            <h4 class="text-base font-bold text-white uppercase mb-1">Heavy Shock Cord</h4>
-            <p class="text-xs text-white/60 font-normal mb-4">Industrial elasticity shock cord with coated hooks.</p>
+            <h4 class="text-sm font-semibold text-white uppercase mb-1">Heavy Shock Cord</h4>
+            <p class="text-xs text-white/60 font-light mb-4">Industrial elasticity shock cord with coated hooks.</p>
           </div>
-          <a href="https://site-shades.org/store/product/cord" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-wider uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
+          <a href="https://site-shades.org/store/product/cord" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
         </div>
         <div class="p-6 border border-white/15 bg-white/5 flex flex-col justify-between">
           <div>
-            <h4 class="text-base font-bold text-white uppercase mb-1">Magnet Mount Base</h4>
-            <p class="text-xs text-white/60 font-normal mb-4">Heavy-pull neodymium magnets for vehicle mounting.</p>
+            <h4 class="text-sm font-semibold text-white uppercase mb-1">Magnet Mount Base</h4>
+            <p class="text-xs text-white/60 font-light mb-4">Heavy-pull neodymium magnets for vehicle mounting.</p>
           </div>
-          <a href="https://site-shades.org/store/product/magnet-mount" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-wider uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
+          <a href="https://site-shades.org/store/product/magnet-mount" target="_blank" class="py-2.5 border border-white/40 hover:border-white text-center text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Tab &rarr;</a>
         </div>
       </div>
     </div>
@@ -431,9 +432,9 @@
   <!-- ========================================== -->
   <main id="page-industrial" class="site-page py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
     <div class="text-center max-w-4xl mx-auto">
-      <span class="text-sm uppercase tracking-[0.25em] text-white/50 block mb-2 font-semibold">Division</span>
-      <h1 class="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white">What Is Site Shades Industrial?</h1>
-      <p class="mt-4 text-white/75 text-base leading-relaxed font-normal">
+      <span class="text-xs uppercase tracking-[0.3em] text-white/50 block mb-2 font-bold">Division</span>
+      <h1 class="text-3xl sm:text-5xl font-normal uppercase tracking-wide text-white">What Is Site Shades Industrial?</h1>
+      <p class="mt-4 text-white/75 text-sm sm:text-base leading-relaxed font-light">
         Site Shades Industrial delivers rugged, field-tested heat stress protection for roadside construction, surveying crews, utility linemen, and job sites. Designed to meet strict workplace heat illness prevention requirements, these shades mount directly to service trucks, equipment trailers, or standalone rigs to create immediate shaded cooling zones.
       </p>
     </div>
@@ -441,11 +442,11 @@
     <!-- Worksite Shade -->
     <div class="bg-black/60 border border-white/15 p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
       <div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white">Worksite Industrial Shade</h2>
-        <p class="text-white/75 text-sm sm:text-base mt-3 leading-relaxed font-normal">High-visibility, heavy-duty commercial canopy mesh designed to survive daily abuse on active job sites. Resistant to tears, abrasions, sparks, and intense sun exposure.</p>
+        <h2 class="text-2xl sm:text-3xl font-normal uppercase tracking-wide text-white">Worksite Industrial Shade</h2>
+        <p class="text-white/75 text-xs sm:text-sm mt-3 leading-relaxed font-light">High-visibility, heavy-duty commercial canopy mesh designed to survive daily abuse on active job sites. Resistant to tears, abrasions, sparks, and intense sun exposure.</p>
         <div class="mt-6 bg-white/5 p-6 border border-white/10">
-          <h4 class="text-sm tracking-wider text-white uppercase font-bold mb-3">What's Included:</h4>
-          <ul class="text-sm space-y-2 text-white/80 font-normal">
+          <h4 class="text-xs tracking-[0.2em] text-white uppercase font-bold mb-3">What's Included:</h4>
+          <ul class="text-xs sm:text-sm space-y-2 text-white/80 font-light">
             <li>• Heavy-Duty Rip-Stop High-Visibility Shade Canopy</li>
             <li>• High-Power Neodymium Rubber-Coated Magnetic Fleet Mounts</li>
             <li>• Industrial-Grade Tie-Down Cords & Carabiners</li>
@@ -453,11 +454,11 @@
           </ul>
         </div>
         <div class="mt-8">
-          <a href="https://www.site-shades.org/store/product/industrial" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-sm tracking-widest uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Worksite Shade &rarr;</a>
+          <a href="https://www.site-shades.org/store/product/industrial" target="_blank" class="inline-block px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">Purchase Worksite Shade &rarr;</a>
         </div>
       </div>
       <div class="bg-white/5 border border-white/10 aspect-video flex items-center justify-center p-8 text-center text-white/40">
-        <span class="text-sm tracking-widest uppercase font-semibold">Industrial Worksite Setup Photo</span>
+        <span class="text-xs tracking-[0.25em] uppercase">Industrial Worksite Setup Photo</span>
       </div>
     </div>
   </main>
@@ -466,33 +467,33 @@
   <!-- 5. RETAILERS & ABOUT VIEWS                 -->
   <!-- ========================================== -->
   <main id="page-retailers" class="site-page py-16 max-w-4xl mx-auto px-4 text-center">
-    <span class="text-sm uppercase tracking-[0.25em] text-white/50 block mb-2 font-semibold">Network</span>
-    <h1 class="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white">Retail Locations</h1>
-    <p class="mt-4 text-white/75 text-base leading-relaxed font-normal">
+    <span class="text-xs uppercase tracking-[0.3em] text-white/50 block mb-2 font-bold">Network</span>
+    <h1 class="text-3xl sm:text-5xl font-normal uppercase tracking-wide text-white">Retail Locations</h1>
+    <p class="mt-4 text-white/75 text-sm sm:text-base leading-relaxed font-light">
       Site Shades are available through select outdoor outfitters, powersports dealers, and commercial supply distributors nationwide.
     </p>
     <div class="mt-12 p-8 border border-white/15 bg-white/5">
-      <h3 class="text-lg font-bold uppercase tracking-wider text-white mb-2">Become a Dealer</h3>
-      <p class="text-sm text-white/70 font-normal">For retail stocking inquiries and wholesale catalog access, contact our sales department at info@site-shades.org.</p>
+      <h3 class="text-base font-semibold uppercase tracking-wider text-white mb-2">Become a Dealer</h3>
+      <p class="text-xs sm:text-sm text-white/70 font-light">For retail stocking inquiries and wholesale catalog access, contact our sales department at info@site-shades.org.</p>
     </div>
   </main>
 
   <main id="page-about" class="site-page py-16 max-w-4xl mx-auto px-4 text-center">
-    <span class="text-sm uppercase tracking-[0.25em] text-white/50 block mb-2 font-semibold">Our Story</span>
-    <h1 class="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white">About Site Shades</h1>
-    <p class="mt-4 text-white/75 text-base leading-relaxed font-normal">
+    <span class="text-xs uppercase tracking-[0.3em] text-white/50 block mb-2 font-bold">Our Story</span>
+    <h1 class="text-3xl sm:text-5xl font-normal uppercase tracking-wide text-white">About Site Shades</h1>
+    <p class="mt-4 text-white/75 text-sm sm:text-base leading-relaxed font-light">
       Born from tournament fields, trail runs, and harsh job sites, Site Shades manufactures portable shade solutions built to withstand heavy winds and blistering heat. Every shade is proudly made in America with durable commercial-grade materials.
     </p>
   </main>
 
-  <!-- Footer (Clean & Bold) -->
-  <footer class="bg-black border-t border-white/15 py-12 text-white/60 text-sm mt-auto">
+  <!-- Footer -->
+  <footer class="bg-black border-t border-white/15 py-12 text-white/60 text-xs mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center gap-4">
         <div class="h-12 w-12 overflow-hidden"><img src="Site shades LOGO.png" alt="Site Shades" class="h-full w-full object-contain clean-logo-crop" /></div>
-        <span class="text-base tracking-[0.18em] text-white uppercase font-bold">SITE SHADES</span>
+        <span class="text-sm tracking-[0.22em] text-white uppercase font-bold">SITE SHADES</span>
       </div>
-      <div class="flex space-x-8 uppercase text-sm tracking-wider font-semibold">
+      <div class="flex space-x-8 uppercase text-xs tracking-[0.2em] font-bold">
         <button onclick="navigateTo('sports')" class="hover:text-white transition-colors">Sports</button>
         <button onclick="navigateTo('action-sports')" class="hover:text-white transition-colors">Action</button>
         <button onclick="navigateTo('industrial')" class="hover:text-white transition-colors">Industrial</button>
