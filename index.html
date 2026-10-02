@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Shades – Your Site. Your Shade.</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .font-heading { font-family: 'Montserrat', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-amber-500 selection:text-black">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-amber-500 text-slate-950 px-4 py-2 text-center text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-2">
+    <span>🇺🇸 100% Made in America</span>
+    <span class="opacity-50">•</span>
+    <span>Engineered For Maximum Airflow & UV Protection</span>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex flex-col">
+        <span class="text-2xl font-extrabold tracking-tight text-white uppercase font-heading">
+          Site <span class="text-amber-500">Shades</span>
+        </span>
+        <span class="text-[10px] tracking-widest text-slate-400 uppercase -mt-1 font-medium">Your Site. Your Shade.</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wide uppercase">
+        <a href="#categories" class="text-slate-300 hover:text-amber-400 transition-colors">Sports</a>
+        <a href="#categories" class="text-slate-300 hover:text-amber-400 transition-colors">Action Sports</a>
+        <a href="#categories" class="text-slate-300 hover:text-amber-400 transition-colors">Industrial</a>
+        <a href="#retail" class="text-slate-300 hover:text-amber-400 transition-colors">Retail Locations</a>
+        <a href="#about" class="text-slate-300 hover:text-amber-400 transition-colors">About Us</a>
+      </nav>
+
+      <!-- Right Action / Apparel Button -->
+      <div class="flex items-center space-x-4">
+        <a href="#apparel" class="inline-flex items-center justify-center px-4 py-2 border border-amber-500/80 rounded-md text-xs font-bold uppercase tracking-wider text-amber-400 hover:bg-amber-500 hover:text-slate-950 transition-all">
+          Shop Apparel
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden pt-20 pb-28 lg:pt-28 lg:pb-36 bg-gradient-to-b from-slate-900 to-slate-950 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-700 bg-slate-800/60 text-xs font-semibold uppercase tracking-wider text-slate-300 mb-6">
+        <span>Rugged • Modular • Field-Tested</span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white max-w-4xl mx-auto leading-tight font-heading">
+        Site Shades <br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600">
+          Your Site. Your Shade.
+        </span>
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto">
+        Engineered heavy-duty shade systems built for competition ballparks, off-road camps, open water, and demanding worksites.
+      </p>
+
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <a href="#categories" class="px-8 py-3.5 rounded-md bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold uppercase tracking-wider text-sm shadow-lg shadow-amber-500/20 transition-all">
+          Explore Shades
+        </a>
+        <a href="#retail" class="px-8 py-3.5 rounded-md border border-slate-700 hover:border-slate-500 bg-slate-900/60 text-white font-bold uppercase tracking-wider text-sm transition-all">
+          Find a Retailer
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- The 3 Pillars (Core Product Categories) -->
+  <section id="categories" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white font-heading">
+        Engineered For Every Environment
+      </h2>
+      <p class="mt-3 text-slate-400 max-w-xl mx-auto">
+        Select your category to browse custom shades, hardware accessories, and complete kits.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Card 1: Sports -->
+      <div class="group relative bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between p-8 hover:-translate-y-1">
+        <div>
+          <div class="w-12 h-12 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl font-bold mb-6">
+            ⚾
+          </div>
+          <h3 class="text-2xl font-bold text-white uppercase font-heading group-hover:text-amber-400 transition-colors">
+            Sports
+          </h3>
+          <p class="text-xs uppercase font-semibold text-slate-400 tracking-wider mt-1 mb-4">
+            Baseball • Softball • Tournaments
+          </p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-6">
+            Keep players refreshed in the dugout and spectators comfortable on the bleachers during all-day tournament action.
+          </p>
+          <ul class="text-xs space-y-2 text-slate-300 font-medium mb-8">
+            <li class="flex items-center gap-2">✓ Dugout Shade Systems</li>
+            <li class="flex items-center gap-2">✓ Bleacher Canopy Kits</li>
+            <li class="flex items-center gap-2">✓ Chain-Link Mounting Accessories</li>
+          </ul>
+        </div>
+        <a href="sports.html" class="inline-flex items-center justify-center w-full py-3 bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-white rounded-md text-xs font-bold uppercase tracking-wider transition-all">
+          Explore Sports Shades &rarr;
+        </a>
+      </div>
+
+      <!-- Card 2: Action Sports -->
+      <div class="group relative bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between p-8 hover:-translate-y-1">
+        <div>
+          <div class="w-12 h-12 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl font-bold mb-6">
+            🚤
+          </div>
+          <h3 class="text-2xl font-bold text-white uppercase font-heading group-hover:text-amber-400 transition-colors">
+            Action Sports
+          </h3>
+          <p class="text-xs uppercase font-semibold text-slate-400 tracking-wider mt-1 mb-4">
+            Off-Road • Boat / Marine • RV
+          </p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-6">
+            Built for extreme trails, open lakes, and remote campsites. Engineered to mount to roll bars, T-tops, and awnings.
+          </p>
+          <ul class="text-xs space-y-2 text-slate-300 font-medium mb-8">
+            <li class="flex items-center gap-2">✓ Off-Road (UTV & 4x4) Shades</li>
+            <li class="flex items-center gap-2">✓ Marine & Boat Bow Shades</li>
+            <li class="flex items-center gap-2">✓ Magnet Mounts, Tension Cords & Poles</li>
+          </ul>
+        </div>
+        <a href="action-sports.html" class="inline-flex items-center justify-center w-full py-3 bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-white rounded-md text-xs font-bold uppercase tracking-wider transition-all">
+          Explore Action Shades &rarr;
+        </a>
+      </div>
+
+      <!-- Card 3: Industrial -->
+      <div class="group relative bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between p-8 hover:-translate-y-1">
+        <div>
+          <div class="w-12 h-12 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl font-bold mb-6">
+            🚧
+          </div>
+          <h3 class="text-2xl font-bold text-white uppercase font-heading group-hover:text-amber-400 transition-colors">
+            Industrial
+          </h3>
+          <p class="text-xs uppercase font-semibold text-slate-400 tracking-wider mt-1 mb-4">
+            Construction • Survey • Utilities
+          </p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-6">
+            Crucial heat-stress mitigation for commercial job sites, fleet operations, surveying stations, and utility crews.
+          </p>
+          <ul class="text-xs space-y-2 text-slate-300 font-medium mb-8">
+            <li class="flex items-center gap-2">✓ Heavy-Duty Worksite Shades</li>
+            <li class="flex items-center gap-2">✓ High-Tear Commercial Mesh</li>
+            <li class="flex items-center gap-2">✓ Rapid Magnetic Vehicle Mounts</li>
+          </ul>
+        </div>
+        <a href="industrial.html" class="inline-flex items-center justify-center w-full py-3 bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-white rounded-md text-xs font-bold uppercase tracking-wider transition-all">
+          Explore Industrial Shades &rarr;
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Why Site Shades (Trust & Value Props) -->
+  <section class="py-20 bg-slate-900/50 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="p-6 border border-slate-800 rounded-lg bg-slate-950/40">
+          <div class="text-amber-400 font-black text-2xl mb-2 font-heading">01</div>
+          <h4 class="text-lg font-bold text-white uppercase font-heading mb-2">Made in America</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Crafted with high-grade, durable materials built to withstand punishing heat, wind, and outdoor wear.
+          </p>
+        </div>
+        <div class="p-6 border border-slate-800 rounded-lg bg-slate-950/40">
+          <div class="text-amber-400 font-black text-2xl mb-2 font-heading">02</div>
+          <h4 class="text-lg font-bold text-white uppercase font-heading mb-2">Airflow & UV Defense</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            High-density mesh blocks harmful rays while allowing breezes to flow freely without creating dangerous parachutes.
+          </p>
+        </div>
+        <div class="p-6 border border-slate-800 rounded-lg bg-slate-950/40">
+          <div class="text-amber-400 font-black text-2xl mb-2 font-heading">03</div>
+          <h4 class="text-lg font-bold text-white uppercase font-heading mb-2">5-Minute Setup</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Engineered for rapid single-person deployment using quick-mount clips, heavy-duty cords, and magnetic bases.
+          </p>
+        </div>
+        <div class="p-6 border border-slate-800 rounded-lg bg-slate-950/40">
+          <div class="text-amber-400 font-black text-2xl mb-2 font-heading">04</div>
+          <h4 class="text-lg font-bold text-white uppercase font-heading mb-2">Multi-Site Versatility</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Easily attaches to chain-link dugouts, roll cages, boat towers, RV rails, and metal job-site structures.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apparel Teaser Section -->
+  <section id="apparel" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-gradient-to-r from-amber-500/10 via-slate-900 to-slate-900 border border-amber-500/30 rounded-2xl p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Official Gear</span>
+        <h3 class="text-2xl sm:text-3xl font-extrabold uppercase text-white mt-1 font-heading">
+          Rep the Brand: Site Shades Apparel
+        </h3>
+        <p class="text-slate-400 text-sm max-w-xl mt-2">
+          Pick up branded trucker hats, moisture-wicking tournament shirts, and outdoor lifestyle apparel.
+        </p>
+      </div>
+      <a href="https://site-shades.org" target="_blank" class="shrink-0 px-6 py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold uppercase tracking-wider text-xs rounded-md shadow-md transition-all">
+        Browse Apparel & Swag
+      </a>
+    </div>
+  </section>
+
+  <!-- Retail / Dealer Locator Section -->
+  <section id="retail" class="py-16 bg-slate-950 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h3 class="text-2xl font-extrabold uppercase text-white font-heading">
+        Looking for a Local Retailer?
+      </h3>
+      <p class="mt-2 text-sm text-slate-400">
+        Site Shades products are available through authorized sporting goods, outdoor, and industrial supply dealers.
+      </p>
+      <div class="mt-6 flex justify-center gap-4">
+        <a href="retail-locations.html" class="px-6 py-3 border border-slate-700 hover:border-slate-500 rounded-md text-xs font-bold uppercase tracking-wider text-slate-200 hover:text-white transition-all">
+          View Retail Locations
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 border-t border-slate-900 py-12 text-slate-500 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>&copy; 2026 Site Shades. All Rights Reserved. Made in America.</p>
+      <div class="flex space-x-6">
+        <a href="#about" class="hover:text-slate-300">About Us</a>
+        <a href="#categories" class="hover:text-slate-300">Products</a>
+        <a href="#retail" class="hover:text-slate-300">Dealers</a>
+        <a href="mailto:info@site-shades.org" class="hover:text-slate-300">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
