@@ -45,6 +45,14 @@
       background-size: 500px auto;
     }
 
+    /* Keep landing page image razor sharp across wide displays */
+    .hd-crisp-graphic {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+
     /* Single-File Page Transitions */
     .site-page {
       display: none;
@@ -100,13 +108,13 @@
   <!-- ========================================== -->
   <main id="page-home" class="site-page active-page">
     
-    <!-- Hero Banner: Updated with Exact Filename Match (.png) -->
-    <section class="relative w-full bg-black py-4 sm:py-8 flex items-center justify-center border-b border-white/10">
-      <div class="max-w-6xl mx-auto px-4 w-full flex items-center justify-center">
+    <!-- Hero Banner: Full-Bleed Wide Format (Sharp, immersive, non-pixelated) -->
+    <section class="relative w-full bg-black flex items-center justify-center border-b border-white/10 overflow-hidden">
+      <div class="w-full max-w-[1720px] px-2 sm:px-6 lg:px-8 py-2 sm:py-6 flex items-center justify-center">
         <img 
           src="site shades NEW LANDING PAGE .png" 
           alt="Site Shades - Your Site. Your Shade." 
-          class="w-full h-auto max-h-[620px] object-contain shadow-2xl"
+          class="hd-crisp-graphic w-full h-auto max-h-[82vh] min-h-[460px] object-contain object-center"
         />
       </div>
     </section>
