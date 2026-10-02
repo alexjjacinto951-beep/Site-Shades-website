@@ -17,7 +17,6 @@
               dark: '#0e1215',
               card: '#14191d',
               border: '#1f262c',
-              // Rich non-neon seafoam/marine green
               green: '#059669',
               greenHover: '#047857',
               greenAccent: '#10b981',
@@ -32,13 +31,12 @@
     }
   </script>
 
-  <!-- Google Fonts: Teko (Bold athletic brand typography) & Inter -->
+  <!-- Google Fonts: Teko & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Teko:wght@600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* Eliminates white rim on logo asset */
     .clean-logo-crop {
       clip-path: circle(44.2% at 50% 50%);
     }
@@ -47,7 +45,9 @@
       opacity: 0;
       transform: translateY(4px);
       transition: opacity 0.22s ease-out, transform 0.22s ease-out;
-      background-color: #07090a;
+      background-image: linear-gradient(to bottom, rgba(7, 9, 10, 0.94), rgba(7, 9, 10, 0.98)), url('Site Shades Background.png');
+      background-attachment: fixed;
+      background-size: 520px auto;
     }
     body.page-loaded {
       opacity: 1;
@@ -63,17 +63,16 @@
 <body class="text-slate-200 font-body antialiased selection:bg-brand-green selection:text-white min-h-screen flex flex-col justify-between">
 
   <!-- Top Announcement Bar -->
-  <div class="bg-brand-dark border-b border-brand-border text-xs py-2 px-4 text-center tracking-wider uppercase text-slate-300 flex items-center justify-center gap-2">
+  <div class="bg-brand-dark/95 backdrop-blur border-b border-brand-border text-xs py-2 px-4 text-center tracking-wider uppercase text-slate-300 flex items-center justify-center gap-2">
     <span>🇺🇸 Made in America</span>
     <span class="text-brand-greenAccent">•</span>
     <span>Clocked In With Comfort</span>
   </div>
 
-  <!-- Header / Navigation Bar (Clean O'Neill / GoPro style) -->
+  <!-- Header / Navigation Bar -->
   <header class="sticky top-0 z-50 bg-brand-black/90 backdrop-blur-md border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Top Left Logo (Clipped, No Outer White Rim) -->
       <a href="index.html" class="flex items-center group">
         <div class="h-16 w-16 flex items-center justify-center overflow-hidden">
           <img 
@@ -84,7 +83,6 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation Menu -->
       <nav class="hidden lg:flex items-center space-x-10 text-base tracking-widest uppercase font-headline">
         <a href="sports.html" class="text-slate-300 hover:text-brand-greenAccent transition-colors">Sports</a>
         <a href="action-sports.html" class="text-slate-300 hover:text-brand-greenAccent transition-colors">Action Sports</a>
@@ -93,7 +91,6 @@
         <a href="about.html" class="text-slate-300 hover:text-brand-greenAccent transition-colors">About Us</a>
       </nav>
 
-      <!-- Shop Apparel CTA -->
       <div class="flex items-center space-x-4">
         <a href="https://site-shades.org" target="_blank" class="px-5 py-2 rounded bg-transparent border border-brand-greenAccent/70 text-brand-greenAccent hover:bg-brand-greenAccent hover:text-black font-headline text-lg tracking-wider uppercase transition-all duration-150">
           Shop Apparel
@@ -102,58 +99,40 @@
     </div>
   </header>
 
-  <!-- Full-Width Cinematic Hero Banner (GoPro / O'Neill Style) -->
+  <!-- O'NEILL STYLE HERO -->
   <main>
-    <section class="relative w-full h-[82vh] min-h-[580px] max-h-[880px] flex items-center overflow-hidden bg-brand-black">
+    <section class="relative w-full py-16 lg:py-24 border-b border-brand-border flex flex-col items-center justify-center">
       
-      <!-- High-Resolution Cinematic Background Imagery -->
-      <div class="absolute inset-0 z-0">
-        <!-- Uses high-res action wallpaper with a deep contrast overlay -->
-        <div 
-          class="w-full h-full bg-cover bg-center"
-          style="background-image: linear-gradient(90deg, rgba(7,9,10,0.95) 0%, rgba(7,9,10,0.75) 45%, rgba(7,9,10,0.4) 100%), url('Site Shades Background.png'); background-size: 600px auto;"
-        ></div>
+      <!-- Crisp Center Emblem Showcase (O'Neill style hero element) -->
+      <div class="relative w-full max-w-xl mx-auto px-4 flex items-center justify-center">
+        <div class="relative w-64 sm:w-80 md:w-96 transition-transform duration-300 hover:scale-[1.02]">
+          <div class="absolute inset-0 bg-brand-greenAccent/15 blur-3xl rounded-full"></div>
+          <img 
+            src="Site shades Landing page.png" 
+            alt="Site Shades Official" 
+            class="relative z-10 w-full h-auto object-contain clean-logo-crop drop-shadow-[0_25px_50px_rgba(0,0,0,0.9)]"
+          />
+        </div>
       </div>
 
-      <!-- Hero Banner Content Container -->
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          <!-- Bold Left-Aligned Typography (GoPro Format) -->
-          <div class="lg:col-span-8 text-left">
-            <h1 class="text-6xl sm:text-8xl lg:text-9xl font-black uppercase tracking-tight text-white font-headline leading-[0.88] drop-shadow-2xl">
-              YOUR SITE. <br />
-              <span class="text-brand-greenAccent">YOUR SHADE.</span>
-            </h1>
+      <!-- O'Neill Sub-Hero Copy Section -->
+      <div class="max-w-4xl mx-auto px-4 text-center mt-12">
+        <h1 class="text-6xl sm:text-8xl lg:text-9xl font-black uppercase tracking-tight text-white font-headline leading-none">
+          YOUR SITE. <span class="text-brand-greenAccent">YOUR SHADE.</span>
+        </h1>
+        
+        <p class="mt-4 text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-normal">
+          Engineered, portable shade systems for outdoor action—from tournament dugouts and UTV desert camps to marine bow setups and industrial worksites[cite: 1].
+        </p>
 
-            <p class="mt-6 text-slate-300 text-base sm:text-lg max-w-xl font-normal leading-relaxed drop-shadow-md">
-              Engineered, portable shade systems for outdoor action—from tournament dugouts and UTV desert camps to marine bow setups and industrial worksites.
-            </p>
-
-            <!-- Clean Explore Button (No arrow, smooth glide) -->
-            <div class="mt-8">
-              <a 
-                href="#categories" 
-                id="explore-btn"
-                class="inline-block px-10 py-3.5 rounded bg-brand-green hover:bg-brand-greenHover text-white font-headline font-bold text-xl tracking-wider uppercase transition-all duration-200 shadow-xl shadow-brand-green/20"
-              >
-                Explore Categories
-              </a>
-            </div>
-          </div>
-
-          <!-- Right Column: Sharp Unstretched Hero Emblem -->
-          <div class="lg:col-span-4 hidden lg:flex justify-end items-center">
-            <div class="w-72 xl:w-80 p-2 relative">
-              <div class="absolute inset-0 bg-brand-greenAccent/15 blur-3xl rounded-full"></div>
-              <img 
-                src="Site shades Landing page.png" 
-                alt="Site Shades Official Badge" 
-                class="relative z-10 w-full h-auto object-contain clean-logo-crop drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)] hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-          </div>
-
+        <div class="mt-8">
+          <a 
+            href="#categories" 
+            id="explore-btn"
+            class="inline-block px-10 py-3.5 rounded bg-brand-green hover:bg-brand-greenHover text-white font-headline font-bold text-xl tracking-wider uppercase transition-all duration-200 shadow-xl shadow-brand-green/20"
+          >
+            Explore Categories
+          </a>
         </div>
       </div>
     </section>
@@ -166,14 +145,14 @@
           Explore Our 3 Divisions
         </h2>
         <p class="mt-2 text-slate-400 max-w-lg mx-auto text-sm">
-          Select a category below to view specific shades, hardware kits, and purchase tabs.
+          Select a category below to view specific shades, hardware kits, and purchase tabs[cite: 1].
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
         <!-- Category 1: Sports -->
-        <div class="group bg-brand-card rounded-lg border border-brand-border hover:border-brand-greenAccent transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
+        <div class="group bg-brand-card/90 backdrop-blur rounded-lg border border-brand-border hover:border-brand-greenAccent transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
           <div>
             <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-greenAccent group-hover:text-brand-greenAccent transition-colors duration-200 text-xl font-bold">
               ⚾
@@ -182,15 +161,15 @@
               Sports
             </h3>
             <p class="text-xs uppercase font-semibold text-brand-greenAccent tracking-wider mt-1 mb-4">
-              Baseball • Softball • Tournaments
+              Baseball • Softball • Tournaments[cite: 1]
             </p>
             <p class="text-sm text-slate-300 leading-relaxed mb-6">
-              Keep players fresh in the dugout and families protected on the bleachers during all-day tournament doubleheaders.
+              Keep players fresh in the dugout and families protected on the bleachers during all-day tournament doubleheaders[cite: 1].
             </p>
             <ul class="text-xs space-y-2.5 text-slate-300 font-medium mb-8">
-              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Dugout Shade Systems</li>
-              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Bleacher Shade Kits</li>
-              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Chain-Link Mounting Accessories</li>
+              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Dugout Shade Systems[cite: 1]</li>
+              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Bleacher Shade Kits[cite: 1]</li>
+              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Chain-Link Mounting Accessories[cite: 1]</li>
             </ul>
           </div>
           <a href="sports.html" class="w-full py-3 bg-brand-dark hover:bg-brand-green text-white text-center font-headline font-bold text-lg tracking-wider uppercase rounded border border-brand-border hover:border-brand-green transition-all duration-150">
@@ -199,7 +178,7 @@
         </div>
 
         <!-- Category 2: Action Sports -->
-        <div class="group bg-brand-card rounded-lg border border-brand-border hover:border-brand-greenAccent transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
+        <div class="group bg-brand-card/90 backdrop-blur rounded-lg border border-brand-border hover:border-brand-greenAccent transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
           <div>
             <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-greenAccent group-hover:text-brand-greenAccent transition-colors duration-200 text-xl font-bold">
               🚤
@@ -208,15 +187,15 @@
               Action Sports
             </h3>
             <p class="text-xs uppercase font-semibold text-brand-greenAccent tracking-wider mt-1 mb-4">
-              Off-Road • Marine & Boat • RV
+              Off-Road • Marine & Boat • RV[cite: 1]
             </p>
             <p class="text-sm text-slate-300 leading-relaxed mb-6">
-              Engineered for extreme trails, open lakes, and remote campsites. Built to mount firmly to roll bars, T-tops, and awnings.
+              Engineered for extreme trails, open lakes, and remote campsites[cite: 1]. Built to mount firmly to roll bars, T-tops, and awnings.
             </p>
             <ul class="text-xs space-y-2.5 text-slate-300 font-medium mb-8">
-              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Off-Road UTV & 4x4 Shades</li>
-              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Boat Bow & Bimini Extensions</li>
-              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Magnetic Mounts, Poles & Hardware</li>
+              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Off-Road UTV & 4x4 Shades[cite: 1]</li>
+              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Boat Bow & Bimini Extensions[cite: 1]</li>
+              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Magnetic Mounts, Poles & Hardware[cite: 1]</li>
             </ul>
           </div>
           <a href="action-sports.html" class="w-full py-3 bg-brand-dark hover:bg-brand-green text-white text-center font-headline font-bold text-lg tracking-wider uppercase rounded border border-brand-border hover:border-brand-green transition-all duration-150">
@@ -225,7 +204,7 @@
         </div>
 
         <!-- Category 3: Industrial -->
-        <div class="group bg-brand-card rounded-lg border border-brand-border hover:border-brand-greenAccent transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
+        <div class="group bg-brand-card/90 backdrop-blur rounded-lg border border-brand-border hover:border-brand-greenAccent transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
           <div>
             <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-greenAccent group-hover:text-brand-greenAccent transition-colors duration-200 text-xl font-bold">
               🚧
@@ -234,13 +213,13 @@
               Industrial
             </h3>
             <p class="text-xs uppercase font-semibold text-brand-greenAccent tracking-wider mt-1 mb-4">
-              Construction • Survey • Utilities
+              Construction • Survey • Utilities[cite: 1]
             </p>
             <p class="text-sm text-slate-300 leading-relaxed mb-6">
-              Essential job-site heat-stress mitigation for roadwork, utility crews, concrete pours, and commercial field surveying.
+              Essential job-site heat-stress mitigation for roadwork, utility crews, concrete pours, and commercial field surveying[cite: 1].
             </p>
             <ul class="text-xs space-y-2.5 text-slate-300 font-medium mb-8">
-              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Worksite Heavy-Duty Canopy Kit</li>
+              <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Worksite Heavy-Duty Canopy Kit[cite: 1]</li>
               <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Flame & Tear-Resistant Mesh</li>
               <li class="flex items-center gap-2"><span class="text-brand-greenAccent">✓</span> Magnetic Fleet Vehicle Mounts</li>
             </ul>
@@ -253,14 +232,14 @@
       </div>
     </section>
 
-    <!-- Why Site Shades / Features Strip -->
+    <!-- Why Site Shades Strip -->
     <section class="py-16 bg-brand-dark border-y border-brand-border">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div class="p-6 bg-brand-card rounded border border-brand-border">
             <span class="text-brand-greenAccent font-headline text-3xl font-bold block mb-1">01</span>
             <h4 class="font-headline text-2xl uppercase font-bold text-white mb-1">Made in America</h4>
-            <p class="text-xs text-slate-400">Domestic craftsmanship built for maximum UV protection and durability.</p>
+            <p class="text-xs text-slate-400">Domestic craftsmanship built for maximum UV protection and durability[cite: 1].</p>
           </div>
           <div class="p-6 bg-brand-card rounded border border-brand-border">
             <span class="text-brand-greenAccent font-headline text-3xl font-bold block mb-1">02</span>
@@ -270,12 +249,12 @@
           <div class="p-6 bg-brand-card rounded border border-brand-border">
             <span class="text-brand-greenAccent font-headline text-3xl font-bold block mb-1">03</span>
             <h4 class="font-headline text-2xl uppercase font-bold text-white mb-1">5-Minute Setup</h4>
-            <p class="text-xs text-slate-400">Single-person setup with quick bungees, fence hooks, or magnetic clamps.</p>
+            <p class="text-xs text-slate-400">Single-person setup with quick bungees, fence hooks, or magnetic clamps[cite: 1].</p>
           </div>
           <div class="p-6 bg-brand-card rounded border border-brand-border">
             <span class="text-brand-greenAccent font-headline text-3xl font-bold block mb-1">04</span>
             <h4 class="font-headline text-2xl uppercase font-bold text-white mb-1">Multi-Site Rigging</h4>
-            <p class="text-xs text-slate-400">Fastens securely to chain link, vehicle roll cages, and boat frames.</p>
+            <p class="text-xs text-slate-400">Fastens securely to chain link, vehicle roll cages, and boat frames[cite: 1].</p>
           </div>
         </div>
       </div>
@@ -292,7 +271,7 @@
         </div>
         <div>
           <span class="font-headline text-xl font-bold text-white tracking-wider block">SITE SHADES</span>
-          <p class="text-slate-400 text-[11px]">&copy; 2026 Site Shades. Clocked In With Comfort. Made in America.</p>
+          <p class="text-slate-400 text-[11px]">&copy; 2026 Site Shades. Clocked In With Comfort. Made in America[cite: 1].</p>
         </div>
       </div>
 
@@ -314,12 +293,11 @@
     </div>
   </footer>
 
-  <!-- Flowy Smooth Scroll & Page Transition Script -->
+  <!-- Flowy Smooth Scroll & Page Transitions -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("page-loaded");
 
-      // Custom smooth glide for the Explore button
       const exploreBtn = document.getElementById("explore-btn");
       if (exploreBtn) {
         exploreBtn.addEventListener("click", (e) => {
@@ -331,7 +309,6 @@
         });
       }
 
-      // Page exit transitions
       document.querySelectorAll("a[href]").forEach((link) => {
         const href = link.getAttribute("href");
         if (href && !href.startsWith("#") && !href.startsWith("http") && !href.startsWith("mailto:") && href.endsWith(".html")) {
