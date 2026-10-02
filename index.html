@@ -30,13 +30,13 @@
     }
   </script>
 
-  <!-- Google Fonts: Bebas Neue (Skinny, tall, bold logo font) & Inter -->
+  <!-- Google Fonts: Bebas Neue & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Remove white border from logo PNG */
+    /* Cleanly crop the white outer rim off the logo image */
     .clean-logo-crop {
       clip-path: circle(44.2% at 50% 50%);
     }
@@ -56,6 +56,20 @@
       opacity: 1;
     }
 
+    /* HD image preservation rendering */
+    .hd-crisp-img {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+
+    /* Authentic logo-style italicized slant */
+    .logo-font-slant {
+      transform: skewX(-8deg);
+      display: inline-block;
+    }
+
     /* Single-File Page Transitions */
     .site-page {
       display: none;
@@ -72,7 +86,7 @@
 </head>
 <body class="text-slate-200 font-body antialiased selection:bg-brand-tealLight selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- Header / Navigation Bar (Clean, no clunky borders) -->
+  <!-- Header / Navigation Bar -->
   <header class="sticky top-0 z-50 bg-brand-black/90 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
       
@@ -87,7 +101,7 @@
         </div>
       </button>
 
-      <!-- Navigation Links (Skinny tall font) -->
+      <!-- Navigation Links -->
       <nav class="hidden lg:flex items-center space-x-10 text-2xl tracking-widest uppercase font-logo">
         <button onclick="navigateTo('home')" class="nav-btn text-brand-tealLight transition-colors" data-page="home">Home</button>
         <button onclick="navigateTo('sports')" class="nav-btn text-slate-300 hover:text-brand-tealLight transition-colors" data-page="sports">Sports</button>
@@ -111,37 +125,37 @@
   <!-- ========================================== -->
   <main id="page-home" class="site-page active-page">
     
-    <!-- Full-Bleed Cinematic Hero Banner -->
-    <section class="relative w-full h-[80vh] min-h-[560px] max-h-[820px] overflow-hidden flex items-center justify-center bg-black">
+    <!-- Full-Bleed Cinematic Hero Banner (HD Optimized) -->
+    <section class="relative w-full h-[84vh] min-h-[580px] max-h-[850px] overflow-hidden flex items-center justify-center bg-black">
       
-      <!-- Slide 1: Red UTV Desert Shade -->
-      <div class="hero-slide active-slide absolute inset-0 z-0">
+      <!-- Slide 1: Red UTV Desert Shade (Exact filename) -->
+      <div class="hero-slide active-slide absolute inset-0 z-0 overflow-hidden">
         <img 
           src="landing page 2.png" 
           alt="Site Shades Desert UTV" 
-          class="w-full h-full object-cover object-center filter brightness-[0.72]"
+          class="hd-crisp-img w-full h-full object-cover object-center filter brightness-[0.76] contrast-[1.06]"
         />
       </div>
 
-      <!-- Slide 2: Marine Boat Shade -->
-      <div class="hero-slide absolute inset-0 z-0">
+      <!-- Slide 2: Marine Boat Shade (Exact filename) -->
+      <div class="hero-slide absolute inset-0 z-0 overflow-hidden">
         <img 
           src="landing page 1.PNG" 
           alt="Site Shades Marine Boat" 
-          class="w-full h-full object-cover object-center filter brightness-[0.72]"
+          class="hd-crisp-img w-full h-full object-cover object-center filter brightness-[0.76] contrast-[1.06]"
         />
       </div>
 
-      <!-- Vignette Gradient -->
-      <div class="absolute inset-0 bg-gradient-to-t from-brand-black/95 via-black/10 to-black/30 z-10 pointer-events-none"></div>
+      <!-- Subtle contrast gradient overlay -->
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-black/95 via-black/20 to-black/35 z-10 pointer-events-none"></div>
 
-      <!-- Slogan Centered in Skinny, Tall, Bold Font (White with subtle bluish-green accent) -->
+      <!-- Slogan: All White, Slanted/Italicized Logo Font -->
       <div class="relative z-20 max-w-6xl mx-auto px-4 text-center">
-        <h1 class="font-logo uppercase tracking-wide text-white text-8xl sm:text-9xl lg:text-[12rem] leading-[0.82] drop-shadow-2xl">
-          YOUR SITE.<br />
-          <span class="text-brand-tealLight">YOUR SHADE.</span>
+        <h1 class="font-logo uppercase tracking-wider text-white text-8xl sm:text-9xl lg:text-[12.5rem] leading-[0.80] drop-shadow-[0_12px_40px_rgba(0,0,0,0.95)]">
+          <span class="logo-font-slant block">YOUR SITE.</span>
+          <span class="logo-font-slant block mt-2 text-white">YOUR SHADE.</span>
         </h1>
-        <p class="mt-6 text-slate-300 text-sm sm:text-base max-w-xl mx-auto font-body font-light tracking-wide leading-relaxed">
+        <p class="mt-8 text-slate-200 text-sm sm:text-base max-w-xl mx-auto font-body font-normal tracking-wide leading-relaxed drop-shadow-[0_3px_10px_rgba(0,0,0,0.95)]">
           Engineered, portable shade systems for outdoor action—from tournament dugouts and UTV desert camps to marine bows and industrial worksites.
         </p>
       </div>
@@ -153,7 +167,7 @@
       </div>
     </section>
 
-    <!-- 3 Divisions Grid Hub (Clean minimal styling, letting wallpaper breathe) -->
+    <!-- 3 Divisions Grid Hub -->
     <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <span class="text-brand-tealLight font-logo uppercase tracking-widest text-2xl">Purpose-Built Protection</span>
