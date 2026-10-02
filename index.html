@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -41,7 +41,7 @@
       opacity: 0;
       transform: translateY(6px);
       transition: opacity 0.25s ease-out, transform 0.25s ease-out;
-      background-image: linear-gradient(to bottom, rgba(9, 11, 12, 0.92), rgba(9, 11, 12, 0.97)), url('Site Shades Background.png');
+      background-image: linear-gradient(to bottom, rgba(9, 11, 12, 0.93), rgba(9, 11, 12, 0.98)), url('Site Shades Background.png');
       background-attachment: fixed;
       background-size: 550px auto;
     }
@@ -69,12 +69,12 @@
   <header class="sticky top-0 z-50 bg-brand-black/95 backdrop-blur-md border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
       
-      <!-- Top Left Logo Only (Bigger, Sharp, No Redundant Text) -->
+      <!-- Top Left Logo Only (No border, clean and prominent) -->
       <a href="index.html" class="flex items-center group py-2">
         <img 
           src="Site shades LOGO.png" 
           alt="Site Shades" 
-          class="h-16 w-16 sm:h-20 sm:w-20 object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-200"
+          class="h-16 w-16 sm:h-20 sm:w-20 object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-200 border-none"
         />
       </a>
 
@@ -96,45 +96,50 @@
     </div>
   </header>
 
-  <!-- Main Landing Hero Section -->
+  <!-- Full Initial Screen Landing Hero -->
   <main>
-    <section class="relative pt-12 pb-20 lg:pt-16 lg:pb-24 border-b border-brand-border">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+    <section class="relative min-h-[calc(100vh-6.5rem)] flex items-center justify-center overflow-hidden border-b border-brand-border">
+      
+      <!-- Full Cover Hero Image with Dark Gradient Wash -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="Site shades Landing page.png" 
+          alt="Site Shades Landing Hero" 
+          class="w-full h-full object-cover object-center filter brightness-[0.70]"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-black/40 to-transparent"></div>
+      </div>
+
+      <!-- Hero Overlay Content -->
+      <div class="relative z-10 max-w-4xl mx-auto px-4 text-center py-20 flex flex-col items-center">
         
-        <!-- Client Landing Page Graphic -->
-        <div class="mb-8 w-60 sm:w-72 md:w-84 max-w-full transition-transform duration-300 hover:scale-102">
-          <img 
-            src="Site shades Landing page.png" 
-            alt="Site Shades - Your Site. Your Shade." 
-            class="w-full h-auto drop-shadow-[0_15px_35px_rgba(0,0,0,0.85)] rounded-full"
-          />
-        </div>
-
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded border border-brand-border bg-brand-card text-brand-green text-xs font-semibold uppercase tracking-widest mb-4">
-          <span>Rugged • Water-Tested • Job-Site Ready</span>
-        </div>
-
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white font-display leading-tight">
-          Site Shades – <br class="hidden sm:inline" />
-          <span class="text-brand-green underline decoration-brand-border underline-offset-8">Your Site. Your Shade.</span>
+        <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tight text-white font-display leading-none drop-shadow-[0_8px_20px_rgba(0,0,0,0.9)]">
+          YOUR SITE. <br />
+          <span class="text-brand-green">YOUR SHADE.</span>
         </h1>
 
-        <p class="mt-6 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
-          Engineered, portable shade systems for outdoor action—from tournament dugouts and off-road desert camps to marine bows and industrial worksites.
+        <p class="mt-6 text-base sm:text-xl text-slate-200 max-w-2xl mx-auto font-normal drop-shadow-md leading-relaxed">
+          Engineered, portable shade systems for outdoor action—from tournament dugouts and UTV desert camps to marine bows and industrial worksites.
         </p>
 
-        <div class="mt-10 flex flex-wrap justify-center gap-4">
-          <a href="#categories" class="px-8 py-3.5 rounded bg-brand-green hover:bg-brand-greenHover text-black font-display font-bold text-lg tracking-wider uppercase transition-all duration-200 shadow-lg shadow-brand-green/20">
-            Explore Categories
-          </a>
-          <a href="retailers.html" class="px-8 py-3.5 rounded border border-brand-border hover:border-slate-400 bg-brand-card text-white font-display font-semibold text-lg tracking-wider uppercase transition-all duration-200">
-            Retail Locations
+        <!-- Smooth Flowy Scroll Action -->
+        <div class="mt-12">
+          <a 
+            href="#categories" 
+            id="explore-btn"
+            class="group inline-flex items-center gap-3 px-10 py-4 rounded bg-brand-green hover:bg-brand-greenHover text-black font-display font-bold text-lg tracking-wider uppercase shadow-2xl shadow-brand-green/30 transition-all duration-300 hover:scale-105"
+          >
+            <span>Explore Categories</span>
+            <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
           </a>
         </div>
+
       </div>
     </section>
 
-    <!-- The 3 Core Categories Hub (Redirects to Dedicated Sub-Pages) -->
+    <!-- The 3 Core Categories Hub -->
     <section id="categories" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <span class="text-brand-green font-display uppercase tracking-widest text-sm font-semibold">Purpose-Built Protection</span>
@@ -148,7 +153,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        <!-- Category 1: Sports (Redirects to sports.html) -->
+        <!-- Category 1: Sports -->
         <div class="group bg-brand-card/90 backdrop-blur rounded-xl border border-brand-border hover:border-brand-green transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
           <div>
             <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-green group-hover:text-brand-green transition-colors duration-200 text-xl font-bold">
@@ -161,12 +166,12 @@
               Baseball • Softball • Tournaments
             </p>
             <p class="text-sm text-slate-300 leading-relaxed mb-6">
-              Keep players fresh in the dugout and families protected on the bleachers during all-day tournament doubleheaders.
+              Keep players fresh in the dugout and families protected on the bleachers during all-day tournament doubleheaders[cite: 1].
             </p>
             <ul class="text-xs space-y-2.5 text-slate-300 font-medium mb-8">
-              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Dugout Shade Systems</li>
-              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Bleacher Shade Kits</li>
-              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Chain-Link Mounting Accessories</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Dugout Shade Systems[cite: 1]</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Bleacher Shade Kits[cite: 1]</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Chain-Link Mounting Accessories[cite: 1]</li>
             </ul>
           </div>
           <a href="sports.html" class="w-full py-3.5 bg-brand-dark hover:bg-brand-green hover:text-black text-white text-center font-display font-bold text-sm tracking-wider uppercase rounded border border-brand-border hover:border-brand-green transition-all duration-150 shadow">
@@ -174,7 +179,7 @@
           </a>
         </div>
 
-        <!-- Category 2: Action Sports (Redirects to action-sports.html) -->
+        <!-- Category 2: Action Sports -->
         <div class="group bg-brand-card/90 backdrop-blur rounded-xl border border-brand-border hover:border-brand-green transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
           <div>
             <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-green group-hover:text-brand-green transition-colors duration-200 text-xl font-bold">
@@ -187,12 +192,12 @@
               Off-Road • Marine & Boat • RV
             </p>
             <p class="text-sm text-slate-300 leading-relaxed mb-6">
-              Engineered for extreme trails, open lakes, and remote campsites. Built to mount firmly to roll bars, T-tops, and awnings.
+              Engineered for extreme trails, open lakes, and remote campsites[cite: 1]. Built to mount firmly to roll bars, T-tops, and awnings.
             </p>
             <ul class="text-xs space-y-2.5 text-slate-300 font-medium mb-8">
-              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Off-Road UTV & 4x4 Shades</li>
-              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Boat Bow & Bimini Extensions</li>
-              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Magnetic Mounts, Poles & Hardware</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Off-Road UTV & 4x4 Shades[cite: 1]</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Boat Bow & Bimini Extensions[cite: 1]</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Magnetic Mounts, Poles & Hardware[cite: 1]</li>
             </ul>
           </div>
           <a href="action-sports.html" class="w-full py-3.5 bg-brand-dark hover:bg-brand-green hover:text-black text-white text-center font-display font-bold text-sm tracking-wider uppercase rounded border border-brand-border hover:border-brand-green transition-all duration-150 shadow">
@@ -200,7 +205,7 @@
           </a>
         </div>
 
-        <!-- Category 3: Industrial (Redirects to industrial.html) -->
+        <!-- Category 3: Industrial -->
         <div class="group bg-brand-card/90 backdrop-blur rounded-xl border border-brand-border hover:border-brand-green transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
           <div>
             <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-green group-hover:text-brand-green transition-colors duration-200 text-xl font-bold">
@@ -213,10 +218,10 @@
               Construction • Survey • Utilities
             </p>
             <p class="text-sm text-slate-300 leading-relaxed mb-6">
-              Essential job-site heat-stress mitigation for roadwork, utility crews, concrete pours, and commercial field surveying.
+              Essential job-site heat-stress mitigation for roadwork, utility crews, concrete pours, and commercial field surveying[cite: 1].
             </p>
             <ul class="text-xs space-y-2.5 text-slate-300 font-medium mb-8">
-              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Worksite Heavy-Duty Canopy Kit</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Worksite Heavy-Duty Canopy Kit[cite: 1]</li>
               <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Flame & Tear-Resistant Mesh</li>
               <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Magnetic Fleet Vehicle Mounts</li>
             </ul>
@@ -229,14 +234,14 @@
       </div>
     </section>
 
-    <!-- Why Site Shades / Made In America Strip -->
+    <!-- Why Site Shades / Features Strip -->
     <section class="py-16 bg-brand-dark/80 border-y border-brand-border">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div class="p-6 bg-brand-card/60 rounded border border-brand-border">
             <span class="text-brand-green font-display text-2xl font-bold block mb-1">01</span>
             <h4 class="font-display text-lg uppercase font-bold text-white mb-1">Made in America</h4>
-            <p class="text-xs text-slate-400">Domestic craftsmanship built for maximum UV protection and durability.</p>
+            <p class="text-xs text-slate-400">Domestic craftsmanship built for maximum UV protection and durability[cite: 1].</p>
           </div>
           <div class="p-6 bg-brand-card/60 rounded border border-brand-border">
             <span class="text-brand-green font-display text-2xl font-bold block mb-1">02</span>
@@ -246,12 +251,12 @@
           <div class="p-6 bg-brand-card/60 rounded border border-brand-border">
             <span class="text-brand-green font-display text-2xl font-bold block mb-1">03</span>
             <h4 class="font-display text-lg uppercase font-bold text-white mb-1">5-Minute Setup</h4>
-            <p class="text-xs text-slate-400">Single-person setup with quick bungees, fence hooks, or magnetic clamps.</p>
+            <p class="text-xs text-slate-400">Single-person setup with quick bungees, fence hooks, or magnetic clamps[cite: 1].</p>
           </div>
           <div class="p-6 bg-brand-card/60 rounded border border-brand-border">
             <span class="text-brand-green font-display text-2xl font-bold block mb-1">04</span>
             <h4 class="font-display text-lg uppercase font-bold text-white mb-1">Multi-Site Rigging</h4>
-            <p class="text-xs text-slate-400">Fastens securely to chain link, vehicle roll cages, and boat frames.</p>
+            <p class="text-xs text-slate-400">Fastens securely to chain link, vehicle roll cages, and boat frames[cite: 1].</p>
           </div>
         </div>
       </div>
@@ -263,10 +268,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
       
       <div class="flex items-center gap-4">
-        <img src="Site shades LOGO.png" alt="Site Shades" class="h-12 w-12 object-contain" />
+        <img src="Site shades LOGO.png" alt="Site Shades" class="h-12 w-12 object-contain border-none" />
         <div>
           <span class="font-display text-lg font-bold text-white tracking-wider block">SITE SHADES</span>
-          <p class="text-slate-400 text-[11px]">&copy; 2026 Site Shades. Clocked In With Comfort. Made in America.</p>
+          <p class="text-slate-400 text-[11px]">&copy; 2026 Site Shades. Clocked In With Comfort. Made in America[cite: 1].</p>
         </div>
       </div>
 
@@ -288,11 +293,24 @@
     </div>
   </footer>
 
-  <!-- Swift Page Transition Handler -->
+  <!-- Flowy Scroll & Page Transition Script -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("page-loaded");
 
+      // Flowy smooth scrolling for the Explore button
+      const exploreBtn = document.getElementById("explore-btn");
+      if (exploreBtn) {
+        exploreBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = document.querySelector("#categories");
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      }
+
+      // Page exit transitions
       document.querySelectorAll("a[href]").forEach((link) => {
         const href = link.getAttribute("href");
         if (href && !href.startsWith("#") && !href.startsWith("http") && !href.startsWith("mailto:") && href.endsWith(".html")) {
