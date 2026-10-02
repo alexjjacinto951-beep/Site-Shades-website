@@ -57,17 +57,73 @@
       animation: jumpy 1.8s ease-in-out infinite;
     }
 
-    /* Single-File Page Transitions */
+    /* Sleek & Slow Cinematic Page Transitions */
     .site-page {
       display: none;
       opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+      transform: translateY(12px);
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
     }
     .site-page.active-page {
       display: block;
       opacity: 1;
       transform: translateY(0);
+    }
+    .site-page.page-fade-out {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+
+    /* Heading Staggered Reveals */
+    @keyframes slowTitleReveal {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+        letter-spacing: 0.18em;
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        letter-spacing: inherit;
+      }
+    }
+    @keyframes slowSubtitleReveal {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 0.85;
+        transform: translateY(0);
+      }
+    }
+    .active-page .anim-heading {
+      animation: slowTitleReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .active-page .anim-subtitle {
+      animation: slowSubtitleReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
+    }
+
+    /* Custom Navigation Underline Glow */
+    .nav-btn {
+      position: relative;
+    }
+    .nav-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      background-color: #ffffff;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-btn.nav-active::after,
+    .nav-btn:hover::after {
+      transform: scaleX(1);
     }
 
     /* Custom Toast for Added to Cart */
@@ -106,7 +162,7 @@
         <span id="cart-subtotal" class="text-base text-white font-bold">$0.00</span>
       </div>
       <p class="text-[11px] text-white/50 font-light">Taxes and shipping calculated at checkout.</p>
-      <button onclick="handleCheckout()" class="w-full py-3.5 border-2 border-white bg-white text-black hover:bg-black hover:text-white text-xs tracking-[0.25em] uppercase font-bold transition-all">
+      <button onclick="handleCheckout()" class="w-full py-3.5 border-2 border-white bg-white text-black hover:bg-black hover:text-white text-xs tracking-[0.25em] uppercase font-bold transition-all duration-300">
         Proceed to Checkout
       </button>
     </div>
@@ -127,24 +183,24 @@
           <img 
             src="Site shades LOGO.png" 
             alt="Site Shades" 
-            class="h-full w-full object-contain clean-logo-crop group-hover:scale-105 transition-transform duration-200"
+            class="h-full w-full object-contain clean-logo-crop group-hover:scale-105 transition-transform duration-300"
           />
         </div>
       </button>
 
-      <!-- Prominent Navigation Links -->
+      <!-- Prominent Navigation Links with Smooth Underline Micro-Animations -->
       <nav class="hidden lg:flex items-center space-x-10 text-sm tracking-[0.22em] uppercase font-bold">
-        <button onclick="navigateTo('home')" class="nav-btn text-white transition-colors" data-page="home">Home</button>
-        <button onclick="navigateTo('sports')" class="nav-btn text-white/60 hover:text-white transition-colors" data-page="sports">Sports</button>
-        <button onclick="navigateTo('action-sports')" class="nav-btn text-white/60 hover:text-white transition-colors" data-page="action-sports">Action Sports</button>
-        <button onclick="navigateTo('industrial')" class="nav-btn text-white/60 hover:text-white transition-colors" data-page="industrial">Industrial</button>
-        <button onclick="navigateTo('retailers')" class="nav-btn text-white/60 hover:text-white transition-colors" data-page="retailers">Retailers</button>
-        <button onclick="navigateTo('about')" class="nav-btn text-white/60 hover:text-white transition-colors" data-page="about">About</button>
+        <button onclick="navigateTo('home')" class="nav-btn nav-active text-white transition-colors duration-300" data-page="home">Home</button>
+        <button onclick="navigateTo('sports')" class="nav-btn text-white/60 hover:text-white transition-colors duration-300" data-page="sports">Sports</button>
+        <button onclick="navigateTo('action-sports')" class="nav-btn text-white/60 hover:text-white transition-colors duration-300" data-page="action-sports">Action Sports</button>
+        <button onclick="navigateTo('industrial')" class="nav-btn text-white/60 hover:text-white transition-colors duration-300" data-page="industrial">Industrial</button>
+        <button onclick="navigateTo('retailers')" class="nav-btn text-white/60 hover:text-white transition-colors duration-300" data-page="retailers">Retailers</button>
+        <button onclick="navigateTo('about')" class="nav-btn text-white/60 hover:text-white transition-colors duration-300" data-page="about">About</button>
       </nav>
 
       <!-- Header Cart Trigger -->
       <div class="flex items-center">
-        <button onclick="toggleCart()" class="flex items-center space-x-2.5 px-5 py-2.5 text-xs tracking-[0.25em] uppercase font-bold border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-150">
+        <button onclick="toggleCart()" class="flex items-center space-x-2.5 px-5 py-2.5 text-xs tracking-[0.25em] uppercase font-bold border-2 border-white text-white hover:bg-white hover:text-black transition-all duration-300">
           <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
@@ -167,11 +223,11 @@
 
       <!-- Center Typography -->
       <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-[0.14em] uppercase text-white leading-tight drop-shadow-[0_10px_25px_rgba(0,0,0,0.9)]">
+        <h1 class="anim-heading text-4xl sm:text-6xl lg:text-7xl font-bold tracking-[0.14em] uppercase text-white leading-tight drop-shadow-[0_10px_25px_rgba(0,0,0,0.9)]">
           YOUR SITE.<br />
           YOUR SHADE.
         </h1>
-        <p class="mt-5 text-white/80 text-sm sm:text-base tracking-[0.2em] uppercase font-medium max-w-xl mx-auto drop-shadow-md">
+        <p class="anim-subtitle mt-5 text-white/80 text-sm sm:text-base tracking-[0.2em] uppercase font-medium max-w-xl mx-auto drop-shadow-md">
           Engineered Portable Shade Systems
         </p>
       </div>
@@ -181,13 +237,13 @@
         <button 
           onclick="smoothGlideTo('brand-story')" 
           aria-label="Scroll to details"
-          class="group flex flex-col items-center cursor-pointer border-none bg-transparent p-2 focus:outline-none transition-transform hover:scale-105"
+          class="group flex flex-col items-center cursor-pointer border-none bg-transparent p-2 focus:outline-none transition-transform hover:scale-105 duration-300"
         >
           <span class="text-xs tracking-[0.28em] uppercase text-white/70 group-hover:text-white transition-colors mb-2.5 font-bold">
             Explore
           </span>
           <div class="jumpy-arrow w-10 h-10 rounded-full border-2 border-white/50 group-hover:border-white bg-black/40 backdrop-blur-md flex items-center justify-center transition-all group-hover:bg-white/10 shadow-lg">
-            <svg class="w-5 h-5 text-white transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+            <svg class="w-5 h-5 text-white transition-transform group-hover:translate-y-0.5 duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
             </svg>
           </div>
@@ -216,7 +272,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
         <!-- Category 1: Sports -->
-        <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-colors">
+        <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1">
           <div>
             <span class="text-xs uppercase tracking-[0.25em] text-white/40 block mb-3 font-semibold">Athletics</span>
             <h3 class="text-2xl font-normal tracking-wide text-white uppercase mb-3">Sports</h3>
@@ -229,13 +285,13 @@
               <li>• Heavy-Duty Hardware & Wind-Relief Mesh</li>
             </ul>
           </div>
-          <button onclick="navigateTo('sports')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all">
+          <button onclick="navigateTo('sports')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all duration-300">
             View Collection &rarr;
           </button>
         </div>
 
         <!-- Category 2: Action Sports -->
-        <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-colors">
+        <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1">
           <div>
             <span class="text-xs uppercase tracking-[0.25em] text-white/40 block mb-3 font-semibold">Trail & Marine</span>
             <h3 class="text-2xl font-normal tracking-wide text-white uppercase mb-3">Action Sports</h3>
@@ -248,13 +304,13 @@
               <li>• RV Awnings & Rage Shade Series</li>
             </ul>
           </div>
-          <button onclick="navigateTo('action-sports')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all">
+          <button onclick="navigateTo('action-sports')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all duration-300">
             View Collection &rarr;
           </button>
         </div>
 
         <!-- Category 3: Industrial -->
-        <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-colors">
+        <div class="bg-black/60 border border-white/15 p-8 sm:p-10 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1">
           <div>
             <span class="text-xs uppercase tracking-[0.25em] text-white/40 block mb-3 font-semibold">Commercial</span>
             <h3 class="text-2xl font-normal tracking-wide text-white uppercase mb-3">Industrial</h3>
@@ -267,7 +323,7 @@
               <li>• Soft-Coated Magnetic Mounting Clips</li>
             </ul>
           </div>
-          <button onclick="navigateTo('industrial')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all">
+          <button onclick="navigateTo('industrial')" class="w-full py-3.5 border border-white/40 hover:border-white hover:bg-white hover:text-black text-white text-center text-xs tracking-[0.25em] uppercase font-bold transition-all duration-300">
             View Collection &rarr;
           </button>
         </div>
@@ -284,8 +340,8 @@
     <!-- Sports Header Banner -->
     <div class="text-center max-w-4xl mx-auto border-b border-white/10 pb-12">
       <span class="text-xs uppercase tracking-[0.35em] text-white/50 block mb-3 font-bold">Athletic Division</span>
-      <h1 class="text-4xl sm:text-6xl font-normal uppercase tracking-wide text-white">SITE SHADES SPORTS</h1>
-      <p class="mt-3 text-lg sm:text-xl text-white font-bold tracking-[0.18em] uppercase">
+      <h1 class="anim-heading text-4xl sm:text-6xl font-normal uppercase tracking-wide text-white">SITE SHADES SPORTS</h1>
+      <p class="anim-subtitle mt-3 text-lg sm:text-xl text-white font-bold tracking-[0.18em] uppercase">
         SHADE FOR EVERY PLAY.
       </p>
       <p class="mt-4 text-white/80 text-sm sm:text-base leading-relaxed font-light max-w-2xl mx-auto">
@@ -392,7 +448,7 @@
           </ul>
         </div>
         <div class="mt-8">
-          <button onclick="smoothGlideTo('sports-products-grid')" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+          <button onclick="smoothGlideTo('sports-products-grid')" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
             Browse Dugout Systems Below &darr;
           </button>
         </div>
@@ -443,7 +499,7 @@
           </ul>
         </div>
         <div class="mt-8">
-          <button onclick="smoothGlideTo('sports-products-grid')" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+          <button onclick="smoothGlideTo('sports-products-grid')" class="px-8 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
             Browse Bleacher Systems Below &darr;
           </button>
         </div>
@@ -464,7 +520,7 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Dugout 8x20 -->
-        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all group">
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1 group">
           <div>
             <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4 text-center">
               <span class="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">Standard Spec</span>
@@ -481,14 +537,14 @@
               <span class="text-xs text-white/50 uppercase tracking-widest">Price</span>
               <span class="text-lg font-bold text-white">$249.00</span>
             </div>
-            <button onclick="addToCart('Standard Dugout Shade (8x20)', 249.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            <button onclick="addToCart('Standard Dugout Shade (8x20)', 249.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
               Add To Cart
             </button>
           </div>
         </div>
 
         <!-- Dugout 10x30 -->
-        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all group">
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1 group">
           <div>
             <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4 text-center">
               <span class="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">Extended Spec</span>
@@ -505,14 +561,14 @@
               <span class="text-xs text-white/50 uppercase tracking-widest">Price</span>
               <span class="text-lg font-bold text-white">$329.00</span>
             </div>
-            <button onclick="addToCart('Extended Dugout Shade (10x30)', 329.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            <button onclick="addToCart('Extended Dugout Shade (10x30)', 329.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
               Add To Cart
             </button>
           </div>
         </div>
 
         <!-- Bleacher Shade -->
-        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all group">
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1 group">
           <div>
             <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4 text-center">
               <span class="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">Grandstand Spec</span>
@@ -529,14 +585,14 @@
               <span class="text-xs text-white/50 uppercase tracking-widest">Price</span>
               <span class="text-lg font-bold text-white">$279.00</span>
             </div>
-            <button onclick="addToCart('Bleacher Shade System', 279.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            <button onclick="addToCart('Bleacher Shade System', 279.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
               Add To Cart
             </button>
           </div>
         </div>
 
         <!-- Custom Team Dugout -->
-        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all group">
+        <div class="bg-black/80 border border-white/15 p-6 flex flex-col justify-between hover:border-white transition-all duration-300 hover:-translate-y-1 group">
           <div>
             <div class="bg-white/5 border border-white/10 aspect-square flex flex-col items-center justify-center p-4 mb-4 text-center">
               <span class="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">Custom Order</span>
@@ -553,7 +609,7 @@
               <span class="text-xs text-white/50 uppercase tracking-widest">Starting at</span>
               <span class="text-lg font-bold text-white">$289.00</span>
             </div>
-            <button onclick="addToCart('Custom Team Dugout Shade', 289.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            <button onclick="addToCart('Custom Team Dugout Shade', 289.00)" class="w-full py-2.5 border border-white text-xs tracking-[0.2em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
               Add To Cart
             </button>
           </div>
@@ -570,26 +626,26 @@
     <!-- Action Sports Header Banner (TAKE US ANYWHERE!) -->
     <div class="text-center max-w-4xl mx-auto border-b border-white/10 pb-12">
       <span class="text-xs uppercase tracking-[0.35em] text-white/50 block mb-3 font-bold">Action Sports Division</span>
-      <h1 class="text-4xl sm:text-6xl font-normal uppercase tracking-wide text-white">TAKE US ANYWHERE!</h1>
-      <p class="mt-4 text-white/80 text-sm sm:text-base leading-relaxed font-light max-w-2xl mx-auto">
+      <h1 class="anim-heading text-4xl sm:text-6xl font-normal uppercase tracking-wide text-white">TAKE US ANYWHERE!</h1>
+      <p class="anim-subtitle mt-4 text-white/80 text-sm sm:text-base leading-relaxed font-light max-w-2xl mx-auto">
         High-performance four-way stretch shade systems engineered for extreme outdoor adventure. Built with heavy-duty UPF protective spandex to withstand high trail speeds, open marine winds, and brutal desert heat.
       </p>
 
       <!-- 4 Division Navigation Pills -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10">
-        <button onclick="smoothGlideTo('prod-offroad')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all text-center group">
+        <button onclick="smoothGlideTo('prod-offroad')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all duration-300 hover:-translate-y-0.5 text-center group">
           <span class="text-xs uppercase tracking-widest font-bold text-white block group-hover:text-white/80">Off-Road</span>
           <span class="text-[10px] text-white/50 uppercase tracking-wider block mt-1">UTV & 4x4 Trail</span>
         </button>
-        <button onclick="smoothGlideTo('prod-marine')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all text-center group">
+        <button onclick="smoothGlideTo('prod-marine')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all duration-300 hover:-translate-y-0.5 text-center group">
           <span class="text-xs uppercase tracking-widest font-bold text-white block group-hover:text-white/80">Marine</span>
           <span class="text-[10px] text-white/50 uppercase tracking-wider block mt-1">Bow & Stern Boat</span>
         </button>
-        <button onclick="smoothGlideTo('prod-rv')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all text-center group">
+        <button onclick="smoothGlideTo('prod-rv')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all duration-300 hover:-translate-y-0.5 text-center group">
           <span class="text-xs uppercase tracking-widest font-bold text-white block group-hover:text-white/80">RV</span>
           <span class="text-[10px] text-white/50 uppercase tracking-wider block mt-1">Awning Extensions</span>
         </button>
-        <button onclick="smoothGlideTo('prod-rageshade')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all text-center group">
+        <button onclick="smoothGlideTo('prod-rageshade')" class="p-4 border border-white/20 bg-black/60 hover:border-white transition-all duration-300 hover:-translate-y-0.5 text-center group">
           <span class="text-xs uppercase tracking-widest font-bold text-white block group-hover:text-white/80">Rage Shade Series</span>
           <span class="text-[10px] text-white/50 uppercase tracking-wider block mt-1">Whole Camp Base</span>
         </button>
@@ -614,7 +670,7 @@
               <span class="text-[10px] uppercase tracking-widest text-white/40 border border-white/20 px-2 py-0.5">Patent Pending</span>
             </div>
             <h2 class="text-2xl sm:text-4xl font-normal uppercase tracking-wide text-white">Off-Road Site Shade</h2>
-            <div class="mt-2 text-2xl font-bold text-white" id="price-offroad">$109.95</div>
+            <div class="mt-2 text-2xl font-bold text-white transition-all duration-300" id="price-offroad">$109.95</div>
 
             <p class="text-white/75 text-xs sm:text-sm mt-4 leading-relaxed font-light">
               Our off-road shade comes in 7 feet or 9 feet &times; 5 feet and stretches 12 inches in each direction (four-way stretch). All shades are UPF protectant, heavy duty spandex fabric. Fastens directly between roll bars or across multiple side-by-sides.
@@ -632,14 +688,14 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
               <div>
                 <label class="block text-[11px] uppercase tracking-widest text-white/50 font-bold mb-2">Select Size</label>
-                <select id="size-offroad" onchange="updateOffRoadPrice()" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white">
+                <select id="size-offroad" onchange="updateOffRoadPrice()" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white transition-colors duration-200">
                   <option value="7ft" data-price="109.95">7ft ($109.95)</option>
                   <option value="9ft" data-price="129.95">9ft ($129.95)</option>
                 </select>
               </div>
               <div>
                 <label class="block text-[11px] uppercase tracking-widest text-white/50 font-bold mb-2">Select Color</label>
-                <select id="color-offroad" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white">
+                <select id="color-offroad" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white transition-colors duration-200">
                   <option value="Black">Black</option>
                   <option value="Custom Colors">Custom Colors</option>
                 </select>
@@ -648,7 +704,7 @@
           </div>
 
           <div class="mt-8">
-            <button onclick="addOffRoadToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            <button onclick="addOffRoadToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
               Add To Cart
             </button>
           </div>
@@ -670,7 +726,7 @@
               <span class="text-[10px] uppercase tracking-widest text-white/40 border border-white/20 px-2 py-0.5">Patent Pending</span>
             </div>
             <h2 class="text-2xl sm:text-4xl font-normal uppercase tracking-wide text-white">Boat / Marine Site Shade</h2>
-            <div class="mt-2 text-2xl font-bold text-white" id="price-marine">$89.95</div>
+            <div class="mt-2 text-2xl font-bold text-white transition-all duration-300" id="price-marine">$89.95</div>
 
             <p class="text-xs uppercase tracking-[0.2em] text-white/60 font-semibold mt-2">
               BOW. STERN. SHADE. FOR EVERY BOAT.
@@ -692,7 +748,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
               <div>
                 <label class="block text-[11px] uppercase tracking-widest text-white/50 font-bold mb-2">Select Size</label>
-                <select id="size-marine" onchange="updateMarinePrice()" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white">
+                <select id="size-marine" onchange="updateMarinePrice()" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white transition-colors duration-200">
                   <option value="5ft" data-price="89.95">5ft ($89.95)</option>
                   <option value="7ft" data-price="109.95">7ft ($109.95)</option>
                   <option value="9ft" data-price="129.95">9ft ($129.95)</option>
@@ -700,7 +756,7 @@
               </div>
               <div>
                 <label class="block text-[11px] uppercase tracking-widest text-white/50 font-bold mb-2">Select Color</label>
-                <select id="color-marine" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white">
+                <select id="color-marine" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white transition-colors duration-200">
                   <option value="Blue">Blue</option>
                   <option value="Black">Black</option>
                   <option value="Custom Colors">Custom Colors</option>
@@ -710,7 +766,7 @@
           </div>
 
           <div class="mt-8">
-            <button onclick="addMarineToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            <button onclick="addMarineToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
               Add To Cart
             </button>
           </div>
@@ -732,7 +788,7 @@
               <span class="text-[10px] uppercase tracking-widest text-white/40 border border-white/20 px-2 py-0.5">Patent Pending</span>
             </div>
             <h2 class="text-2xl sm:text-4xl font-normal uppercase tracking-wide text-white">RV Shade</h2>
-            <div class="mt-2 text-2xl font-bold text-white" id="price-rv">$169.95</div>
+            <div class="mt-2 text-2xl font-bold text-white transition-all duration-300" id="price-rv">$169.95</div>
 
             <p class="text-white/75 text-xs sm:text-sm mt-4 leading-relaxed font-light">
               Four-way stretch ability. This RV shade is available in 12 ft, 14 ft or 16 ft &times; 5ft and stretches 12 inches in each direction. UPF protectant, heavy duty spandex fabric. Drops temperatures directly under your campsite awning.
@@ -757,7 +813,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
               <div>
                 <label class="block text-[11px] uppercase tracking-widest text-white/50 font-bold mb-2">Select Size</label>
-                <select id="size-rv" onchange="updateRVPrice()" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white">
+                <select id="size-rv" onchange="updateRVPrice()" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white transition-colors duration-200">
                   <option value="12 feet" data-price="169.95">12 feet ($169.95)</option>
                   <option value="14 feet" data-price="189.95">14 feet ($189.95)</option>
                   <option value="16 feet" data-price="209.95">16 feet ($209.95)</option>
@@ -765,7 +821,7 @@
               </div>
               <div>
                 <label class="block text-[11px] uppercase tracking-widest text-white/50 font-bold mb-2">Select Color</label>
-                <select id="color-rv" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white">
+                <select id="color-rv" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white transition-colors duration-200">
                   <option value="Black">Black</option>
                   <option value="Custom Colors">Custom Colors</option>
                 </select>
@@ -774,7 +830,7 @@
           </div>
 
           <div class="mt-8">
-            <button onclick="addRVToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            <button onclick="addRVToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
               Add To Cart
             </button>
           </div>
@@ -796,7 +852,7 @@
               <span class="text-[10px] uppercase tracking-widest text-white/40 border border-white/20 px-2 py-0.5">Patent Pending</span>
             </div>
             <h2 class="text-2xl sm:text-4xl font-normal uppercase tracking-wide text-white">Rage Shade</h2>
-            <div class="mt-2 text-2xl font-bold text-white" id="price-rageshade">$289.95</div>
+            <div class="mt-2 text-2xl font-bold text-white transition-all duration-300" id="price-rageshade">$289.95</div>
 
             <p class="text-white/75 text-xs sm:text-sm mt-4 leading-relaxed font-light">
               Our Rage Shade series allows you to cover the whole camp! Four-way stretch ability. The Rage Shade comes in 10ft &times; 12ft, 14ft or 16ft and stretches up to 18 inches in each direction. UPF protectant, heavy duty spandex fabric. It all fits in a small backpack!
@@ -816,7 +872,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
               <div>
                 <label class="block text-[11px] uppercase tracking-widest text-white/50 font-bold mb-2">Select Size</label>
-                <select id="size-rageshade" onchange="updateRageShadePrice()" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white">
+                <select id="size-rageshade" onchange="updateRageShadePrice()" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white transition-colors duration-200">
                   <option value="10FT X 12FT" data-price="289.95">10FT &times; 12FT ($289.95)</option>
                   <option value="10FT X 14FT" data-price="309.95">10FT &times; 14FT ($309.95)</option>
                   <option value="10FT X 16FT" data-price="329.95">10FT &times; 16FT ($329.95)</option>
@@ -824,7 +880,7 @@
               </div>
               <div>
                 <label class="block text-[11px] uppercase tracking-widest text-white/50 font-bold mb-2">Select Color</label>
-                <select id="color-rageshade" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white">
+                <select id="color-rageshade" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white transition-colors duration-200">
                   <option value="Black">Black</option>
                   <option value="Custom Colors">Custom Colors</option>
                 </select>
@@ -833,7 +889,7 @@
           </div>
 
           <div class="mt-8">
-            <button onclick="addRageShadeToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+            <button onclick="addRageShadeToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
               Add To Cart
             </button>
           </div>
@@ -851,8 +907,8 @@
     <!-- Industrial Header Banner -->
     <div class="text-center max-w-4xl mx-auto border-b border-white/10 pb-12">
       <span class="text-xs uppercase tracking-[0.35em] text-white/50 block mb-3 font-bold">Industrial Division</span>
-      <h1 class="text-4xl sm:text-6xl font-normal uppercase tracking-wide text-white">CLOCKED IN WITH COMFORT</h1>
-      <p class="mt-3 text-lg sm:text-xl text-white font-bold tracking-[0.18em] uppercase">
+      <h1 class="anim-heading text-4xl sm:text-6xl font-normal uppercase tracking-wide text-white">CLOCKED IN WITH COMFORT</h1>
+      <p class="anim-subtitle mt-3 text-lg sm:text-xl text-white font-bold tracking-[0.18em] uppercase">
         INDUSTRIAL SHADE SOLUTIONS
       </p>
       <p class="mt-4 text-white/80 text-sm sm:text-base leading-relaxed font-light max-w-2xl mx-auto">
@@ -936,7 +992,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
             <div>
               <label class="block text-[11px] uppercase tracking-widest text-white/50 font-bold mb-2">Color</label>
-              <select id="color-industrial" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white">
+              <select id="color-industrial" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white transition-colors duration-200">
                 <option value="Orange">Hi-Vis Orange</option>
                 <option value="Blue">Blue</option>
                 <option value="Custom Colors">Custom Colors</option>
@@ -944,13 +1000,13 @@
             </div>
             <div>
               <label class="block text-[11px] uppercase tracking-widest text-white/50 font-bold mb-2">Quantity</label>
-              <input type="number" id="qty-industrial" min="1" value="1" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white" />
+              <input type="number" id="qty-industrial" min="1" value="1" class="w-full bg-black border border-white/30 text-white text-xs px-3 py-2.5 uppercase tracking-wider focus:outline-none focus:border-white transition-colors duration-200" />
             </div>
           </div>
         </div>
 
         <div class="mt-8 flex flex-wrap gap-4 items-center">
-          <button onclick="addIndustrialToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all">
+          <button onclick="addIndustrialToCart()" class="w-full sm:w-auto px-10 py-3.5 border-2 border-white text-xs tracking-[0.25em] uppercase font-bold text-white hover:bg-white hover:text-black transition-all duration-300">
             Add To Cart &rarr;
           </button>
           <span class="text-[11px] text-white/40 tracking-wider">Fast California Dispatch</span>
@@ -964,8 +1020,8 @@
   <!-- ========================================== -->
   <main id="page-retailers" class="site-page py-16 max-w-4xl mx-auto px-4 text-center">
     <span class="text-xs uppercase tracking-[0.3em] text-white/50 block mb-2 font-bold">Network</span>
-    <h1 class="text-3xl sm:text-5xl font-normal uppercase tracking-wide text-white">Retail Locations</h1>
-    <p class="mt-4 text-white/75 text-sm sm:text-base leading-relaxed font-light">
+    <h1 class="anim-heading text-3xl sm:text-5xl font-normal uppercase tracking-wide text-white">Retail Locations</h1>
+    <p class="anim-subtitle mt-4 text-white/75 text-sm sm:text-base leading-relaxed font-light">
       Site Shades are available through select outdoor outfitters, powersports dealers, and commercial supply distributors nationwide.
     </p>
     <div class="mt-12 p-8 border border-white/15 bg-white/5">
@@ -976,8 +1032,8 @@
 
   <main id="page-about" class="site-page py-16 max-w-4xl mx-auto px-4 text-center">
     <span class="text-xs uppercase tracking-[0.3em] text-white/50 block mb-2 font-bold">Our Story</span>
-    <h1 class="text-3xl sm:text-5xl font-normal uppercase tracking-wide text-white">About Site Shades</h1>
-    <div class="mt-8 space-y-5 text-white/80 text-sm sm:text-base leading-relaxed font-light max-w-2xl mx-auto">
+    <h1 class="anim-heading text-3xl sm:text-5xl font-normal uppercase tracking-wide text-white">About Site Shades</h1>
+    <div class="anim-subtitle mt-8 space-y-5 text-white/80 text-sm sm:text-base leading-relaxed font-light max-w-2xl mx-auto">
       <p>
         Site Shades is family-owned and operated in Fullerton, CA. All of our products are designed, manufactured, and built in California.
       </p>
@@ -1016,21 +1072,21 @@
           </p>
           <div class="flex items-center space-x-5">
             <!-- Instagram -->
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Site Shades Instagram" class="p-2.5 rounded-full bg-white/5 border border-white/15 text-white/75 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-200">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Site Shades Instagram" class="p-2.5 rounded-full bg-white/5 border border-white/15 text-white/75 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-300">
               <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
             </a>
 
             <!-- TikTok -->
-            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="Site Shades TikTok" class="p-2.5 rounded-full bg-white/5 border border-white/15 text-white/75 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-200">
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="Site Shades TikTok" class="p-2.5 rounded-full bg-white/5 border border-white/15 text-white/75 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-300">
               <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
               </svg>
             </a>
 
             <!-- Facebook -->
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Site Shades Facebook" class="p-2.5 rounded-full bg-white/5 border border-white/15 text-white/75 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-200">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Site Shades Facebook" class="p-2.5 rounded-full bg-white/5 border border-white/15 text-white/75 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-300">
               <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
               </svg>
@@ -1117,10 +1173,11 @@
     </div>
   </footer>
 
-  <!-- View Controller & Cart Management Engine -->
+  <!-- View Controller, Eased Page Transitions, & Cart Management Engine -->
   <script>
     // Shopping Cart State
     let cart = [];
+    let isTransitioning = false;
 
     // Industrial Product Cart Handler
     function addIndustrialToCart() {
@@ -1248,7 +1305,7 @@
               <h4 class="text-xs font-bold uppercase tracking-wider text-white">${item.title}</h4>
               <span class="text-[11px] text-white/60 tracking-wider">$${item.price.toFixed(2)} &times; ${item.qty}</span>
             </div>
-            <button onclick="removeFromCart(${idx})" class="text-white/40 hover:text-white text-xs uppercase tracking-widest pl-2">
+            <button onclick="removeFromCart(${idx})" class="text-white/40 hover:text-white text-xs uppercase tracking-widest pl-2 transition-colors duration-200">
               Remove
             </button>
           </div>
@@ -1272,6 +1329,7 @@
       alert('Checkout initialized for ' + cart.length + ' item type(s). Direct gateway integration connecting.');
     }
 
+    // Sleek Glide Scroll Engine
     function smoothGlideTo(targetId) {
       const target = document.getElementById(targetId);
       if (!target) return;
@@ -1280,7 +1338,7 @@
       const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
       const startPosition = window.pageYOffset;
       const distance = targetPosition - startPosition;
-      const duration = 850;
+      const duration = 900;
       let startTime = null;
 
       function animation(currentTime) {
@@ -1288,6 +1346,7 @@
         const timeElapsed = currentTime - startTime;
         const progress = Math.min(timeElapsed / duration, 1);
 
+        // Ease In-Out Cubic
         const ease = progress < 0.5 
           ? 4 * progress * progress * progress 
           : 1 - Math.pow(-2 * progress + 2, 3) / 2;
@@ -1302,26 +1361,52 @@
       requestAnimationFrame(animation);
     }
 
+    // Slow, Clean & Sleek Eased Page Cross-Fade
     function navigateTo(pageId) {
-      document.querySelectorAll('.site-page').forEach(page => {
-        page.classList.remove('active-page');
-      });
+      if (isTransitioning) return;
 
-      const target = document.getElementById('page-' + pageId);
-      if (target) {
-        target.classList.add('active-page');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+      const currentActive = document.querySelector('.site-page.active-page');
+      const targetPage = document.getElementById('page-' + pageId);
 
+      if (!targetPage || currentActive === targetPage) return;
+
+      isTransitioning = true;
+
+      // Update Navigation Tab Underlines
       document.querySelectorAll('.nav-btn').forEach(btn => {
         if (btn.getAttribute('data-page') === pageId) {
-          btn.classList.add('text-white');
+          btn.classList.add('text-white', 'nav-active');
           btn.classList.remove('text-white/60');
         } else {
-          btn.classList.remove('text-white');
+          btn.classList.remove('text-white', 'nav-active');
           btn.classList.add('text-white/60');
         }
       });
+
+      // Smooth Page Fade-Out
+      if (currentActive) {
+        currentActive.classList.add('page-fade-out');
+        currentActive.classList.remove('active-page');
+      }
+
+      setTimeout(() => {
+        // Hide all views cleanly
+        document.querySelectorAll('.site-page').forEach(page => {
+          page.classList.remove('active-page', 'page-fade-out');
+          page.style.display = 'none';
+        });
+
+        // Smooth scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Reveal new target page with slowed float & fade
+        targetPage.style.display = 'block';
+        // Force reflow for animation trigger
+        void targetPage.offsetWidth;
+        targetPage.classList.add('active-page');
+
+        isTransitioning = false;
+      }, 240);
     }
   </script>
 </body>
