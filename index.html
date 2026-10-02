@@ -33,11 +33,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
 
   <style>
+    .clean-logo-crop {
+      clip-path: circle(44.2% at 50% 50%);
+    }
+
     body {
       font-family: "Century Gothic", CenturyGothic, "Questrial", Futura, sans-serif;
       background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.97)), url('Site Shades Background.png');
       background-attachment: fixed;
       background-size: 500px auto;
+    }
+
+    /* Dynamic Header Logo Reveal */
+    #header-logo-container {
+      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+    }
+    .logo-hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.92);
+    }
+    .logo-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
     }
 
     /* Single-File Page Transitions */
@@ -54,18 +73,24 @@
     }
   </style>
 </head>
-<body class="bg-black text-white font-oneill antialiased selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
+<body class="bg-black text-white font-oneill antialiased selection:bg-white selection:text-black min-h-screen flex flex-col justify-between overflow-x-hidden">
 
-  <!-- Header / Navigation Bar (Option 1: Clean Editorial Wordmark) -->
+  <!-- Header / Navigation Bar -->
   <header class="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/15">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-28 flex items-center justify-between">
       
-      <!-- Top Left Wordmark (No image repetition) -->
-      <button onclick="navigateTo('home')" class="flex items-center group cursor-pointer border-none bg-transparent p-0 text-left">
-        <span class="text-xl sm:text-2xl font-bold tracking-[0.28em] uppercase text-white group-hover:text-white/80 transition-colors">
-          SITE SHADES
-        </span>
-      </button>
+      <!-- Top Left Logo Container (Reveals dynamically on scroll or sub-pages) -->
+      <div id="header-logo-container" class="logo-hidden flex items-center w-24">
+        <button onclick="navigateTo('home')" class="flex items-center group cursor-pointer border-none bg-transparent p-0">
+          <div class="h-20 w-20 sm:h-24 sm:w-24 flex items-center justify-center overflow-hidden">
+            <img 
+              src="Site shades LOGO.png" 
+              alt="Site Shades" 
+              class="h-full w-full object-contain clean-logo-crop group-hover:scale-105 transition-transform duration-200"
+            />
+          </div>
+        </button>
+      </div>
 
       <!-- Prominent Navigation Links -->
       <nav class="hidden lg:flex items-center space-x-10 text-sm tracking-[0.22em] uppercase font-bold">
@@ -91,15 +116,13 @@
   <!-- ========================================== -->
   <main id="page-home" class="site-page active-page">
     
-    <!-- Hero Banner Stage (Clear single logo presence) -->
-    <section class="w-full bg-black border-b border-white/10 flex items-center justify-center overflow-hidden py-4 sm:py-6">
-      <div class="w-full max-w-[1380px] px-4 flex items-center justify-center">
-        <img 
-          src="site shades NEW LANDING PAGE .png" 
-          alt="Site Shades - Your Site. Your Shade." 
-          class="max-w-full h-auto object-contain block mx-auto"
-        />
-      </div>
+    <!-- True Full-Bleed Hero Banner (Spans full viewport width, zero side gaps) -->
+    <section class="w-full h-[58vh] sm:h-[72vh] min-h-[460px] max-h-[820px] bg-black border-b border-white/10 overflow-hidden relative">
+      <img 
+        src="site shades NEW LANDING PAGE .png" 
+        alt="Site Shades - Your Site. Your Shade." 
+        class="w-full h-full object-cover object-center block"
+      />
     </section>
 
     <!-- Narrative Section -->
@@ -444,10 +467,13 @@
     </p>
   </main>
 
-  <!-- Footer (Clean Wordmark Match) -->
+  <!-- Footer -->
   <footer class="bg-black border-t border-white/15 py-12 text-white/60 text-xs mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-      <span class="text-base tracking-[0.25em] text-white uppercase font-bold">SITE SHADES</span>
+      <div class="flex items-center gap-4">
+        <div class="h-12 w-12 overflow-hidden"><img src="Site shades LOGO.png" alt="Site Shades" class="h-full w-full object-contain clean-logo-crop" /></div>
+        <span class="text-sm tracking-[0.22em] text-white uppercase font-bold">SITE SHADES</span>
+      </div>
       <div class="flex space-x-8 uppercase text-xs tracking-[0.2em] font-bold">
         <button onclick="navigateTo('sports')" class="hover:text-white transition-colors">Sports</button>
         <button onclick="navigateTo('action-sports')" class="hover:text-white transition-colors">Action</button>
@@ -458,9 +484,24 @@
     </div>
   </footer>
 
-  <!-- View Controller -->
+  <!-- View Controller & Contextual Logo Manager -->
   <script>
+    let activePageId = 'home';
+    const logoContainer = document.getElementById('header-logo-container');
+
+    function updateLogoVisibility() {
+      if (activePageId !== 'home' || window.scrollY > 120) {
+        logoContainer.classList.remove('logo-hidden');
+        logoContainer.classList.add('logo-visible');
+      } else {
+        logoContainer.classList.add('logo-hidden');
+        logoContainer.classList.remove('logo-visible');
+      }
+    }
+
     function navigateTo(pageId) {
+      activePageId = pageId;
+
       document.querySelectorAll('.site-page').forEach(page => {
         page.classList.remove('active-page');
       });
@@ -480,7 +521,11 @@
           btn.classList.add('text-white/60');
         }
       });
+
+      updateLogoVisibility();
     }
+
+    window.addEventListener('scroll', updateLogoVisibility, { passive: true });
   </script>
 </body>
 </html>
