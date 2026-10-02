@@ -17,10 +17,10 @@
               dark: '#0f1316',
               card: '#151a1e',
               border: '#222a30',
-              // Matte coastal teal / turquoise palette
-              teal: '#14b8a6',
-              tealLight: '#2dd4bf',
-              tealDark: '#0d9488',
+              // Rich outdoor teal-green
+              green: '#10b981',
+              greenHover: '#059669',
+              greenLight: '#34d399',
             }
           },
           fontFamily: {
@@ -32,13 +32,13 @@
     }
   </script>
 
-  <!-- Google Fonts: Teko (Tall condensed brand font matching logo) & Inter -->
+  <!-- Google Fonts: Teko (Matching bold logo lettering) & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Teko:wght@600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* Clip outer ring of logo to remove white border */
+    /* Cleanly crop the outer white ring from the logo image */
     .clean-logo-clip {
       clip-path: circle(44.2% at 50% 50%);
     }
@@ -62,12 +62,12 @@
     }
   </style>
 </head>
-<body class="text-slate-200 font-body antialiased selection:bg-brand-teal selection:text-black min-h-screen flex flex-col justify-between">
+<body class="text-slate-200 font-body antialiased selection:bg-brand-green selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- Subtle Top Announcement Bar -->
+  <!-- Top Announcement Bar -->
   <div class="bg-brand-dark/95 backdrop-blur border-b border-brand-border text-xs py-2 px-4 text-center tracking-wider uppercase text-slate-300 flex items-center justify-center gap-2">
     <span>🇺🇸 Made in America</span>
-    <span class="text-brand-teal">•</span>
+    <span class="text-brand-green">•</span>
     <span>Clocked In With Comfort</span>
   </div>
 
@@ -75,7 +75,7 @@
   <header class="sticky top-0 z-50 bg-brand-black/95 backdrop-blur-md border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Top Left Logo: Outer white rim clipped out entirely -->
+      <!-- Top Left Logo Only (No border, outer rim clipped) -->
       <a href="index.html" class="flex items-center group">
         <div class="h-16 w-16 flex items-center justify-center overflow-hidden">
           <img 
@@ -88,71 +88,58 @@
 
       <!-- Desktop Navigation Menu -->
       <nav class="hidden lg:flex items-center space-x-9 text-base tracking-widest uppercase font-headline">
-        <a href="sports.html" class="text-slate-300 hover:text-brand-teal transition-colors">Sports</a>
-        <a href="action-sports.html" class="text-slate-300 hover:text-brand-teal transition-colors">Action Sports</a>
-        <a href="industrial.html" class="text-slate-300 hover:text-brand-teal transition-colors">Industrial</a>
-        <a href="retailers.html" class="text-slate-300 hover:text-brand-teal transition-colors">Retailers</a>
-        <a href="about.html" class="text-slate-300 hover:text-brand-teal transition-colors">About Us</a>
+        <a href="sports.html" class="text-slate-300 hover:text-brand-green transition-colors">Sports</a>
+        <a href="action-sports.html" class="text-slate-300 hover:text-brand-green transition-colors">Action Sports</a>
+        <a href="industrial.html" class="text-slate-300 hover:text-brand-green transition-colors">Industrial</a>
+        <a href="retailers.html" class="text-slate-300 hover:text-brand-green transition-colors">Retailers</a>
+        <a href="about.html" class="text-slate-300 hover:text-brand-green transition-colors">About Us</a>
       </nav>
 
       <!-- Shop Apparel CTA -->
       <div class="flex items-center space-x-4">
-        <a href="https://site-shades.org" target="_blank" class="px-5 py-2 rounded border border-brand-teal/80 text-brand-teal hover:bg-brand-teal hover:text-black font-headline text-lg tracking-wider uppercase transition-all duration-150">
+        <a href="https://site-shades.org" target="_blank" class="px-5 py-2 rounded border border-brand-green/80 text-brand-green hover:bg-brand-green hover:text-black font-headline text-lg tracking-wider uppercase transition-all duration-150">
           Shop Apparel
         </a>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section: Modern, Crisp & Not Over-Scaled -->
+  <!-- Hero Section -->
   <main>
     <section class="relative min-h-[calc(100vh-5.5rem)] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 border-b border-brand-border">
       <div class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        <!-- Left Side: Clean Bold Copy -->
+        <!-- Left Column: Headlines & Explore CTA -->
         <div class="lg:col-span-7 text-center lg:text-left">
-          <div class="inline-block px-3 py-1 rounded bg-brand-card border border-brand-border text-brand-teal font-headline tracking-widest text-sm uppercase mb-4">
-            Engineered Outdoor Shade Systems
-          </div>
-
           <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tight text-white font-headline leading-none">
             YOUR SITE. <br />
-            <span class="text-brand-teal">YOUR SHADE.</span>
+            <span class="text-brand-green">YOUR SHADE.</span>
           </h1>
 
           <p class="mt-5 text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
-            Engineered, portable shade systems for outdoor action—from tournament dugouts and UTV desert camps to marine bow setups and industrial worksites[cite: 1].
+            Engineered, portable shade systems for outdoor action—from tournament dugouts and UTV desert camps to marine bow setups and industrial worksites.
           </p>
 
-          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          <div class="mt-8 flex justify-center lg:justify-start">
             <a 
               href="#categories" 
               id="explore-btn"
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded bg-brand-teal hover:bg-brand-tealDark text-black font-headline font-bold text-xl tracking-wider uppercase transition-all duration-200 shadow-lg shadow-brand-teal/10 hover:shadow-brand-teal/20"
+              class="inline-flex items-center justify-center px-10 py-3.5 rounded bg-brand-green hover:bg-brand-greenHover text-black font-headline font-bold text-xl tracking-wider uppercase transition-all duration-200 shadow-lg shadow-brand-green/15 hover:shadow-brand-green/25"
             >
-              <span>Explore Categories</span>
-              <svg class="w-5 h-5 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-              </svg>
-            </a>
-
-            <a 
-              href="retailers.html" 
-              class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded border border-brand-border bg-brand-card hover:border-slate-500 text-white font-headline font-semibold text-xl tracking-wider uppercase transition-all duration-150"
-            >
-              Locate Dealer
+              Explore Categories
             </a>
           </div>
         </div>
 
-        <!-- Right Side: Natural High-Res Badge Image (Not Pixelated) -->
+        <!-- Right Column: Sharp Natural Landing Card (No Circle, No Pixelation) -->
         <div class="lg:col-span-5 flex justify-center">
-          <div class="relative w-64 sm:w-80 md:w-96 max-w-full">
-            <div class="absolute -inset-4 bg-brand-teal/10 rounded-full blur-2xl -z-10"></div>
+          <div class="relative w-full max-w-sm sm:max-w-md bg-brand-card/70 border border-brand-border rounded-2xl p-6 backdrop-blur shadow-2xl overflow-hidden group">
+            <div class="absolute -top-12 -right-12 w-48 h-48 bg-brand-green/10 rounded-full blur-3xl -z-10 group-hover:bg-brand-green/20 transition-all duration-300"></div>
+            
             <img 
               src="Site shades Landing page.png" 
-              alt="Site Shades Badge" 
-              class="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] clean-logo-clip transition-transform duration-300 hover:scale-102"
+              alt="Site Shades Brand Showcase" 
+              class="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] rounded-lg transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </div>
         </div>
@@ -163,91 +150,91 @@
     <!-- The 3 Core Categories Hub -->
     <section id="categories" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <span class="text-brand-teal font-headline uppercase tracking-widest text-lg font-semibold">Purpose-Built Field Protection</span>
+        <span class="text-brand-green font-headline uppercase tracking-widest text-lg font-semibold">Purpose-Built Field Protection</span>
         <h2 class="text-5xl sm:text-6xl font-extrabold uppercase tracking-tight text-white font-headline mt-1">
           Explore Our 3 Divisions
         </h2>
         <p class="mt-2 text-slate-400 max-w-lg mx-auto text-sm">
-          Select a category below to view specific shades, hardware kits, and purchase tabs[cite: 1].
+          Select a category below to view specific shades, hardware kits, and purchase tabs.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
         <!-- Category 1: Sports -->
-        <div class="group bg-brand-card/90 backdrop-blur rounded-lg border border-brand-border hover:border-brand-teal transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
+        <div class="group bg-brand-card/90 backdrop-blur rounded-lg border border-brand-border hover:border-brand-green transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
           <div>
-            <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-teal group-hover:text-brand-teal transition-colors duration-200 text-xl font-bold">
+            <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-green group-hover:text-brand-green transition-colors duration-200 text-xl font-bold">
               ⚾
             </div>
-            <h3 class="text-4xl font-bold text-white uppercase font-headline group-hover:text-brand-teal transition-colors duration-200">
+            <h3 class="text-4xl font-bold text-white uppercase font-headline group-hover:text-brand-green transition-colors duration-200">
               Sports
             </h3>
-            <p class="text-xs uppercase font-semibold text-brand-teal tracking-wider mt-1 mb-4">
-              Baseball • Softball • Tournaments[cite: 1]
+            <p class="text-xs uppercase font-semibold text-brand-green tracking-wider mt-1 mb-4">
+              Baseball • Softball • Tournaments
             </p>
             <p class="text-sm text-slate-300 leading-relaxed mb-6">
-              Keep players fresh in the dugout and families protected on the bleachers during all-day tournament doubleheaders[cite: 1].
+              Keep players fresh in the dugout and families protected on the bleachers during all-day tournament doubleheaders.
             </p>
             <ul class="text-xs space-y-2.5 text-slate-300 font-medium mb-8">
-              <li class="flex items-center gap-2"><span class="text-brand-teal">✓</span> Dugout Shade Systems[cite: 1]</li>
-              <li class="flex items-center gap-2"><span class="text-brand-teal">✓</span> Bleacher Shade Kits[cite: 1]</li>
-              <li class="flex items-center gap-2"><span class="text-brand-teal">✓</span> Chain-Link Mounting Accessories[cite: 1]</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Dugout Shade Systems</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Bleacher Shade Kits</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Chain-Link Mounting Accessories</li>
             </ul>
           </div>
-          <a href="sports.html" class="w-full py-3 bg-brand-dark hover:bg-brand-teal hover:text-black text-white text-center font-headline font-bold text-lg tracking-wider uppercase rounded border border-brand-border hover:border-brand-teal transition-all duration-150">
+          <a href="sports.html" class="w-full py-3 bg-brand-dark hover:bg-brand-green hover:text-black text-white text-center font-headline font-bold text-lg tracking-wider uppercase rounded border border-brand-border hover:border-brand-green transition-all duration-150">
             Explore Sports Shades &rarr;
           </a>
         </div>
 
         <!-- Category 2: Action Sports -->
-        <div class="group bg-brand-card/90 backdrop-blur rounded-lg border border-brand-border hover:border-brand-teal transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
+        <div class="group bg-brand-card/90 backdrop-blur rounded-lg border border-brand-border hover:border-brand-green transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
           <div>
-            <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-teal group-hover:text-brand-teal transition-colors duration-200 text-xl font-bold">
+            <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-green group-hover:text-brand-green transition-colors duration-200 text-xl font-bold">
               🚤
             </div>
-            <h3 class="text-4xl font-bold text-white uppercase font-headline group-hover:text-brand-teal transition-colors duration-200">
+            <h3 class="text-4xl font-bold text-white uppercase font-headline group-hover:text-brand-green transition-colors duration-200">
               Action Sports
             </h3>
-            <p class="text-xs uppercase font-semibold text-brand-teal tracking-wider mt-1 mb-4">
-              Off-Road • Marine & Boat • RV[cite: 1]
+            <p class="text-xs uppercase font-semibold text-brand-green tracking-wider mt-1 mb-4">
+              Off-Road • Marine & Boat • RV
             </p>
             <p class="text-sm text-slate-300 leading-relaxed mb-6">
-              Engineered for extreme trails, open lakes, and remote campsites[cite: 1]. Built to mount firmly to roll bars, T-tops, and awnings.
+              Engineered for extreme trails, open lakes, and remote campsites. Built to mount firmly to roll bars, T-tops, and awnings.
             </p>
             <ul class="text-xs space-y-2.5 text-slate-300 font-medium mb-8">
-              <li class="flex items-center gap-2"><span class="text-brand-teal">✓</span> Off-Road UTV & 4x4 Shades[cite: 1]</li>
-              <li class="flex items-center gap-2"><span class="text-brand-teal">✓</span> Boat Bow & Bimini Extensions[cite: 1]</li>
-              <li class="flex items-center gap-2"><span class="text-brand-teal">✓</span> Magnetic Mounts, Poles & Hardware[cite: 1]</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Off-Road UTV & 4x4 Shades</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Boat Bow & Bimini Extensions</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Magnetic Mounts, Poles & Hardware</li>
             </ul>
           </div>
-          <a href="action-sports.html" class="w-full py-3 bg-brand-dark hover:bg-brand-teal hover:text-black text-white text-center font-headline font-bold text-lg tracking-wider uppercase rounded border border-brand-border hover:border-brand-teal transition-all duration-150">
+          <a href="action-sports.html" class="w-full py-3 bg-brand-dark hover:bg-brand-green hover:text-black text-white text-center font-headline font-bold text-lg tracking-wider uppercase rounded border border-brand-border hover:border-brand-green transition-all duration-150">
             Explore Action Shades &rarr;
           </a>
         </div>
 
         <!-- Category 3: Industrial -->
-        <div class="group bg-brand-card/90 backdrop-blur rounded-lg border border-brand-border hover:border-brand-teal transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
+        <div class="group bg-brand-card/90 backdrop-blur rounded-lg border border-brand-border hover:border-brand-green transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
           <div>
-            <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-teal group-hover:text-brand-teal transition-colors duration-200 text-xl font-bold">
+            <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-green group-hover:text-brand-green transition-colors duration-200 text-xl font-bold">
               🚧
             </div>
-            <h3 class="text-4xl font-bold text-white uppercase font-headline group-hover:text-brand-teal transition-colors duration-200">
+            <h3 class="text-4xl font-bold text-white uppercase font-headline group-hover:text-brand-green transition-colors duration-200">
               Industrial
             </h3>
-            <p class="text-xs uppercase font-semibold text-brand-teal tracking-wider mt-1 mb-4">
-              Construction • Survey • Utilities[cite: 1]
+            <p class="text-xs uppercase font-semibold text-brand-green tracking-wider mt-1 mb-4">
+              Construction • Survey • Utilities
             </p>
             <p class="text-sm text-slate-300 leading-relaxed mb-6">
-              Essential job-site heat-stress mitigation for roadwork, utility crews, concrete pours, and commercial field surveying[cite: 1].
+              Essential job-site heat-stress mitigation for roadwork, utility crews, concrete pours, and commercial field surveying.
             </p>
             <ul class="text-xs space-y-2.5 text-slate-300 font-medium mb-8">
-              <li class="flex items-center gap-2"><span class="text-brand-teal">✓</span> Worksite Heavy-Duty Canopy Kit[cite: 1]</li>
-              <li class="flex items-center gap-2"><span class="text-brand-teal">✓</span> Flame & Tear-Resistant Mesh</li>
-              <li class="flex items-center gap-2"><span class="text-brand-teal">✓</span> Magnetic Fleet Vehicle Mounts</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Worksite Heavy-Duty Canopy Kit</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Flame & Tear-Resistant Mesh</li>
+              <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Magnetic Fleet Vehicle Mounts</li>
             </ul>
           </div>
-          <a href="industrial.html" class="w-full py-3 bg-brand-dark hover:bg-brand-teal hover:text-black text-white text-center font-headline font-bold text-lg tracking-wider uppercase rounded border border-brand-border hover:border-brand-teal transition-all duration-150">
+          <a href="industrial.html" class="w-full py-3 bg-brand-dark hover:bg-brand-green hover:text-black text-white text-center font-headline font-bold text-lg tracking-wider uppercase rounded border border-brand-border hover:border-brand-green transition-all duration-150">
             Explore Industrial Shades &rarr;
           </a>
         </div>
@@ -260,24 +247,24 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div class="p-6 bg-brand-card/60 rounded border border-brand-border">
-            <span class="text-brand-teal font-headline text-3xl font-bold block mb-1">01</span>
+            <span class="text-brand-green font-headline text-3xl font-bold block mb-1">01</span>
             <h4 class="font-headline text-2xl uppercase font-bold text-white mb-1">Made in America</h4>
-            <p class="text-xs text-slate-400">Domestic craftsmanship built for maximum UV protection and durability[cite: 1].</p>
+            <p class="text-xs text-slate-400">Domestic craftsmanship built for maximum UV protection and durability.</p>
           </div>
           <div class="p-6 bg-brand-card/60 rounded border border-brand-border">
-            <span class="text-brand-teal font-headline text-3xl font-bold block mb-1">02</span>
+            <span class="text-brand-green font-headline text-3xl font-bold block mb-1">02</span>
             <h4 class="font-headline text-2xl uppercase font-bold text-white mb-1">True Airflow</h4>
             <p class="text-xs text-slate-400">High-density weave knocks down direct sun while letting breezes circulate freely.</p>
           </div>
           <div class="p-6 bg-brand-card/60 rounded border border-brand-border">
-            <span class="text-brand-teal font-headline text-3xl font-bold block mb-1">03</span>
+            <span class="text-brand-green font-headline text-3xl font-bold block mb-1">03</span>
             <h4 class="font-headline text-2xl uppercase font-bold text-white mb-1">5-Minute Setup</h4>
-            <p class="text-xs text-slate-400">Single-person setup with quick bungees, fence hooks, or magnetic clamps[cite: 1].</p>
+            <p class="text-xs text-slate-400">Single-person setup with quick bungees, fence hooks, or magnetic clamps.</p>
           </div>
           <div class="p-6 bg-brand-card/60 rounded border border-brand-border">
-            <span class="text-brand-teal font-headline text-3xl font-bold block mb-1">04</span>
+            <span class="text-brand-green font-headline text-3xl font-bold block mb-1">04</span>
             <h4 class="font-headline text-2xl uppercase font-bold text-white mb-1">Multi-Site Rigging</h4>
-            <p class="text-xs text-slate-400">Fastens securely to chain link, vehicle roll cages, and boat frames[cite: 1].</p>
+            <p class="text-xs text-slate-400">Fastens securely to chain link, vehicle roll cages, and boat frames.</p>
           </div>
         </div>
       </div>
@@ -294,24 +281,24 @@
         </div>
         <div>
           <span class="font-headline text-xl font-bold text-white tracking-wider block">SITE SHADES</span>
-          <p class="text-slate-400 text-[11px]">&copy; 2026 Site Shades. Clocked In With Comfort. Made in America[cite: 1].</p>
+          <p class="text-slate-400 text-[11px]">&copy; 2026 Site Shades. Clocked In With Comfort. Made in America.</p>
         </div>
       </div>
 
       <div class="flex items-center gap-4 text-sm">
         <span class="font-semibold text-white font-headline tracking-wider text-base">@siteshades</span>
         <span class="text-slate-600">|</span>
-        <a href="https://instagram.com/siteshades" target="_blank" class="hover:text-brand-teal transition-colors">Instagram</a>
-        <a href="https://facebook.com/siteshades" target="_blank" class="hover:text-brand-teal transition-colors">Facebook</a>
-        <a href="https://tiktok.com/@siteshades" target="_blank" class="hover:text-brand-teal transition-colors">TikTok</a>
+        <a href="https://instagram.com/siteshades" target="_blank" class="hover:text-brand-green transition-colors">Instagram</a>
+        <a href="https://facebook.com/siteshades" target="_blank" class="hover:text-brand-green transition-colors">Facebook</a>
+        <a href="https://tiktok.com/@siteshades" target="_blank" class="hover:text-brand-green transition-colors">TikTok</a>
       </div>
 
       <div class="flex space-x-6 uppercase font-headline text-base tracking-wider">
-        <a href="sports.html" class="hover:text-brand-teal">Sports</a>
-        <a href="action-sports.html" class="hover:text-brand-teal">Action</a>
-        <a href="industrial.html" class="hover:text-brand-teal">Industrial</a>
-        <a href="retailers.html" class="hover:text-brand-teal">Retailers</a>
-        <a href="about.html" class="hover:text-brand-teal">About</a>
+        <a href="sports.html" class="hover:text-brand-green">Sports</a>
+        <a href="action-sports.html" class="hover:text-brand-green">Action</a>
+        <a href="industrial.html" class="hover:text-brand-green">Industrial</a>
+        <a href="retailers.html" class="hover:text-brand-green">Retailers</a>
+        <a href="about.html" class="hover:text-brand-green">About</a>
       </div>
     </div>
   </footer>
