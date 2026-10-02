@@ -27,7 +27,7 @@
     }
   </script>
 
-  <!-- Google Fonts: Questrial (exact web equivalent to Century Gothic) -->
+  <!-- Google Fonts: Questrial -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
@@ -43,15 +43,6 @@
       background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.97)), url('Site Shades Background.png');
       background-attachment: fixed;
       background-size: 500px auto;
-    }
-
-    /* Carousel Cross-fade */
-    .hero-slide {
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
-    }
-    .hero-slide.active-slide {
-      opacity: 1;
     }
 
     /* Single-File Page Transitions */
@@ -70,7 +61,7 @@
 </head>
 <body class="bg-black text-white font-oneill antialiased selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- Header / Navigation Bar (Tall, readable, O'Neill typography) -->
+  <!-- Header / Navigation Bar -->
   <header class="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/15">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-28 flex items-center justify-between">
       
@@ -85,7 +76,7 @@
         </div>
       </button>
 
-      <!-- Prominent, Readable Century Gothic Nav Links -->
+      <!-- Prominent Navigation Links -->
       <nav class="hidden lg:flex items-center space-x-10 text-sm tracking-[0.22em] uppercase font-bold">
         <button onclick="navigateTo('home')" class="nav-btn text-white transition-colors" data-page="home">Home</button>
         <button onclick="navigateTo('sports')" class="nav-btn text-white/60 hover:text-white transition-colors" data-page="sports">Sports</button>
@@ -109,45 +100,25 @@
   <!-- ========================================== -->
   <main id="page-home" class="site-page active-page">
     
-    <!-- Hero Banner (Calibrated product focal points) -->
-    <section class="relative w-full h-[60vh] sm:h-[70vh] min-h-[440px] max-h-[760px] overflow-hidden bg-black">
-      
-      <!-- Slide 1: Desert UTV (landing page 2.png) - Centered on the red shade -->
-      <div class="hero-slide active-slide absolute inset-0 z-0">
+    <!-- Hero Banner: Updated with Exact Filename Match (.png) -->
+    <section class="relative w-full bg-black py-4 sm:py-8 flex items-center justify-center border-b border-white/10">
+      <div class="max-w-6xl mx-auto px-4 w-full flex items-center justify-center">
         <img 
-          src="landing page 2.png" 
-          alt="Site Shades Desert UTV" 
-          class="w-full h-full object-cover object-[center_55%]"
+          src="site shades NEW LANDING PAGE .png" 
+          alt="Site Shades - Your Site. Your Shade." 
+          class="w-full h-auto max-h-[620px] object-contain shadow-2xl"
         />
-      </div>
-
-      <!-- Slide 2: Marine Boat (landing page 1.PNG) - Positioned on the canopy shade -->
-      <div class="hero-slide absolute inset-0 z-0">
-        <img 
-          src="landing page 1.PNG" 
-          alt="Site Shades Marine Boat" 
-          class="w-full h-full object-cover object-[center_28%]"
-        />
-      </div>
-
-      <!-- Subtle contrast gradient overlay -->
-      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 z-10 pointer-events-none"></div>
-
-      <!-- Carousel Navigation Dots -->
-      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-3">
-        <button onclick="setSlide(0)" class="slide-indicator w-10 h-1 bg-white transition-all"></button>
-        <button onclick="setSlide(1)" class="slide-indicator w-10 h-1 bg-white/40 transition-all"></button>
       </div>
     </section>
 
-    <!-- O'Neill Typography Layout Under Hero (Exact font format) -->
-    <section class="py-16 sm:py-24 max-w-4xl mx-auto px-6 text-center">
+    <!-- Site Shades Dedicated Brand Narrative -->
+    <section class="py-16 sm:py-20 max-w-4xl mx-auto px-6 text-center">
       <h1 class="text-3xl sm:text-5xl lg:text-6xl tracking-[0.06em] text-white font-normal leading-tight">
         Your Site. Your Shade.
       </h1>
 
       <p class="mt-6 text-white/80 text-sm sm:text-base leading-relaxed tracking-wide font-light max-w-3xl mx-auto">
-        In 1952 a young man named Jack O’Neill took his unstoppable passion for surfing and used it to battle the elements[cite: 4]. At Site Shades, we bring that same relentless standard to portable shade systems engineered for tournament dugouts, desert UTV camps, marine bows, and industrial worksites—keeping you clocked in with comfort.
+        Site Shades was founded to solve a straightforward problem: harsh, relentless outdoor elements without proper, durable relief. Engineered with high-density UV mesh, reinforced perimeter webbing, and versatile quick-rig mounting systems, our shades are purpose-built for youth baseball dugouts, open-desert UTV trail camps, marine bows on open water, and demanding commercial worksites. Fast 5-minute setups, uncompromising airflow, and built to keep you clocked in with comfort.
       </p>
     </section>
 
@@ -503,7 +474,7 @@
     </div>
   </footer>
 
-  <!-- View Controller & Carousel Engine -->
+  <!-- View Controller -->
   <script>
     function navigateTo(pageId) {
       document.querySelectorAll('.site-page').forEach(page => {
@@ -526,26 +497,6 @@
         }
       });
     }
-
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.hero-slide');
-    const indicators = document.querySelectorAll('.slide-indicator');
-
-    function setSlide(index) {
-      slides.forEach((s, i) => {
-        s.classList.toggle('active-slide', i === index);
-      });
-      indicators.forEach((ind, i) => {
-        ind.classList.toggle('bg-white', i === index);
-        ind.classList.toggle('bg-white/40', i !== index);
-      });
-      currentSlide = index;
-    }
-
-    setInterval(() => {
-      let next = (currentSlide + 1) % slides.length;
-      setSlide(next);
-    }, 4500);
   </script>
 </body>
 </html>
