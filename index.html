@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,9 +17,8 @@
               dark: '#121619',
               card: '#181e22',
               border: '#262f35',
-              green: '#22c55e',       /* Outdoor action green */
+              green: '#22c55e',
               greenHover: '#16a34a',
-              greenGlow: 'rgba(34, 197, 94, 0.18)',
             }
           },
           fontFamily: {
@@ -31,29 +30,46 @@
     }
   </script>
 
-  <!-- Google Fonts: Oswald (Logo/Headlines) & Inter (Clean UI text) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Swift Page Entrance & Exit Transitions */
+    body {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+    }
+    body.page-loaded {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    body.page-exiting {
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: opacity 0.2s ease-in, transform 0.2s ease-in;
+    }
+  </style>
 </head>
 <body class="bg-brand-black text-slate-200 font-sans antialiased selection:bg-brand-green selection:text-black">
 
-  <!-- Top Banner -->
+  <!-- Top Announcement Bar -->
   <div class="bg-brand-dark border-b border-brand-border text-xs py-2 px-4 text-center tracking-wider uppercase text-slate-300 flex items-center justify-center gap-2">
     <span>🇺🇸 Made in America</span>
     <span class="text-brand-green">•</span>
     <span>Heavy-Duty Custom Outdoor Shade Solutions</span>
   </div>
 
-  <!-- Header -->
+  <!-- Header / Navigation -->
   <header class="sticky top-0 z-50 bg-brand-black/95 backdrop-blur-md border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- Brand Logo Badge -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-11 h-11 rounded-full border-2 border-white flex items-center justify-center bg-black group-hover:border-brand-green transition-colors">
-          <!-- Stylized Palm Icon representing the logo badge -->
-          <svg class="w-6 h-6 text-white group-hover:text-brand-green transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-full border-2 border-white flex items-center justify-center bg-black group-hover:border-brand-green transition-colors duration-200">
+          <svg class="w-6 h-6 text-white group-hover:text-brand-green transition-colors duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M13 8c0-2.76-2.46-5-5.5-5S2 5.24 2 8h11Z"/>
             <path d="M13 7.14A5.82 5.82 0 0 1 16.5 6c3.04 0 5.5 2.24 5.5 5h-9"/>
             <path d="M5.89 9.71c-2.15 1.45-3.89 3.8-3.89 6.29h8"/>
@@ -62,7 +78,7 @@
           </svg>
         </div>
         <div class="leading-none">
-          <span class="block font-display text-2xl tracking-wider font-bold text-white uppercase group-hover:text-brand-green transition-colors">
+          <span class="block font-display text-2xl tracking-wider font-bold text-white uppercase group-hover:text-brand-green transition-colors duration-200">
             SITE SHADES
           </span>
           <span class="text-[10px] tracking-widest text-slate-400 uppercase font-medium">
@@ -73,16 +89,16 @@
 
       <!-- Desktop Nav -->
       <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold tracking-wider uppercase font-display">
-        <a href="#sports" class="text-slate-300 hover:text-brand-green transition-colors">Sports</a>
-        <a href="#action-sports" class="text-slate-300 hover:text-brand-green transition-colors">Action Sports</a>
-        <a href="#industrial" class="text-slate-300 hover:text-brand-green transition-colors">Industrial</a>
-        <a href="#retail" class="text-slate-300 hover:text-brand-green transition-colors">Retailers</a>
-        <a href="#about" class="text-slate-300 hover:text-brand-green transition-colors">About</a>
+        <a href="sports.html" class="text-slate-300 hover:text-brand-green transition-colors duration-150">Sports</a>
+        <a href="action-sports.html" class="text-slate-300 hover:text-brand-green transition-colors duration-150">Action Sports</a>
+        <a href="industrial.html" class="text-slate-300 hover:text-brand-green transition-colors duration-150">Industrial</a>
+        <a href="retailers.html" class="text-slate-300 hover:text-brand-green transition-colors duration-150">Retailers</a>
+        <a href="about.html" class="text-slate-300 hover:text-brand-green transition-colors duration-150">About Us</a>
       </nav>
 
       <!-- Shop Apparel CTA -->
       <div class="flex items-center space-x-4">
-        <a href="#apparel" class="px-4 py-2 rounded border border-brand-green text-brand-green hover:bg-brand-green hover:text-black font-display font-semibold text-sm tracking-wider uppercase transition-all duration-150">
+        <a href="https://site-shades.org" target="_blank" class="px-4 py-2 rounded border border-brand-green text-brand-green hover:bg-brand-green hover:text-black font-display font-semibold text-sm tracking-wider uppercase transition-all duration-150">
           Shop Apparel
         </a>
       </div>
@@ -93,7 +109,6 @@
   <section class="relative pt-16 pb-24 lg:pt-24 lg:pb-32 bg-gradient-to-b from-brand-dark via-brand-black to-brand-black border-b border-brand-border">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       
-      <!-- Sub-tagline badge -->
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded border border-brand-border bg-brand-card text-brand-green text-xs font-semibold uppercase tracking-widest mb-6">
         <span>Rugged • Water-Tested • Job-Site Ready</span>
       </div>
@@ -108,11 +123,11 @@
       </p>
 
       <div class="mt-10 flex flex-wrap justify-center gap-4">
-        <a href="#categories" class="px-8 py-3.5 rounded bg-brand-green hover:bg-brand-greenHover text-black font-display font-bold text-lg tracking-wider uppercase transition-all shadow-lg shadow-brand-green/20">
-          View Shade Collections
+        <a href="#categories" class="px-8 py-3.5 rounded bg-brand-green hover:bg-brand-greenHover text-black font-display font-bold text-lg tracking-wider uppercase transition-all duration-200 shadow-lg shadow-brand-green/20">
+          View Collections
         </a>
-        <a href="#retail" class="px-8 py-3.5 rounded border border-brand-border hover:border-slate-400 bg-brand-card text-white font-display font-semibold text-lg tracking-wider uppercase transition-all">
-          Locate A Dealer
+        <a href="retailers.html" class="px-8 py-3.5 rounded border border-brand-border hover:border-slate-400 bg-brand-card text-white font-display font-semibold text-lg tracking-wider uppercase transition-all duration-200">
+          Locate A Retailer
         </a>
       </div>
     </div>
@@ -130,12 +145,12 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       
       <!-- Card 1: Sports -->
-      <div id="sports" class="group bg-brand-card rounded-lg border border-brand-border hover:border-brand-green transition-all duration-200 flex flex-col justify-between p-8">
+      <div class="group bg-brand-card rounded-lg border border-brand-border hover:border-brand-green transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
         <div>
-          <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-green group-hover:text-brand-green transition-colors">
+          <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-green group-hover:text-brand-green transition-colors duration-200">
             ⚾
           </div>
-          <h3 class="text-3xl font-bold text-white uppercase font-display group-hover:text-brand-green transition-colors">
+          <h3 class="text-3xl font-bold text-white uppercase font-display group-hover:text-brand-green transition-colors duration-200">
             Sports
           </h3>
           <p class="text-xs uppercase font-semibold text-brand-green tracking-wider mt-1 mb-4">
@@ -145,29 +160,23 @@
             Durable dugout and spectator covers engineered for all-day field exposure. Simple setup on chain-link fences.
           </p>
           <ul class="text-xs space-y-2.5 text-slate-300 font-medium mb-8">
-            <li class="flex items-center gap-2">
-              <span class="text-brand-green">✓</span> Dugout Shades & Kits
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-brand-green">✓</span> Bleacher & Spectator Covers
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-brand-green">✓</span> Heavy-Duty Fence Hardware
-            </li>
+            <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Dugout Shades & Kits</li>
+            <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Bleacher & Spectator Covers</li>
+            <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Sports Hardware Accessories</li>
           </ul>
         </div>
-        <a href="sports.html" class="w-full py-3 bg-brand-dark hover:bg-brand-green hover:text-black text-white text-center font-display font-bold text-sm tracking-wider uppercase rounded border border-brand-border hover:border-brand-green transition-all">
+        <a href="sports.html" class="w-full py-3 bg-brand-dark hover:bg-brand-green hover:text-black text-white text-center font-display font-bold text-sm tracking-wider uppercase rounded border border-brand-border hover:border-brand-green transition-all duration-150">
           Explore Sports Shades &rarr;
         </a>
       </div>
 
       <!-- Card 2: Action Sports -->
-      <div id="action-sports" class="group bg-brand-card rounded-lg border border-brand-border hover:border-brand-green transition-all duration-200 flex flex-col justify-between p-8">
+      <div class="group bg-brand-card rounded-lg border border-brand-border hover:border-brand-green transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
         <div>
-          <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-green group-hover:text-brand-green transition-colors">
+          <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-green group-hover:text-brand-green transition-colors duration-200">
             🚤
           </div>
-          <h3 class="text-3xl font-bold text-white uppercase font-display group-hover:text-brand-green transition-colors">
+          <h3 class="text-3xl font-bold text-white uppercase font-display group-hover:text-brand-green transition-colors duration-200">
             Action Sports
           </h3>
           <p class="text-xs uppercase font-semibold text-brand-green tracking-wider mt-1 mb-4">
@@ -177,50 +186,38 @@
             High-tension shades built for roll bars, boat towers, and RV campsite awnings. Stays tight in open winds.
           </p>
           <ul class="text-xs space-y-2.5 text-slate-300 font-medium mb-8">
-            <li class="flex items-center gap-2">
-              <span class="text-brand-green">✓</span> Off-Road UTV & 4x4 Shades
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-brand-green">✓</span> Marine Bow & Bimini Shades
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-brand-green">✓</span> Poles, Magnet Mounts & Clips
-            </li>
+            <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Off-Road UTV & 4x4 Shades</li>
+            <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Marine Bow & Bimini Shades</li>
+            <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Poles, Magnet Mounts & Clips</li>
           </ul>
         </div>
-        <a href="action-sports.html" class="w-full py-3 bg-brand-dark hover:bg-brand-green hover:text-black text-white text-center font-display font-bold text-sm tracking-wider uppercase rounded border border-brand-border hover:border-brand-green transition-all">
+        <a href="action-sports.html" class="w-full py-3 bg-brand-dark hover:bg-brand-green hover:text-black text-white text-center font-display font-bold text-sm tracking-wider uppercase rounded border border-brand-border hover:border-brand-green transition-all duration-150">
           Explore Action Shades &rarr;
         </a>
       </div>
 
       <!-- Card 3: Industrial -->
-      <div id="industrial" class="group bg-brand-card rounded-lg border border-brand-border hover:border-brand-green transition-all duration-200 flex flex-col justify-between p-8">
+      <div class="group bg-brand-card rounded-lg border border-brand-border hover:border-brand-green transition-all duration-200 flex flex-col justify-between p-8 hover:-translate-y-1">
         <div>
-          <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-green group-hover:text-brand-green transition-colors">
+          <div class="w-12 h-12 rounded bg-black border border-brand-border flex items-center justify-center text-white mb-6 group-hover:border-brand-green group-hover:text-brand-green transition-colors duration-200">
             🚧
           </div>
-          <h3 class="text-3xl font-bold text-white uppercase font-display group-hover:text-brand-green transition-colors">
+          <h3 class="text-3xl font-bold text-white uppercase font-display group-hover:text-brand-green transition-colors duration-200">
             Industrial
           </h3>
           <p class="text-xs uppercase font-semibold text-brand-green tracking-wider mt-1 mb-4">
-            Construction • Survey • Fleet
+            Construction • Survey • Utilities
           </p>
           <p class="text-sm text-slate-400 leading-relaxed mb-6">
             OSHA-compliant heat mitigation for road crews, concrete teams, and field surveyors. Heavy-duty tear strength.
           </p>
           <ul class="text-xs space-y-2.5 text-slate-300 font-medium mb-8">
-            <li class="flex items-center gap-2">
-              <span class="text-brand-green">✓</span> Commercial Worksite Shades
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-brand-green">✓</span> High-Durability Rip-Stop Mesh
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-brand-green">✓</span> Rapid Fleet Magnetic Mounts
-            </li>
+            <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Commercial Worksite Shades</li>
+            <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> High-Durability Rip-Stop Mesh</li>
+            <li class="flex items-center gap-2"><span class="text-brand-green">✓</span> Rapid Fleet Magnetic Mounts</li>
           </ul>
         </div>
-        <a href="industrial.html" class="w-full py-3 bg-brand-dark hover:bg-brand-green hover:text-black text-white text-center font-display font-bold text-sm tracking-wider uppercase rounded border border-brand-border hover:border-brand-green transition-all">
+        <a href="industrial.html" class="w-full py-3 bg-brand-dark hover:bg-brand-green hover:text-black text-white text-center font-display font-bold text-sm tracking-wider uppercase rounded border border-brand-border hover:border-brand-green transition-all duration-150">
           Explore Industrial Shades &rarr;
         </a>
       </div>
@@ -256,35 +253,14 @@
     </div>
   </section>
 
-  <!-- Apparel Teaser -->
-  <section id="apparel" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="bg-brand-card border border-brand-border rounded-lg p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
-      <div>
-        <span class="text-brand-green font-display text-xs font-bold uppercase tracking-widest">Official Merch</span>
-        <h3 class="text-3xl sm:text-4xl font-black uppercase text-white font-display mt-1">
-          Rep The Brand: Site Shades Gear
-        </h3>
-        <p class="text-slate-400 text-sm max-w-lg mt-2">
-          Grab official Site Shades trucker hats, tournament shirts, and outdoor apparel.
-        </p>
-      </div>
-      <a href="https://site-shades.org" target="_blank" class="shrink-0 px-8 py-3.5 bg-brand-green hover:bg-brand-greenHover text-black font-display font-bold text-sm tracking-wider uppercase rounded transition-all">
-        Browse Apparel
-      </a>
-    </div>
-  </section>
-
-  <!-- Footer / Social Media Bar (Matching promo image) -->
+  <!-- Footer -->
   <footer class="bg-brand-black border-t border-brand-border py-12 text-slate-400 text-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-      
-      <!-- Brand & Copyright -->
       <div class="flex flex-col items-center md:items-start">
         <span class="font-display text-xl font-bold text-white tracking-wider">SITE SHADES</span>
         <p class="mt-1">&copy; 2026 Site Shades. All Rights Reserved. Made in America.</p>
       </div>
 
-      <!-- Socials & Handle from image -->
       <div class="flex items-center gap-4 text-sm">
         <span class="font-semibold text-white font-display tracking-wider">@siteshades</span>
         <span class="text-slate-600">|</span>
@@ -293,15 +269,38 @@
         <a href="https://tiktok.com/@siteshades" target="_blank" class="hover:text-brand-green transition-colors">TikTok</a>
       </div>
 
-      <!-- Quick Links -->
       <div class="flex space-x-6 uppercase font-display text-xs tracking-wider">
-        <a href="#sports" class="hover:text-brand-green">Sports</a>
-        <a href="#action-sports" class="hover:text-brand-green">Action</a>
-        <a href="#industrial" class="hover:text-brand-green">Industrial</a>
-        <a href="mailto:info@site-shades.org" class="hover:text-brand-green">Contact</a>
+        <a href="sports.html" class="hover:text-brand-green">Sports</a>
+        <a href="action-sports.html" class="hover:text-brand-green">Action</a>
+        <a href="industrial.html" class="hover:text-brand-green">Industrial</a>
+        <a href="retailers.html" class="hover:text-brand-green">Retailers</a>
+        <a href="about.html" class="hover:text-brand-green">About</a>
       </div>
     </div>
   </footer>
 
+  <!-- Swift Page Transition Handler -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("page-loaded");
+
+      // Intercept local page links for smooth swift transition
+      document.querySelectorAll("a[href]").forEach((link) => {
+        const href = link.getAttribute("href");
+        
+        // Only animate internal html page navigations
+        if (href && !href.startsWith("#") && !href.startsWith("http") && !href.startsWith("mailto:") && href.endsWith(".html")) {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            document.body.classList.remove("page-loaded");
+            document.body.classList.add("page-exiting");
+            setTimeout(() => {
+              window.location.href = href;
+            }, 200);
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
